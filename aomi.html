@@ -39,7 +39,7 @@ var g = {
             window.setTimeout(g.start, 1000);
 
             // split
-            console.log("page load time: " + window.performance.now() - t0);
+            console.log("page load time: " + (window.performance.now() - t0));
         },
         "start": function() {
             console.log(THREE);
@@ -47,7 +47,31 @@ var g = {
             sce.start();
             // clear canvas
             ren.clear();
+            // create renderer
+            gl.start();
+            // setup camera
+            gl.cam();
         }
+}
+// webgl
+var gl = {
+    "start": function() {
+        // renderer
+        var p0 = {};
+        p0.canvas = sce.b.c.can;
+        gl.a = new THREE.WebGLRenderer(p0);
+        console.log(gl.a);
+        gl.a.setClearColor(0xf0ffff, 0);
+        gl.a.setSize(512, 512);
+
+        // scene
+        gl.b = new THREE.Scene();
+        // gl.b.background = new THREE.Color(0xf0ffff);
+    },
+    "cam": function() {
+        // perspective
+        gl.c = new THREE.PerspectiveCamera(75.0, 1.0, 0.1, 1000.0);
+    }
 }
 // scene
 var sce = {
@@ -63,7 +87,7 @@ var sce = {
         // webgl
         sce.b = {};
         sce.b.r = [512,512,256,256];
-        sce.b.c = dom.canvas(sce.b.r);
+        sce.b.c = dom.canvas2(sce.b.r);
         dom.add(sce.b.c);
         sce.b.d = rgba.css([200,255,255,1.0]);
     }
@@ -72,7 +96,7 @@ var sce = {
 var ren = {
     "clear": function() {
         ren.data(sce.a);
-        ren.data(sce.b);
+        // ren.data(sce.b);
     },
     "data": function(c0) {
         c0.c.con.fillStyle = c0.d;
