@@ -9,3 +9,11 @@ Import ThreeJS and load gltf 2.0 models for capture
 Procedural generation of 3D mesh from monochrome bit array (base64, json encoding)
 
 Server side storage of sampled scenes
+
+Invaders
+3D cubic space subdivision
+Walking a KD-tree of non-regular spaces
+Populated by mesh instances
+Generated from mirrored cubes
+
+
