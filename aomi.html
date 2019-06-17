@@ -71,6 +71,19 @@ var gl = {
     "cam": function() {
         // perspective
         gl.c = new THREE.PerspectiveCamera(75.0, 1.0, 0.1, 1000.0);
+    },
+    "geo": function() {
+        // pyramid geometry
+        gl.d = new THREE.CylinderGeometry(0,2,2,4,1,true);
+        // set colors
+        var c0 = [0xff0000,0x00ff00,0x0000ff,0xfedbca];
+        c0.forEach(function(c1,i1){
+            gl.d.faces[i0*2+1].color.setHex(c1);
+        });
+        // create mesh
+        var m0 = {vertexColors:THREE.FaceColors};
+        gl.f = new THREE.MeshBasicMaterial(m0);
+        gl.e = new THREE.Mesh(gl.d, gl.e);
     }
 }
 // scene
