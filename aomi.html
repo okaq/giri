@@ -101,7 +101,20 @@ var gl = {
         gl.c.position.z = 6.0;
         // rand rotation
         var a0 = Math.random() * 2.0 * Math.PI;
-        gl.e.rotateY(a0);
+        // gl.e.rotateY(a0);
+        var f0 = Math.random() * 3.0;
+        if (f0 >= 0.0 && f0 < 1.0) {
+            console.log("rotating " + a0 + " radians in x-axis");
+            gl.e.rotateX(a0);
+        }
+        if (f0 >= 1.0 && f0 < 2.0) {
+            console.log("rotating " + a0 + " radians in y-axis");
+            gl.e.rotateY(a0);
+        }
+        if (f0 >= 2.0 && f0 < 3.0) {
+            console.log("rotating " + a0 + " radians in z-axis");
+            gl.e.rotateZ(a0);
+        }
     },
     "ren": function() {
         gl.a.render(gl.b, gl.c);
