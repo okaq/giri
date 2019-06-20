@@ -49,8 +49,16 @@ var g = {
             ren.clear();
             // create renderer
             gl.start();
+            // init mesh
+            gl.geo();
             // setup camera
             gl.cam();
+            // position
+            gl.pos();
+            // add to scene
+            gl.sce();
+            // rendition
+            gl.ren();
         }
 }
 // webgl
@@ -63,27 +71,37 @@ var gl = {
         console.log(gl.a);
         gl.a.setClearColor(0xf0ffff, 0);
         gl.a.setSize(512, 512);
-
+    },
+    "sce": function() {
         // scene
         gl.b = new THREE.Scene();
         // gl.b.background = new THREE.Color(0xf0ffff);
+        gl.b.add(gl.e);
     },
     "cam": function() {
         // perspective
-        gl.c = new THREE.PerspectiveCamera(75.0, 1.0, 0.1, 1000.0);
+        gl.c = new THREE.PerspectiveCamera(45.0, 1.0, 0.1, 1000.0);
     },
     "geo": function() {
         // pyramid geometry
         gl.d = new THREE.CylinderGeometry(0,2,2,4,1,true);
         // set colors
+        console.log(gl.d.faces);
         var c0 = [0xff0000,0x00ff00,0x0000ff,0xfedbca];
         c0.forEach(function(c1,i1){
-            gl.d.faces[i0*2+1].color.setHex(c1);
+            gl.d.faces[i1].color.setHex(c1);
         });
         // create mesh
         var m0 = {vertexColors:THREE.FaceColors};
         gl.f = new THREE.MeshBasicMaterial(m0);
-        gl.e = new THREE.Mesh(gl.d, gl.e);
+        gl.e = new THREE.Mesh(gl.d, gl.f);
+    },
+    "pos": function() {
+        gl.e.position.y = 1.0;
+        gl.c.position.z = 6.0;
+    },
+    "ren": function() {
+        gl.a.render(gl.b, gl.c);
     }
 }
 // scene
