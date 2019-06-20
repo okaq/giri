@@ -99,6 +99,9 @@ var gl = {
     "pos": function() {
         gl.e.position.y = 1.0;
         gl.c.position.z = 6.0;
+        // rand rotation
+        var a0 = Math.random() * 2.0 * Math.PI;
+        gl.e.rotateY(a0);
     },
     "ren": function() {
         gl.a.render(gl.b, gl.c);
