@@ -69,6 +69,29 @@ var g = {
             ren.clear();
             // start webgl
             gl2.start();
+            // create scene
+            gl2.sce();
+            // setup camera
+            gl2.cam();
+            // tiny cube mesh
+            gl2.cube();
+            // render
+            gl2.ren();
+            // loop
+            g.tick = 0;
+            g.id = window.setInterval(g.frame, 1000);
+        },
+        "frame": function() {
+            console.log("frame tick: " + g.tick);
+            if (g.tick >= 4) {
+                console.log("anim done");
+                window.clearInterval(g.id);
+                return;
+            }
+            // update
+            gl2.sce();
+            gl2.ren();
+            g.tick = g.tick + 1;
         }
 }
 // webgl
@@ -133,8 +156,28 @@ var gl = {
 // webgl
 var gl2 = {
     "start": function() {
-        gl2.a = new THREE.WebGLRenderer(sce.c.c.can);
+        gl2.a = new THREE.WebGLRenderer({canvas:sce.c.c.can});
         console.log(gl2.a);
+    },
+    "sce": function() {
+        gl2.b = new THREE.Scene();
+        var c0 = (Math.random() * 0xffffff) >>> 0;
+        // gl2.b.background = new THREE.Color(0xf0e0d0);
+        gl2.b.background = new THREE.Color(c0);
+        // blank scene, rand bkgd
+    },
+    "cam": function() {
+        // perspective
+        gl2.c = new THREE.PerspectiveCamera(45.0, 1.0, 0.1, 1000.0);
+    },
+    "cube": function() {
+        var c0 = new THREE.CubeGeometry(0.0001,0.0001,0.0001);
+        var m0 = new THREE.Mesh(c0, new THREE.MeshNormalMaterial());
+        m0.position.z = 10.0
+    },
+    // gl2.b.add(m0);
+    "ren": function() {
+        gl2.a.render(gl2.b, gl2.c);
     }
 }
 // scene
