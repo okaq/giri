@@ -36,7 +36,8 @@ var g = {
             g.subs.forEach(function(el){el.init()});
 
             // async
-            window.setTimeout(g.start, 1000);
+            // window.setTimeout(g.start, 1000);
+            window.setTimeout(g.start2, 1000);
 
             // split
             console.log("page load time: " + (window.performance.now() - t0));
@@ -59,6 +60,15 @@ var g = {
             gl.sce();
             // rendition
             gl.ren();
+        },
+        "start2": function() {
+            console.log(THREE);
+            // create webgl render canvas
+            sce.start2();
+            // clear canvas
+            ren.clear();
+            // start webgl
+            gl2.start();
         }
 }
 // webgl
@@ -120,6 +130,13 @@ var gl = {
         gl.a.render(gl.b, gl.c);
     }
 }
+// webgl
+var gl2 = {
+    "start": function() {
+        gl2.a = new THREE.WebGLRenderer(sce.c.c.can);
+        console.log(gl2.a);
+    }
+}
 // scene
 var sce = {
     "init": function() {
@@ -137,6 +154,14 @@ var sce = {
         sce.b.c = dom.canvas2(sce.b.r);
         dom.add(sce.b.c);
         sce.b.d = rgba.css([200,255,255,1.0]);
+    },
+    "start2": function() {
+        // threejs canvas object
+        sce.c = {};
+        sce.c.r = [768,768,128,128];
+        sce.c.c = dom.canvas2(sce.c.r);
+        dom.add(sce.c.c);
+        sce.c.d = rgba.css([255,200,255,1.0]);
     }
 }
 // render
@@ -171,7 +196,7 @@ var ren = {
             var c0 = {};
             c0.can = document.createElement("canvas");
             // c0.con = c0.can.getContext("2d");
-            // let babylonjs create the wegbl context
+            // let threejs create the wegbl context
             c0.can.width = r0[0];
             c0.can.height = r0[1];
             c0.can.style.position = "absolute";
