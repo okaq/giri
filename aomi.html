@@ -178,6 +178,24 @@ var gl2 = {
     // gl2.b.add(m0);
     "ren": function() {
         gl2.a.render(gl2.b, gl2.c);
+    },
+    "line": function() {
+        // setup for drawing lines
+        // forms basis of 2D vector art lib
+
+        // create camera and renderer per usual
+
+        // create material
+        var m0 = new THREE.LineBasicMaterial({color:0x00ff00});
+
+        // populate geometry
+        var g0 = new THREE.Geometry()
+        g0.vertices.push(new THREE.Vector3(10,10,0));
+        g0.vertices.push(new THREE.Vector3(10,0,0));
+        g0.vertices.push(new THREE.Vector3(0,10,0));
+
+        // create line
+        var lin0 = new THREE.Line(g0, m0);
     }
 }
 // scene
