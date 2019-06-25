@@ -52,11 +52,18 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
 	// send to channel for global state
 }
 
+func ModelHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// compact form for mesh
+	// stats for elegant error, perf handling
+}
+
 func main() {
 	motd()
 	cache()
 	http.HandleFunc("/", AomiHandler)
 	http.HandleFunc("/a", DataHandler)
+	http.HandleFunc("/b", ModelHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
