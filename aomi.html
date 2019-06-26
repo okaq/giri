@@ -90,6 +90,8 @@ var g = {
             }
             // update
             gl2.sce();
+            // add line
+            gl2.line();
             gl2.ren();
             g.tick = g.tick + 1;
         }
@@ -169,6 +171,8 @@ var gl2 = {
     "cam": function() {
         // perspective
         gl2.c = new THREE.PerspectiveCamera(45.0, 1.0, 0.1, 1000.0);
+        gl2.c.position.set(0,0,200);
+        gl2.c.lookAt(0,0,0);
     },
     "cube": function() {
         var c0 = new THREE.CubeGeometry(0.0001,0.0001,0.0001);
@@ -186,7 +190,8 @@ var gl2 = {
         // create camera and renderer per usual
 
         // create material
-        var m0 = new THREE.LineBasicMaterial({color:0x00ff00});
+        var w0 = (Math.random() * 7 + 1) >>> 0;
+        var m0 = new THREE.LineBasicMaterial({color:0x00ff00,linewidth:w0});
 
         // populate geometry
         var g0 = new THREE.Geometry()
@@ -196,6 +201,11 @@ var gl2 = {
 
         // create line
         var lin0 = new THREE.Line(g0, m0);
+
+        // add to scene
+        gl2.b.add(lin0);
+
+        // to clear scene: create new per tick
     }
 }
 // scene
