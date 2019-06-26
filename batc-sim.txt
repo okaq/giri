@@ -1,0 +1,27 @@
+"Boreolaris"
+Air Traffic Control Sim
+AQ <aq@okaq.com>
+2019-06-25
+
+Full Screen WebGL / ThreeJS
+Standard HD 1920 x 1080 pixels
+
+Radar 1024 x 1024 square
+In 1980s Vector Art Style
+{color:0x00FF00,linewidth:2}
+
+This is a turn based game
+With limited animation rate
+Circa 5-10 seconds *per frame*
+
+Concentric circles with spokes
+Planes symbolized with "Asteroid"-style triangles
+
+Maintain course and speed vector
+Or divert to avoid catastrophe!
+
+Progressively faster, more frequent traffic
+
+Survival time global leaderboard
+
+
