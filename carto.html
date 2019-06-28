@@ -44,12 +44,26 @@ var g = {
         },
         "start": function() {
             console.log(THREE);
+
+            // webgl setup
+            gl.start();
         }
     }
 // scene
 var sce = {
     "init": function() {
         sce.a = {};
+
+        // manages DOM canvas elements
+        // add, delete, layout
+    }
+}
+// webgl
+var gl = {
+    "start": function() {
+        // renderer, scene, camera
+        // line elements manager
+        // frame history and metadata
     }
 }
    // dom
