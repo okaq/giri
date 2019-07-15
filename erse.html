@@ -8,7 +8,7 @@
         <meta name="date" content="2019-07-14" />
         <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAS0lEQVR4nGJxy9nMQEvARFPTRy0YtWBoWMCCR25n0WOSzHLvk8UUHPpBNGrBqAWjFoxaMCIswFcfYC3fSQVDP4hGLRh4CwABAAD//7qVBZ69uSXFAAAAAElFTkSuQmCC" />
         <style type="text/css">
-            html,body{width:1920px;overflow:auto;height:1080px;margin:0px;border:0px;padding:0px;background-color:rgba(0,0,0,0);}
+            html,body{width:1366px;overflow:auto;height:768px;margin:0px;border:0px;padding:0px;background-color:rgba(0,0,0,0);}
         </style>
         <!-- opentype.js -->
         <script src="https://cdn.jsdelivr.net/npm/opentype.js@latest/dist/opentype.min.js"></script>
@@ -42,13 +42,55 @@ var g = {
             console.log("page load time: " + (window.performance.now() - t0));
         },
         "start": function() {
-            console.log(THREE);
+            console.log(opentype);
+
+            // ren.test();
+            ren.clear();
+            ren.circle();
+            ren.ha();
         }
 }
 // scene
 var sce = {
     "init": function() {
+        // bkgd
         sce.a = {};
+        sce.a.r = [1366,768,0,0];
+        sce.a.c = dom.canvas(sce.a.r);
+        dom.add(sce.a.c);
+        sce.a.d = rgba.rand();
+        // pane
+        sce.b = {};
+        // sce.b.r = [683,384,341,192];
+        sce.b.r = [600,600,383,84];
+        sce.b.c = dom.canvas(sce.b.r);
+        dom.add(sce.b.c);
+        sce.b.d = rgba.rand();
+    }
+}
+// render
+var ren = {
+    "test": function() {
+        sce.a.c.con.fillStyle = sce.a.d;
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+        sce.b.c.con.fillStyle = sce.b.d;
+        sce.b.c.con.fillRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
+    },
+    "clear": function() {
+        sce.a.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+        sce.b.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.b.c.con.fillRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
+    },
+    "circle": function() {
+        sce.b.c.con.strokeStyle = rgba.css([0,0,0,1.0]);
+        sce.b.c.con.lineWidth = 16.0;
+        sce.b.c.con.beginPath();
+        sce.b.c.con.arc(300,300,270,0,2.0*Math.PI);
+        sce.b.c.con.stroke();
+    },
+    "ha": function() {
+
     }
 }
    // dom
