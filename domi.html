@@ -2,13 +2,13 @@
 <html lang="en">
     <head id="zeta">
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-        <meta name="viewport" content="width=1920,height=1080,initial-scale=1" />
+        <meta name="viewport" content="width=1366,height=768,initial-scale=1" />
         <meta name="source" content="https://github.com/okaq/giri" />
         <meta name="author" content="AQ<aq@okaq.com>" />
         <meta name="date" content="2019-07-14" />
         <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAS0lEQVR4nGJxy9nMQEvARFPTRy0YtWBoWMCCR25n0WOSzHLvk8UUHPpBNGrBqAWjFoxaMCIswFcfYC3fSQVDP4hGLRh4CwABAAD//7qVBZ69uSXFAAAAAElFTkSuQmCC" />
         <style type="text/css">
-            html,body{width:1920px;overflow:auto;height:1080px;margin:0px;border:0px;padding:0px;background-color:rgba(0,0,0,0);}
+            html,body{width:1366px;overflow:auto;height:768px;margin:0px;border:0px;padding:0px;background-color:rgba(0,0,0,0);}
         </style>
         <!-- three.js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js"></script>
@@ -47,6 +47,8 @@ var g = {
 
             // ren.test();
             ren.clear();
+            // add click logic
+            sce.click();
 
             g.tick = 0;
             g.id = window.setInterval(g.frame, 1000);
@@ -59,6 +61,7 @@ var g = {
                 return;
             }
             // shuffle and render
+            ren.clear();
             ren.cell();
             cel.pop();
             g.tick = g.tick + 1;
@@ -108,6 +111,14 @@ var cel = {
             }
         }
         return r0;
+    },
+    "dex": function(x0,y0) {
+        var x1 = (x0 / cel.b.dx) >>> 0;
+        var y1 = (y0 / cel.b.dy) >>> 0;
+        var y2 = (y1 * cel.b.nx) >>> 0;
+        var y3 = (y2 + x1) >>> 0;
+        console.log(x1,y1,y2);
+        return y3;
     }
 }
 // scene
@@ -119,6 +130,15 @@ var sce = {
         sce.a.c = dom.canvas(sce.a.r);
         dom.add(sce.a.c);
         sce.a.d = rgba.rand();
+    },
+    "click": function() {
+        sce.a.c.can.addEventListener("click", sce.tick, false);
+    },
+    "tick": function(e) {
+        console.log(e);
+        console.log("mouse click position: x = " + e.x + " y = " + e.y);
+        var d0 = cel.dex(e.x,e.y);
+        console.log("cell index: " + d0);
     }
 }
 // render
@@ -132,7 +152,17 @@ var ren = {
         sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
     },
     "cell": function() {
-        
+        sce.a.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        for (var i = 0; i < cel.a.length; i++) {
+            if (cel.a[i] == 1) {
+                continue;
+            }
+            var x0 = i % cel.b.nx;
+            var y0 = (i / cel.b.nx) >>> 0;
+            var x1 = (x0 * cel.b.dx) >>> 0;
+            var y1 = (y0 * cel.b.dy) >>> 0;
+            sce.a.c.con.fillRect(x1,y1,cel.b.dx,cel.b.dy);
+        }
     }
 }
    // dom
