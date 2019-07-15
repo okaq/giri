@@ -44,12 +44,26 @@ var g = {
         },
         "start": function() {
             console.log(THREE);
+
+            ren.test();
         }
 }
 // scene
 var sce = {
     "init": function() {
+        // single full screen canvas
         sce.a = {};
+        sce.a.r = [1366,786,0,0];
+        sce.a.c = dom.canvas(sce.a.r);
+        dom.add(sce.a.c);
+        sce.a.d = rgba.rand();
+    }
+}
+// render
+var ren = {
+    "test": function() {
+        sce.a.c.con.fillStyle = sce.a.d;
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
     }
 }
    // dom

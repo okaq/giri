@@ -12,6 +12,8 @@
         </style>
         <!-- opentype.js -->
         <script src="https://cdn.jsdelivr.net/npm/opentype.js@latest/dist/opentype.min.js"></script>
+        <!-- Bahianita -->
+        <link href="https://fonts.googleapis.com/css?family=Bahianita|Rubik|Pacifico|Righteous&display=swap" rel="stylesheet">
         <script type="text/javascript">
             // ok
             console.log("okaq giri ok!");
@@ -47,7 +49,9 @@ var g = {
             // ren.test();
             ren.clear();
             ren.circle();
-            ren.ha();
+            // ren.ha();
+            // ren.ha2();
+            ren.ha3();
         }
 }
 // scene
@@ -90,8 +94,27 @@ var ren = {
         sce.b.c.con.stroke();
     },
     "ha": function() {
-
-    }
+        sce.b.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        sce.b.c.con.font = "300px monospace";
+        sce.b.c.con.fillText("HA", 120, 400);
+    },
+    "ha2": function() {
+        var url = "https://fonts.googleapis.com/css?family=Bahianita";
+        var han = function(err, font) {
+            if (err) {
+                console.log(err);
+                return;
+            } else {
+                font.draw(sce.b.c.con, "HA", 120, 400, 300);
+            }
+        }
+        opentype.load(url, han);
+    },
+    "ha3": function() {
+        sce.b.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        sce.b.c.con.font = "300px Righteous";
+        sce.b.c.con.fillText("HA", 100, 400);
+    },
 }
    // dom
    var dom = {
