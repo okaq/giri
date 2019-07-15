@@ -119,6 +119,18 @@ var cel = {
         var y3 = (y2 + x1) >>> 0;
         console.log(x1,y1,y2);
         return y3;
+    },
+    "typ": function() {
+        // cell type
+        // grid cell accessed by index cel.a[i]
+        // cell types:
+        // horizontal
+        // vertical
+        // horizontal probability = P, vertical (1-P) per tick
+        // npc types:
+        // radioactive (stop)
+        // mutate (toggle)
+        // do we need to track organism?
     }
 }
 // scene
