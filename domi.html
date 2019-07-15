@@ -32,7 +32,7 @@ var g = {
             console.log("start giri...");
 
             // subs
-            g.subs = [dom,sce];
+            g.subs = [dom,sce,cel];
             g.subs.forEach(function(el){el.init()});
 
             // async
@@ -45,8 +45,70 @@ var g = {
         "start": function() {
             console.log(THREE);
 
-            ren.test();
+            // ren.test();
+            ren.clear();
+
+            g.tick = 0;
+            g.id = window.setInterval(g.frame, 1000);
+        },
+        "frame": function() {
+            console.log("tick count: " + g.tick);
+            if (g.tick >= 16) {
+                console.log("anim done");
+                window.clearInterval(g.id);
+                return;
+            }
+            // shuffle and render
+            ren.cell();
+            cel.pop();
+            g.tick = g.tick + 1;
         }
+}
+// cells within cells interlinked
+var cel = {
+    "init": function() {
+        // grid array
+        cel.a = [];
+        // grid global
+        cel.b = {}
+        // page
+        cel.b.w = 1366;
+        cel.b.h = 768;
+        // cell
+        cel.b.dx = 32;
+        cel.b.dy = 32;
+        // total
+        cel.b.nx = (cel.b.w / cel.b.dx) >>> 0;
+        cel.b.ny = (cel.b.h / cel.b.dy) >>> 0;
+        cel.b.nt = (cel.b.nx * cel.b.ny) >>> 0;
+        cel.pop();
+        console.log(cel.b,cel.a,cel.count());
+    },
+    "pop": function() {
+        // populate
+        for (var i = 0; i < cel.b.nt; i++) {
+            cel.a[i] = cel.bit();
+        }
+    },
+    "bit": function() {
+        var f0 = Math.random();
+        if (f0 >= 0.5) {
+            return 1;
+        } else {
+            return 0;
+        }
+    },
+    "count": function() {
+        var r0 = [0,0];
+        for (var i = 0; i < cel.a.length; i++) {
+            if (cel.a[i] == 1) {
+                r0[0] = r0[0] + 1;
+            } else {
+                r0[1] = r0[1] + 1;
+            }
+        }
+        return r0;
+    }
 }
 // scene
 var sce = {
@@ -64,6 +126,13 @@ var ren = {
     "test": function() {
         sce.a.c.con.fillStyle = sce.a.d;
         sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+    },
+    "clear": function() {
+        sce.a.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+    },
+    "cell": function() {
+        
     }
 }
    // dom
