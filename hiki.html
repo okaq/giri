@@ -51,7 +51,16 @@ var g = {
 // scene
 var sce = {
     "init": function() {
-        
+        // bkgd
+        sce.a = {};
+        sce.a.r = [1920,1080,0,0];
+        sce.a.c = dom.canvas(sce.a.r);
+        dom.add(sce.a.c);
+        sce.a.d = rgba.rand();
+        sce.a.c.can.addEventListener("click", sce.click, false);
+    },
+    "click": function(e) {
+        console.log(e);
     }
 }
    // dom
