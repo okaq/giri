@@ -11,6 +11,7 @@ import (
 
 const (
 	INDEX = "hiki.html"
+	EMOJI = "img"
 )
 
 func motd() {
@@ -33,6 +34,8 @@ func main() {
 	motd()
 	cache()
 	http.HandleFunc("/", HikiHandler)
+	fs := http.FileServer(http.Dir(EMOJI))
+	http.Handle("/emoji/", http.StripPrefix("/emoji/", fs))
 	http.ListenAndServe(":8080", nil)
 }
 
