@@ -36,6 +36,8 @@ func main() {
 	http.HandleFunc("/", HikiHandler)
 	fs := http.FileServer(http.Dir(EMOJI))
 	http.Handle("/emoji/", http.StripPrefix("/emoji/", fs))
+	// no req output, no header application/json
+	// requires custom file server handler
 	http.ListenAndServe(":8080", nil)
 }
 

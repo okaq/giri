@@ -90,6 +90,23 @@ var net = {
     "start": function() {
         net.a = [];
         net.a[0] = "http://localhost:8080/emoji/noto_emoji_2.json";
+
+        // get bitmap emoji data
+        net.b = new XMLHttpRequest();
+        net.b.responseTYpe = "json";
+        net.b.addEventListener("load", net.pop);
+        net.b.open("GET", net.a[0]);
+        net.b.send();
+    },
+    "pop": function(e) {
+        console.log(e);
+        // console.log(e.target.response);
+        net.c = JSON.parse(e.target.response);
+        net.d = [];
+        for (var k0 in net.c) {
+            net.d.push(k0);
+        }
+        console.log(net.d.length); // 888
     }
 }
    // dom
