@@ -46,6 +46,9 @@ var g = {
             console.log("bitmap emoji render start...");
 
             ren.clear();
+
+            // process emoji bitmaps
+            window.setTimeout(net.start, 1000);
         }
 }
 // scene
@@ -80,6 +83,13 @@ var ren = {
         // pane
         sce.b.c.con.fillStyle = sce.b.d;
         sce.b.c.con.fillRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
+    }
+}
+// xhr
+var net = {
+    "start": function() {
+        net.a = [];
+        net.a[0] = "http://localhost:8080/emoji/noto_emoji_2.json";
     }
 }
    // dom
