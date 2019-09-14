@@ -65,6 +65,11 @@ var g = {
             ren.noji();
             console.log("bmp render time: " + (window.performance.now() - t0));
             // ~3-4ms
+
+            // render at any size multiple of 32
+            // render at any place
+            // intelligent overlap detection and blend
+            // bit array ops (shuffle, rotate, shift)
         }
 }
 // scene
