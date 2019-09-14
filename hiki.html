@@ -70,6 +70,11 @@ var g = {
             // render at any place
             // intelligent overlap detection and blend
             // bit array ops (shuffle, rotate, shift)
+
+            window.setTimeout(g.noji3, 1000);
+        },
+        "noji3": function() {
+            ren.noce("10001",[64,64,0,0]);
         }
 }
 // scene
@@ -122,6 +127,19 @@ var ren = {
             var y1 = (y0 * 32) >>> 0;
             sce.b.c.con.fillRect(x1,y1,32,32);
         }
+    },
+    "noce": function(k0, r0) {
+        // k0 refers bitmap key
+        // r0 is drawing rect
+        // square multiple of 32x32 up to 1024x1024
+        var b0 = bmp.a[k0];
+        var w0 = (1024 / r0[0]) >>> 0;
+        var h0 = (1024 / r0[1]) >>> 0;
+        var w1 = (r0[0] / 32) >>> 0;
+        var h1 = (r0[1] / 32) >>> 0;
+        var w2 = (w0 * w1) >>> 0;
+        var h2 = (h0 * h1) >>> 0;
+        console.log(r0,w0,w1,w2,h0,h1,h2);
     }
 }
 // xhr
