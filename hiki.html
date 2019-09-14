@@ -51,10 +51,20 @@ var g = {
             window.setTimeout(net.start, 1000);
         },
         "noji": function() {
+            // decode
             var t0 = window.performance.now();
             bmp.noji();
             console.log("bmp decode time: " + (window.performance.now() - t0));
             // 250ms
+
+            window.setTimeout(g.noji2, 1000);
+        },
+        "noji2": function() {
+            // render
+            var t0 = window.performance.now();
+            ren.noji();
+            console.log("bmp render time: " + (window.performance.now() - t0));
+            // ~3-4ms
         }
 }
 // scene
@@ -89,6 +99,24 @@ var ren = {
         // pane
         sce.b.c.con.fillStyle = sce.b.d;
         sce.b.c.con.fillRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
+    },
+    "noji": function() {
+        // pick random emoji to render
+        var f0 = (Math.random() * net.d.length) >>> 0;
+        var k0 = net.d[f0];
+        var b0 = bmp.a[k0];
+        // 1024 bit array, 32x32
+        sce.b.c.con.fillStyle = rgba.rand();
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * 32) >>> 0;
+            var y1 = (y0 * 32) >>> 0;
+            sce.b.c.con.fillRect(x1,y1,32,32);
+        }
     }
 }
 // xhr
