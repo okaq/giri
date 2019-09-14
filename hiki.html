@@ -74,7 +74,11 @@ var g = {
             window.setTimeout(g.noji3, 1000);
         },
         "noji3": function() {
-            ren.noce("10001",[64,64,0,0]);
+            // ren.noce("10001",[64,64,0,0]);
+            var f0 = (net.d.length * Math.random()) >>> 0;
+            var k0 = net.d[f0];
+            var r0 = [64,64,64,64];
+            ren.noce(k0, r0);
         }
 }
 // scene
@@ -139,7 +143,20 @@ var ren = {
         var h1 = (r0[1] / 32) >>> 0;
         var w2 = (w0 * w1) >>> 0;
         var h2 = (h0 * h1) >>> 0;
-        console.log(r0,w0,w1,w2,h0,h1,h2);
+        // console.log(r0,w0,w1,w2,h0,h1,h2);
+        sce.b.c.con.fillStyle = rgba.rand();
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 1) {
+                continue;
+            }
+            var x0 = i % 32 >>> 0;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * w1) >>> 0;
+            var y1 = (y0 * h1) >>> 0;
+            var x2 = (x1 + r0[2]) >>> 0;
+            var y2 = (y1 + r0[3]) >>> 0;
+            sce.b.c.con.fillRect(x2,y2,w1,h1);
+        }
     }
 }
 // xhr
