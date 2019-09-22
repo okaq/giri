@@ -49,6 +49,12 @@ var g = {
         bmp.gugi();
         console.log("bitmap font decode: " + (window.performance.now() - t0));
         // font decoded in 42ms
+
+        window.setTimeout(g.start2, 1000);
+    },
+    "start2": function() {
+        console.log("swan screen...");
+        txt.play();
     }
 }
 // scene
@@ -75,6 +81,26 @@ var txt = {
         // methods to add / remove canvas blocks
         // white on black monochrome
         // with sensitive border and margins
+
+        // current text blocks
+        txt.a = {};
+    },
+    "play": function() {
+        // collections
+        txt.b = [];
+        txt.c = [];
+
+        // data
+        txt.b[0] = "shall we play a game";
+        txt.b[1] = "yes please";
+        txt.b[2] = "no thanks";
+
+        // splits
+        for (var i = 0; i < txt.b.length; i++) {
+            var s0 = txt.b[i].toUpperCase();
+            txt.c[i] = s0.split("");
+            console.log(txt.c[i]);
+        }
     }
 }
 // state
