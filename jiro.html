@@ -59,6 +59,12 @@ var sce = {
         sce.a.r = [1920,1080,0,0];
         sce.a.c = dom.canvas(sce.a.r);
         sce.a.d = rgba.rand();
+    },
+    "con": function() {
+        // master config
+    },
+    "man": function() {
+        // manage jumps
     }
 }
 // text
@@ -78,6 +84,13 @@ var mac = {
         // nodes and edges config
         // user input advances state
         // class determines win condition
+
+        // state graph
+        mac.a = {};
+        // jump probabilities
+        mac.b = {};
+        // current state
+        mac.c = "";
     }
 }
 // input

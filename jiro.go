@@ -20,6 +20,13 @@ func motd() {
 	fmt.Println(time.Now().String())
 }
 
+func cache() {
+	// format of cache
+	// map[uint64]interface
+	// strings as sequential naturals
+	// values can be any thing, any size
+}
+
 func JiroHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
 	http.ServeFile(w,r,INDEX)
@@ -27,7 +34,7 @@ func JiroHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	motd()
-	// cache()
+	cache()
 	http.HandleFunc("/", JiroHandler)
 	http.ListenAndServe(":8080", nil)
 }
