@@ -71,6 +71,10 @@ var sce = {
     },
     "man": function() {
         // manage jumps
+    },
+    "bloc": function(t0, r0) {
+        // create linear block of canvas objects
+        // add to dom, for bitmap font rendering
     }
 }
 // text
@@ -101,6 +105,17 @@ var txt = {
             txt.c[i] = s0.split("");
             console.log(txt.c[i]);
         }
+    },
+    "scene": function() {
+        // assume 32x32 blocks, no margin
+        // pre-calculated rect defines text blocks
+        // no return, linear stripe of canvas blocks
+        var w0 = (txt.c[0].length * 32) >>> 0;
+        var r0 = [w0,32,0,0];
+        txt.can(txt.c[0], r0);
+    },
+    "can": function(t0, r0) {
+
     }
 }
 // state
