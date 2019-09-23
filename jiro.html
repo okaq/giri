@@ -55,6 +55,7 @@ var g = {
     "start2": function() {
         console.log("swan screen...");
         txt.play();
+        // enter quick draw or exit?
     }
 }
 // scene
@@ -65,6 +66,9 @@ var sce = {
         sce.a.r = [1920,1080,0,0];
         sce.a.c = dom.canvas(sce.a.r);
         sce.a.d = rgba.rand();
+
+        // text collection
+        sce.b = {};
     },
     "con": function() {
         // master config
@@ -75,6 +79,24 @@ var sce = {
     "bloc": function(t0, r0) {
         // create linear block of canvas objects
         // add to dom, for bitmap font rendering
+        sce.b[t0] = {};
+        sce.b[t0].c = [];
+        for (var i = 0; i < t0.length; i++) {
+            if (t0[i] == " ") {
+                continue;
+            }
+            // assume 32x32 block per letter
+            var x0 = (r0[2] * i) >>> 0;
+            var y0 = r0[3];
+            var r1 = [32,32,x0,y0];
+            sce.b[t0].c[i] = dom.canvas(r1);
+            dom.add(sce.b[t0].c[i]);
+            // monochrome scheme
+            // black bkgd, white text
+            sce.b[t0].d = [];
+            sce.b[t0].d[0] = rgba.css([0,0,0,1.0]);
+            sce.b[t0].d[1] = rgba.css([255,255,255,1.0]);
+        }
     }
 }
 // text
