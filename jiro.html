@@ -55,6 +55,9 @@ var g = {
     "start2": function() {
         console.log("swan screen...");
         txt.play();
+        txt.scene();
+        ren.clear();
+        ren.txt();
         // enter quick draw or exit?
     }
 }
@@ -65,6 +68,7 @@ var sce = {
         sce.a = {};
         sce.a.r = [1920,1080,0,0];
         sce.a.c = dom.canvas(sce.a.r);
+        dom.add(sce.a.c);
         sce.a.d = rgba.rand();
 
         // text collection
@@ -83,10 +87,11 @@ var sce = {
         sce.b[t0].c = [];
         for (var i = 0; i < t0.length; i++) {
             if (t0[i] == " ") {
-                continue;
+                // continue;
+                // spaceholder, include canvas, not to render
             }
             // assume 32x32 block per letter
-            var x0 = (r0[2] * i) >>> 0;
+            var x0 = (32 * i) >>> 0;
             var y0 = r0[3];
             var r1 = [32,32,x0,y0];
             sce.b[t0].c[i] = dom.canvas(r1);
@@ -134,10 +139,11 @@ var txt = {
         // no return, linear stripe of canvas blocks
         var w0 = (txt.c[0].length * 32) >>> 0;
         var r0 = [w0,32,0,0];
-        txt.can(txt.c[0], r0);
+        txt.can(txt.b[0], r0);
     },
     "can": function(t0, r0) {
-
+        sce.bloc(t0, r0);
+        // data bind to txt index
     }
 }
 // state
@@ -171,6 +177,26 @@ var net = {
         // hot cache map[key]value
         // pid,gid,score
         // eventual history, global stats
+    }
+}
+// render
+var ren = {
+    "clear": function() {
+        // bkgd
+        sce.a.c.con.fillStyle = rgba.rand();
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+    },
+    "txt": function() {
+        // draw txt data as bitmap fonts
+        // clear each block beforehand
+        for (var k0 in sce.b) {
+            var c0 = sce.b[k0].c;
+            console.log(c0);
+            for (var i = 0; i < c0.length; i++) {
+                c0[i].con.fillStyle = rgba.rand();
+                c0[i].con.fillRect(0,0,c0[i].can.width,c0[i].can.height);
+            }
+        }
     }
 }
    // dom
