@@ -59,6 +59,13 @@ var g = {
         ren.clear();
         ren.txt();
         // enter quick draw or exit?
+
+        window.setTimeout(g.start3, 1000);
+    },
+    "start3": function() {
+        console.log("text blit");
+        ren.clear2();
+        ren.txt2();
     }
 }
 // scene
@@ -177,6 +184,11 @@ var net = {
         // hot cache map[key]value
         // pid,gid,score
         // eventual history, global stats
+
+        // pid format 
+        // clientRand:clientTimestamp::serverRand:serverTimestamp
+
+        // fetch descriptive name
     }
 }
 // render
@@ -197,6 +209,24 @@ var ren = {
                 c0[i].con.fillRect(0,0,c0[i].can.width,c0[i].can.height);
             }
         }
+    },
+    "clear2": function() {
+        // bkgd
+        sce.a.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+        // text
+        for (var k0 in sce.b) {
+            var c0 = sce.b[k0].c;
+            for (var i = 0; i < c0.length; i++) {
+                c0[i].con.fillStyle = rgba.css([0,0,0,1.0]);
+                c0[i].con.fillRect(0,0,c0[i].can.width,c0[i].can.height);
+            }
+        }
+    },
+    "txt2": function() {
+        // map bitmap font to char
+        // clear block before draw
+        // check if space or null char
     }
 }
    // dom
