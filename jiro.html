@@ -227,6 +227,26 @@ var ren = {
         // map bitmap font to char
         // clear block before draw
         // check if space or null char
+
+        // sce.b[k0].c, txt.c[0] index mapping
+        for (var k0 in sce.b) {
+            var c0 = sce.b[k0].c;
+            for (var i = 0; i < c0.length; i++) {
+                // console.log(txt.c[0][i]);
+                var t0 = txt.c[0][i];
+                if (t0 == " ") {
+                    continue;
+                } 
+                var c1 = sce.b[k0].c[i];
+                var b0 = bmp.a[t0];
+                // console.log(b0.length);
+                ren.bmp(b0, c1);
+            }
+        }
+    },
+    "bmp": function(b0, c0) {
+        // render bit data in canvas
+        // assume 1024-bit, 32x32 pixels
     }
 }
    // dom
