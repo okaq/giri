@@ -235,6 +235,9 @@ var ren = {
                 // console.log(txt.c[0][i]);
                 var t0 = txt.c[0][i];
                 if (t0 == " ") {
+                    // clear white
+                    c0[i].con.fillStyle = rgba.css([255,255,255,1.0]);
+                    c0[i].con.fillRect(0,0,32,32);
                     continue;
                 } 
                 var c1 = sce.b[k0].c[i];
@@ -247,6 +250,15 @@ var ren = {
     "bmp": function(b0, c0) {
         // render bit data in canvas
         // assume 1024-bit, 32x32 pixels
+        c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            c0.con.fillRect(x0,y0,1,1);
+        }
     }
 }
    // dom
