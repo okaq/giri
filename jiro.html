@@ -76,6 +76,10 @@ var g = {
         sce.drop();
         // clear bkgd
         ren.clear();
+        // new config
+        sce.pop();
+        // populate scene
+        sce.pop2();
     }
 }
 // scene
@@ -126,6 +130,26 @@ var sce = {
         for (var i = 0; i < c0.length; i++) {
             dom.remove(c0[i]);
         }
+    },
+    "pop": function() {
+        sce.c = {};
+        sce.c.k = []; // key
+        sce.c.t = []; // split text data
+        sce.c.r = []; // rects
+        sce.c.c = []; // canvas
+        sce.c.d = [];
+        for (var i = 0; i < txt.b.length; i++) {
+            sce.c.k[i] = txt.b[i];
+            sce.c.t[i] = txt.c[i]; // redux
+        }
+        // rects hard code
+        // we can do this via layout engine
+        // mathematically split the page
+        // into equally divided subregions
+
+    },
+    "pop2": function() {
+
     }
 }
 // text
