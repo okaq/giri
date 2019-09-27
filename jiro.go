@@ -32,10 +32,17 @@ func JiroHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w,r,INDEX)
 }
 
+func PidHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// pid format
+	// clientRand:clientTimestamp::serverRand:serverTimestamp
+}
+
 func main() {
 	motd()
 	cache()
 	http.HandleFunc("/", JiroHandler)
+	http.HandleFunc("/a", PidHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
