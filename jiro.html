@@ -66,6 +66,16 @@ var g = {
         console.log("text blit");
         ren.clear2();
         ren.txt2();
+
+        window.setTimeout(g.start4, 1000);
+    },
+    "start4": function() {
+        console.log("game pick");
+
+        // remove previous set
+        sce.drop();
+        // clear bkgd
+        ren.clear();
     }
 }
 // scene
@@ -108,6 +118,13 @@ var sce = {
             sce.b[t0].d = [];
             sce.b[t0].d[0] = rgba.css([0,0,0,1.0]);
             sce.b[t0].d[1] = rgba.css([255,255,255,1.0]);
+        }
+    },
+    "drop": function() {
+        var k0 = txt.b[0];
+        var c0 = sce.b[k0].c;
+        for (var i = 0; i < c0.length; i++) {
+            dom.remove(c0[i]);
         }
     }
 }
