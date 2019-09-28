@@ -83,7 +83,11 @@ var g = {
         // ren test positioning
         // ren.test();
         // ren text
-        ren.clear2();
+        ren.clear3();
+        // split
+        var t0 = window.performance.now();
+        ren.bmp2();
+        console.log("rect time: " + (window.performance.now() - t0));
     }
 }
 // scene
@@ -369,7 +373,22 @@ var ren = {
         sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
         // text
         for (var i = 0; i < sce.c.c.length; i++) {
-
+            var c0 = sce.c.c[i];
+            c0.con.fillStyle = rgba.css([0,0,0,1.0]);
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+    },
+    "bmp2": function() {
+        // phrase loop
+        for (var i = 0; i < sce.c.c.length; i++) {
+            var c0 = sce.c.c[i];
+            var t0 = sce.c.t[i];
+            // word loop
+            for (var j = 0; j < t0.length; j++) {
+                var t1 = t0[j];
+                var x0 = (32 * j) >>> 0;
+                // console.log(i,j,t1,x0);
+            }
         }
     }
 }
