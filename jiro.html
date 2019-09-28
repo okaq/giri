@@ -162,7 +162,19 @@ var sce = {
         }
     },
     "pop2": function() {
-
+        // add handlers, explicit
+        sce.c.c[1].can.addEventListener("click", sce.click, false);
+        sce.c.c[1].can.dataset.x = "love";
+        sce.c.c[2].can.addEventListener("click", sce.click2, false);
+        sce.c.c[2].can.dataset.x = "war";
+    },
+    "click": function(e) {
+        console.log(e);
+        console.log(e.target.dataset.x);
+    },
+    "click2": function(e) {
+        console.log(e);
+        console.log(e.target.dataset.x);
     }
 }
 // text
