@@ -146,7 +146,12 @@ var sce = {
         // we can do this via layout engine
         // mathematically split the page
         // into equally divided subregions
-
+        var w0 = (txt.c[0].length * 32) >>> 0;
+        sce.c.r[0] = [w0,32,256,256];
+        var w1 = (txt.c[1].length * 32) >>> 0;
+        sce.c.r[1] = [w1,32,256,256];
+        var w2 = (txt.c[2].length * 32) >>> 0;
+        sce.c.r[2] = [w2,32,256,256];
     },
     "pop2": function() {
 
