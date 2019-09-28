@@ -81,7 +81,9 @@ var g = {
         // populate scene
         sce.pop2();
         // ren test positioning
-        ren.test();
+        // ren.test();
+        // ren text
+        ren.clear2();
     }
 }
 // scene
@@ -160,6 +162,11 @@ var sce = {
             dom.add(sce.c.c[i]);
             sce.c.d[i] = rgba.rand();
         }
+
+        // two possibilities
+        // each char gets its own canvas square
+        // or one sold Nx32 rect
+        // renderer handles text positioning
     },
     "pop2": function() {
         // add handlers, explicit
@@ -331,6 +338,15 @@ var ren = {
             var c0 = sce.c.c[i];
             c0.con.fillStyle = sce.c.d[i];
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+    },
+    "clear3": function() {
+        // bkgd
+        sce.a.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+        // text
+        for (var i = 0; i < sce.c.c.length; i++) {
+
         }
     }
 }
