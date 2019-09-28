@@ -175,6 +175,29 @@ var sce = {
         sce.c.c[2].can.addEventListener("click", sce.click2, false);
         sce.c.c[2].can.dataset.x = "war";
     },
+    "pop3": function() {
+        // canvas square per char
+        sce.c.e = [];
+        for (var i = 0; i < sce.c.c.length; i++) {
+            sce.c.e[i] = [];
+            var t0 = sce.c.t[i];
+            var r0 = sce.c.r[i];
+            var k0 = sce.c.k[i];
+            for (var j = 0; j < t0.length; i++) {
+                var x0 = r0[2];
+                var x1 = (j * 32) >>> 0;
+                var x2 = (x0 + x1) >>> 0;
+                var y0 = r0[3];
+                var r1 = [32,32,x2,y0];
+                var c0 = dom.canvas(r1);
+                sce.c.e[i][j] = c0;
+                dom.add(sce.c.e[i][j]);
+                var k0 = k0 + "_" + j + "_" + t0[j];
+                sce.c.e[i][j].can.dataset.x = k0;
+                sce.c.e[i][j].can.addEventListener("click", sce.click2, false);
+            }
+        }
+    },
     "click": function(e) {
         console.log(e);
         console.log(e.target.dataset.x);
