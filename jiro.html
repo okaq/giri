@@ -80,6 +80,8 @@ var g = {
         sce.pop();
         // populate scene
         sce.pop2();
+        // ren test positioning
+        ren.test();
     }
 }
 // scene
@@ -149,9 +151,15 @@ var sce = {
         var w0 = (txt.c[0].length * 32) >>> 0;
         sce.c.r[0] = [w0,32,256,256];
         var w1 = (txt.c[1].length * 32) >>> 0;
-        sce.c.r[1] = [w1,32,256,256];
+        sce.c.r[1] = [w1,32,256,512];
         var w2 = (txt.c[2].length * 32) >>> 0;
-        sce.c.r[2] = [w2,32,256,256];
+        sce.c.r[2] = [w2,32,256,768];
+        // generate canvas elements
+        for (var i = 0; i < txt.b.length; i++) {
+            sce.c.c[i] = dom.canvas(sce.c.r[i]);
+            dom.add(sce.c.c[i]);
+            sce.c.d[i] = rgba.rand();
+        }
     },
     "pop2": function() {
 
@@ -304,6 +312,13 @@ var ren = {
             var x0 = i % 32;
             var y0 = (i / 32) >>> 0;
             c0.con.fillRect(x0,y0,1,1);
+        }
+    },
+    "test": function() {
+        for (var i = 0; i < sce.c.c.length; i++) {
+            var c0 = sce.c.c[i];
+            c0.con.fillStyle = sce.c.d[i];
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
     }
 }
