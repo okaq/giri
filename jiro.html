@@ -386,8 +386,32 @@ var ren = {
             // word loop
             for (var j = 0; j < t0.length; j++) {
                 var t1 = t0[j];
-                var x0 = (32 * j) >>> 0;
+                if (t1 == " ") {
+                    // white spaces
+                    c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+                    // c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+                    c0.con.fillRect(j*32,0,32,32);
+                    continue;
+                }
+                var b0 = bmp.a[t1];
+                var x1 = (32 * j) >>> 0;
+                c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+                // c0.con.fillRect(j*32+2,2,28,28);
                 // console.log(i,j,t1,x0);
+                // char x,y loop
+                for (var y0 = 0; y0 < 32; y0++) {
+                    for (var x0 = 0; x0 < 32; x0++) {
+                        // bitmap index
+                        var i0 = ((y0 * 32) + x0) >>> 0;
+                        if (b0[i0] == 1) {
+                            continue;
+                        }
+                        var x2 = (x1 + x0) >>> 0;
+                        // console.log(x2, y0, i0, b0[i0]);
+                        c0.con.fillRect(x2, y0, 1, 1);
+                    }
+                }
+                /* debug output */
             }
         }
     }
