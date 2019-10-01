@@ -38,11 +38,18 @@ func PidHandler(w http.ResponseWriter, r *http.Request) {
 	// clientRand:clientTimestamp::serverRand:serverTimestamp
 }
 
+func CacheHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// all cache hits are updates
+	// no history, only live global state
+}
+
 func main() {
 	motd()
 	cache()
 	http.HandleFunc("/", JiroHandler)
 	http.HandleFunc("/a", PidHandler)
+	http.HandleFunc("/b", CacheHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
