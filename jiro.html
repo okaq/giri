@@ -88,6 +88,12 @@ var g = {
         var t0 = window.performance.now();
         ren.bmp2();
         console.log("rect time: " + (window.performance.now() - t0));
+    },
+    "start5": function() {
+        console.log("play love");
+    },
+    "start6": function() {
+        console.log("play war");
     }
 }
 // scene
@@ -174,9 +180,9 @@ var sce = {
     },
     "pop2": function() {
         // add handlers, explicit
-        sce.c.c[1].can.addEventListener("click", sce.click, false);
+        sce.c.c[1].can.addEventListener("click", sce.click2, false);
         sce.c.c[1].can.dataset.x = "love";
-        sce.c.c[2].can.addEventListener("click", sce.click2, false);
+        sce.c.c[2].can.addEventListener("click", sce.click3, false);
         sce.c.c[2].can.dataset.x = "war";
     },
     "pop3": function() {
@@ -209,6 +215,14 @@ var sce = {
     "click2": function(e) {
         console.log(e);
         console.log(e.target.dataset.x);
+        console.log("start love...");
+        // g.start5();
+    },
+    "click3": function(e) {
+        console.log(e);
+        console.log(e.target.dataset.x);
+        console.log("start war...");
+        // g.start6();
     }
 }
 // text
