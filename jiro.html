@@ -229,6 +229,13 @@ var sce = {
         console.log(e.target.dataset.x);
         console.log("start war...");
         // g.start6();
+    },
+    "swan": function() {
+        // remove the swan text canvases
+        // abstract: clear all elements on page
+        for (var i = 0; i < sce.c.c.length; i++) {
+            dom.remove(sce.c.c[i]);
+        }
     }
 }
 // text
