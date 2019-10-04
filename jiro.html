@@ -103,6 +103,9 @@ var g = {
     },
     "start6": function() {
         console.log("play war");
+
+        sce.swan();
+        sce.war();
     }
 }
 // scene
@@ -225,13 +228,13 @@ var sce = {
         console.log(e);
         console.log(e.target.dataset.x);
         console.log("start love...");
-        // g.start5();
+        g.start5();
     },
     "click3": function(e) {
         console.log(e);
         console.log(e.target.dataset.x);
         console.log("start war...");
-        // g.start6();
+        g.start6();
     },
     "swan": function() {
         // remove the swan text canvases
@@ -256,6 +259,21 @@ var sce = {
 
         // text expose
         // mushroom graphic
+
+        // only way to win
+        sce.e.a = {};
+        sce.e.a.t = [];
+        sce.e.a.t[0] = "only way to win";
+        sce.e.a.t[1] = "is not to play";
+        sce.e.a.s = [];
+        for (var i = 0; i < sce.e.a.t.length; i++) {
+            var t0 = sce.e.a.t[i].toUpperCase();
+            var t1 = t0.split('');
+            console.log(t1);
+            sce.e.a.s[i] = t1;
+        }
+
+        sce.e.b = {};
     }
 }
 // text
