@@ -97,6 +97,9 @@ var g = {
         // we can duplicate work in each mode
         // but a central broker or "brain"
         // could handle "meta" states
+
+        sce.swan();
+        sce.love();
     },
     "start6": function() {
         console.log("play war");
@@ -236,6 +239,23 @@ var sce = {
         for (var i = 0; i < sce.c.c.length; i++) {
             dom.remove(sce.c.c[i]);
         }
+    },
+    "love": function() {
+        // human reaction time bitmap
+
+        sce.d = {};
+
+        // text expose
+        // click button
+        // score
+    },
+    "war": function() {
+        // only way to win is not to play
+
+        sce.e = {};
+
+        // text expose
+        // mushroom graphic
     }
 }
 // text
