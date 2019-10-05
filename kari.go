@@ -37,4 +37,14 @@ func main() {
 // pid generator
 // game state cache
 
+// server side representation
+// of the entire game state
+// graph for scene transitions
+// scene consists of elements
+// each with dataset.x unique key
+// rect layout for each element
+// element stat and possible jumps
+// animation defined as a new scene in graph
+// scene methods handle add / remove from DOM tree
+
 
