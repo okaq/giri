@@ -36,9 +36,21 @@ var g = {
         g.subs.forEach(function(el){el.init();});
 
         // start
+        window.setTimeout(g.start, 1000);
 
         // split
         console.log("render time: " + (window.performance.now() - t0));
+    },
+    "start": function() {
+        var t0 = window.performance.now();
+
+        bmp.gugi();
+        // 36ms to decode gugi botmap font
+        // add mushroom bmp
+
+        // init graph data
+
+        console.log("bitmap decode time: " + (window.performance.now() - t0));
     }
 }
 // scene
