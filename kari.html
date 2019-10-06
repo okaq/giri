@@ -63,6 +63,33 @@ var sce = {
 var graph = {
     "init": function() {
         // game state transitions
+        graph.a = {};
+        // power on self test
+        graph.a["post"] = {};
+        // swan
+        graph.a["swan"] = {};
+        // game picker
+        graph.a["pick"] = {};
+        // love
+        graph.a["love"] = {};
+        // war
+        graph.a["war"] = {};
+
+        // game keys list
+        graph.b = [];
+        graph.b[0] = "post";
+        graph.b[1] = "swan";
+        graph.b[2] = "pick";
+        graph.b[3] = "love";
+        graph.b[4] = "war";
+
+        // game state jumps
+        graph.c = [];
+        graph.c[0] = [1];
+        graph.c[1] = [2];
+        graph.c[2] = [3,4];
+        graph.c[3] = [1];
+        graph.c[4] = [];
     }
 }
 // bit ops
