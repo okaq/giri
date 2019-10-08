@@ -45,12 +45,27 @@ var g = {
         var t0 = window.performance.now();
 
         bmp.gugi();
-        // 36ms to decode gugi botmap font
+        // 36ms to decode gugi bitmap font
         // add mushroom bmp
 
         // init graph data
+        window.setTimeout(g.graph, 1000);
 
         console.log("bitmap decode time: " + (window.performance.now() - t0));
+    },
+    "graph": function() {
+        var t0 = window.performance.now();
+
+        // graph states
+        // graph elements
+        // graph handlers
+        // graph anim
+
+        graph.scene();
+
+        // splits for each step
+
+        console.log("graph data time: " + (window.performance.now() - t0));
     }
 }
 // scene
@@ -90,6 +105,22 @@ var graph = {
         graph.c[2] = [3,4];
         graph.c[3] = [1];
         graph.c[4] = [];
+    },
+    "scene": function() {
+        // rects, canvas, event handlers
+        // element types: text, button, deco
+        graph.d = [];
+        // indexed to keys list
+        // post
+        graph.d[0] = {};
+        // rects list
+        graph.d[0].r = [];
+        graph.d[0].r[0] = [1920,1080,0,0]; // bkgd
+        // make canvas in scene manager
+        // type
+        graph.d[0].t = [];
+        graph.d[0].t[0] = 0;
+        // types: 0 = text, 1 = button, 2 = bitmap (deco)
     }
 }
 // bit ops
