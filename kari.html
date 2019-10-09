@@ -121,6 +121,18 @@ var graph = {
         graph.d[0].t = [];
         graph.d[0].t[0] = 0;
         // types: 0 = text, 1 = button, 2 = bitmap (deco)
+        // event
+        graph.d[0].e = [];
+        // we can attach as many as we wish
+        // although order is important
+        // event data format {'click':clickHandlerFunc}
+
+    }
+}
+// event
+var ev = {
+    "click": function(e) {
+        console.log(e);
     }
 }
 // bit ops
