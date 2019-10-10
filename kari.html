@@ -126,13 +126,47 @@ var graph = {
         // we can attach as many as we wish
         // although order is important
         // event data format {'click':clickHandlerFunc}
-
+        graph.d[0].e[0] = {"click":ev.jump};
+        // color data
+        graph.d[0].f = [];
+        graph.d[0].f[0] = rgba.rand();
+        // key id name
+        graph.d[0].g = [];
+        graph.d[0].g[0] = "post_bkgd_0";
+    },
+    "scene2": function() {
+        // swan
+        graph.d[1] = {};
+        // rects
+        graph.d[1].r = [];
+        graph.d[1].r[0] = [1920,1080,0,0]; // bkgd
+        graph.d[1].r[1] = [512,512,704,284]; // dragon
+        // type
+        graph.d[1].t = [];
+        graph.d[1].t[0] = 0;
+        graph.d[1].t[1] = 1;
+        // event
+        graph.d[1].e = [];
+        graph.d[1].e[0] = {"click":ev.click};
+        graph.d[1].e[1] = {"click":ev.jump};
+        // color
+        graph.d[1].f = [];
+        graph.d[1].f[0] = rgba.rand();
+        graph.d[1].f[1] = rgba.rand();
+        // keys
+        graph.d[1].g = [];
+        graph.d[1].g[0] = "swan_bkgd_0";
+        graph.d[1].g[1] = "swan_button_0";
     }
 }
 // event
 var ev = {
     "click": function(e) {
         console.log(e);
+    },
+    "jump": function(e) {
+        console.log(e);
+        // jump to next state in graph
     }
 }
 // bit ops
