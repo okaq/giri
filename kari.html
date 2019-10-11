@@ -32,7 +32,7 @@ var g = {
         console.log("start giri...");
 
         // subs
-        g.subs = [dom];
+        g.subs = [dom,graph,sce];
         g.subs.forEach(function(el){el.init();});
 
         // start
@@ -66,6 +66,8 @@ var g = {
         graph.scene3();
         // graph.scene4();
 
+        // generate scene DOM elements
+
         // splits for each step
 
         console.log("graph data time: " + (window.performance.now() - t0));
@@ -74,7 +76,19 @@ var g = {
 // scene
 var sce = {
     "init": function() {
-
+        sce.a = {};
+        // auto-generate from graph config data
+        for (var k0 in graph.a) {
+            sce.a[k0] = {};
+        }
+        // alternate list
+        sce.b = [];
+        for (var i = 0; i < sce.b.length; i++) {
+            sce.b[i] = {};
+        }
+        // scene consists of DOM elements
+        // elements hold individual state in dataset.y
+        // dataset.x is key id
     }
 }
 // graph
