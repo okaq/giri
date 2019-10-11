@@ -67,6 +67,7 @@ var g = {
         // graph.scene4();
 
         // generate scene DOM elements
+        sce.graph();
 
         // splits for each step
 
@@ -89,6 +90,22 @@ var sce = {
         // scene consists of DOM elements
         // elements hold individual state in dataset.y
         // dataset.x is key id
+    },
+    "graph": function() {
+        // index aligned to key id
+        for (var i = 0; i < graph.d.length; i++) {
+            // canvas list
+            sce.b[i].c = sce.rect(graph.d[i].r);
+        }
+    },
+    "rect": function(r0) {
+        // input list of rects
+        // output list of canvas objects
+        var c0 = [];
+        for (var i = 0; i < r0.length; i++) {
+            c0[i] = dom.canvas(r0[i]);
+        }
+        return c0;
     }
 }
 // graph
