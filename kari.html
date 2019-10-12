@@ -244,6 +244,31 @@ var bit = {
         // save state stack, push and pop
     }
 }
+// image
+var img = {
+    "init": function() {
+        // procedurally generated image data
+        // distinct from base64 json decoded bmp
+        img.a = {};
+        // observability into state
+        // after bitops transforms
+        // meta
+        img.b = {};
+        img.b.w = 32;
+        img.b.h = 32;
+        img.b.t = (img.b.w * img.b.h) >>> 0;
+    },
+    "rand": function() {
+        // assume 1024 bit, 32x32
+        // values set to either 0,1
+
+        // we can also store compact representations
+        // typed array buffers
+    },
+    "zero": function() {
+        // init all bits to 0
+    }
+}
    // dom
    var dom = {
         "init": function() {
