@@ -264,9 +264,23 @@ var img = {
 
         // we can also store compact representations
         // typed array buffers
+
+        var r0 = [];
+        for (var i = 0; i < img.b.t; i++) {
+            r0[i] = img.flip();
+        }
+        return r0;
+    },
+    "flip": function() {
+        return Math.random() >= 0.5 ? 1 : 0;
     },
     "zero": function() {
         // init all bits to 0
+        var r0 = [];
+        for (var i = 0; i < img.b.t; i++) {
+            r0[i] = 0;
+        }
+        return r0;
     }
 }
    // dom
