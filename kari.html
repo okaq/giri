@@ -69,6 +69,18 @@ var g = {
         // generate scene DOM elements
         sce.graph();
 
+        // type data effects render state
+
+        // attach event handlers on DOM add
+
+        // get the currect scene graph
+        g.state = 0;
+
+        // add to DOM
+        sce.pop();
+
+        // upon change state, remove previous, add current
+
         // splits for each step
 
         console.log("graph data time: " + (window.performance.now() - t0));
@@ -257,6 +269,8 @@ var img = {
         img.b.w = 32;
         img.b.h = 32;
         img.b.t = (img.b.w * img.b.h) >>> 0;
+
+        // begin bitops tests
     },
     "rand": function() {
         // assume 1024 bit, 32x32
