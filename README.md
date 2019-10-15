@@ -16,4 +16,9 @@ Walking a KD-tree of non-regular spaces
 Populated by mesh instances
 Generated from mirrored cubes
 
+Lito 1024-bit array generator
+lito/ - main src dir
+lito/omg - img png dir
+lito/pow - base64 json binary
+
 

@@ -79,6 +79,9 @@ var g = {
         // add to DOM
         sce.pop();
 
+        // render test
+        ren.img();
+
         // upon change state, remove previous, add current
 
         // splits for each step
@@ -118,6 +121,20 @@ var sce = {
             c0[i] = dom.canvas(r0[i]);
         }
         return c0;
+    },
+    "pop": function() {
+        // add current state collection to DOM
+        var c0 = sce.b[g.state].c;
+        for (var i = 0; i < c0.length; i++) {
+            dom.add(c0[i]);
+        }
+    },
+    "stop": function() {
+        // remove all elements in current state from DOM
+        var c0 = sce.b[g.state].c;
+        for (var i = 0; i < c0.length; i++) {
+            dom.remove(c0[i]);
+        }
     }
 }
 // graph
@@ -295,6 +312,16 @@ var img = {
             r0[i] = 0;
         }
         return r0;
+    }
+}
+// render
+var ren = {
+    "img": function() {
+        // rand img data in each canvas
+        var c0 = sce.b[g.state].c;
+        for (var i = 0; i < c0.length; i++) {
+            // epiphany: every canvas is a multiple of 32x32
+        }
     }
 }
    // dom
