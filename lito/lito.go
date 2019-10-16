@@ -18,6 +18,11 @@ func motd() {
 	fmt.Println(time.Now().String())
 }
 
+func insp() {
+	// read file dir info
+	// create json listings for browser
+}
+
 func LitoHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
 	http.ServeFile(w,r,INDEX)
@@ -25,6 +30,7 @@ func LitoHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	motd()
+	insp()
 	http.HandleFunc("/", LitoHandler)
 	http.ListenAndServe(":8080", nil)
 }
