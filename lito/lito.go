@@ -28,10 +28,16 @@ func LitoHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w,r,INDEX)
 }
 
+func TimeHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// sync state to browser
+}
+
 func main() {
 	motd()
 	insp()
 	http.HandleFunc("/", LitoHandler)
+	http.HandleFunc("/a", TimeHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
