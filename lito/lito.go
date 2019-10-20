@@ -6,12 +6,16 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
+	// "os"
 	"time"
 )
 
 const (
 	INDEX = "lito.html"
+	OMG = "omg/"
+	POW = "pow/"
 )
 
 func motd() {
@@ -20,6 +24,11 @@ func motd() {
 
 func insp() {
 	// read file dir info
+	f, err := ioutil.ReadDir(OMG)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(len(f))
 	// create json listings for browser
 }
 
