@@ -41,10 +41,20 @@ var net = {
     "init": function() {
         // get file list json from server
         // upon send and confirm, app is live
+
+        // urls
+        net.a = [];
+        net.a[0] = "http://localhost:8080/a";
     },
     "sync": function() {
         // call anytime
         // obtain running state of server
+
+        // new request object
+        // set cache to enable live updates
+        net.b = new Request(net.a[0]);
+        // fetch returns the response object 
+        // for parsing and introspection
     }
 }
    // dom
