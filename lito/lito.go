@@ -30,6 +30,9 @@ func insp() {
 	}
 	fmt.Println(len(f))
 	// create json listings for browser
+
+	// pretty print file info
+	// marshal to json for browser
 }
 
 func LitoHandler(w http.ResponseWriter, r *http.Request) {
