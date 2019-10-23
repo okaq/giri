@@ -5,6 +5,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -44,6 +45,14 @@ func insp() {
 		fmt.Println()
 		// json inline struct
 	}
+
+	// alt: just marshal []FileInfo
+	b, err := json.Marshal(f)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(b)
+	// achtung! requires pointer deref
 }
 
 func LitoHandler(w http.ResponseWriter, r *http.Request) {
