@@ -32,6 +32,8 @@ var g = {
         console.log("start giri...");
 
         // start
+        g.subs = [dom,sce,net];
+        g.subs.forEach(function(el){el.init();});
 
         console.log("time: " + (window.performance.now() - t0));
     }
@@ -55,6 +57,12 @@ var net = {
         net.b = new Request(net.a[0]);
         // fetch returns the response object 
         // for parsing and introspection
+    }
+}
+// scene
+var sce = {
+    "init": function() {
+        sce.a = {};
     }
 }
    // dom
