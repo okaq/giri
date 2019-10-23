@@ -33,6 +33,17 @@ func insp() {
 
 	// pretty print file info
 	// marshal to json for browser
+
+	for i, f0 := range f {
+		fmt.Println(i)
+		fmt.Println(f0.Name())
+		fmt.Println(f0.Size())
+		fmt.Println(f0.Mode())
+		fmt.Println(f0.ModTime())
+		fmt.Println(f0.IsDir())
+		fmt.Println()
+		// json inline struct
+	}
 }
 
 func LitoHandler(w http.ResponseWriter, r *http.Request) {
