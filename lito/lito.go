@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	// "os"
+	"os"
 	"time"
 )
 
@@ -53,6 +53,19 @@ func insp() {
 	}
 	fmt.Println(b)
 	// achtung! requires pointer deref
+
+	f1 := make([]os.FileInfo, len(f))
+	for i, f0 := range f {
+		f1[i] = f0
+	}
+	fmt.Println(f1)
+	b1, err := json.Marshal(f1)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(b1)
+	fmt.Println(len(b1))
+	fmt.Println(string(b1))
 }
 
 func LitoHandler(w http.ResponseWriter, r *http.Request) {
