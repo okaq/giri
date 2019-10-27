@@ -20,6 +20,10 @@ const (
 	POW = "pow/"
 )
 
+var (
+	List []byte
+)
+
 func motd() {
 	fmt.Println(time.Now().String())
 }
@@ -86,7 +90,8 @@ func insp() {
 	fmt.Println(b2)
 	fmt.Println(len(b2))
 	fmt.Println(string(b2))
-
+	// set List for output writing
+	List = b2
 }
 
 func LitoHandler(w http.ResponseWriter, r *http.Request) {
@@ -99,11 +104,18 @@ func TimeHandler(w http.ResponseWriter, r *http.Request) {
 	// sync state to browser
 }
 
+func ListHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	w.Header().Set("Content-type", "application/json")
+	w.Write(List)
+}
+
 func main() {
 	motd()
 	insp()
 	http.HandleFunc("/", LitoHandler)
 	http.HandleFunc("/a", TimeHandler)
+	http.HandleFunc("/b", ListHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
