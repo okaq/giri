@@ -47,6 +47,7 @@ var net = {
         // urls
         net.a = [];
         net.a[0] = "http://localhost:8080/a";
+        net.a[1] = "http://localhost:8080/b";
     },
     "sync": function() {
         // call anytime
@@ -57,6 +58,20 @@ var net = {
         net.b = new Request(net.a[0]);
         // fetch returns the response object 
         // for parsing and introspection
+    },
+    "list": function() {
+        net.c = new Request(net.a[1]);
+        net.d = function(res) {
+            if (!res) {
+                throw new Error(res.status);
+            }
+            console.log(res);
+            return res.json();
+        };
+        net.e = function(json) {
+            console.log(json);
+        };
+        fetch(net.c).then(net.d).then(net.e);
     }
 }
 // scene
