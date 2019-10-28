@@ -22,6 +22,7 @@ const (
 
 var (
 	List []byte
+	Cache map[string]string
 )
 
 func motd() {
@@ -94,6 +95,13 @@ func insp() {
 	List = b2
 }
 
+func data() {
+	// init cache
+	Cache = make(map[string]string)
+	// pop pid zero
+	// sync chan
+}
+
 func LitoHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
 	http.ServeFile(w,r,INDEX)
@@ -120,6 +128,7 @@ func StatHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	motd()
 	insp()
+	data()
 	http.HandleFunc("/", LitoHandler)
 	http.HandleFunc("/a", TimeHandler)
 	http.HandleFunc("/b", ListHandler)
