@@ -110,12 +110,20 @@ func ListHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(List)
 }
 
+func StatHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// output cache to http writer
+	// stat cache includes
+	// req count, player total, pid live
+}
+
 func main() {
 	motd()
 	insp()
 	http.HandleFunc("/", LitoHandler)
 	http.HandleFunc("/a", TimeHandler)
 	http.HandleFunc("/b", ListHandler)
+	http.HandleFunc("/c", StatHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
