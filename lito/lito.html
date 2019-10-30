@@ -31,11 +31,21 @@ var g = {
         var t0 = window.performance.now();
         console.log("start giri...");
 
-        // start
+        // subs
         g.subs = [dom,sce,net];
         g.subs.forEach(function(el){el.init();});
 
+        // start
+        window.setInterval(g.start, 1000);
+
         console.log("time: " + (window.performance.now() - t0));
+    },
+    "start": function() {
+        // calligraphy effect
+        // grid of 32x32 pixel blocks
+        // p0 = 0.60, probability cell is shaded black
+        // or probability increases with neighbor count
+        
     }
 }
 // xhr
@@ -48,6 +58,7 @@ var net = {
         net.a = [];
         net.a[0] = "http://localhost:8080/a";
         net.a[1] = "http://localhost:8080/b";
+        net.a[2] = "http://localhost:8080/c";
     },
     "sync": function() {
         // call anytime
@@ -70,6 +81,7 @@ var net = {
         };
         net.e = function(json) {
             console.log(json);
+            // pop listsing screen
         };
         fetch(net.c).then(net.d).then(net.e);
     }
