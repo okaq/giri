@@ -46,6 +46,19 @@ var g = {
         // p0 = 0.60, probability cell is shaded black
         // or probability increases with neighbor count
 
+        g.tick = 0;
+        g.id = window.setInterval(g.frame, 1000);
+    },
+    "frame": function() {
+        console.log("tick count: " + g.tick);
+        if (g.tick > 8) {
+            console.log("anim done");
+            window.clearInterval(g.id);
+            return;
+        }
+        // each tick increases p0 by 0.1, range 0.1-0.9
+        // generate new data and render
+        g.tick = g.tick + 1;
     }
 }
 // xhr
