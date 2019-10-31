@@ -45,7 +45,7 @@ var g = {
         // grid of 32x32 pixel blocks
         // p0 = 0.60, probability cell is shaded black
         // or probability increases with neighbor count
-        
+
     }
 }
 // xhr
@@ -90,6 +90,19 @@ var net = {
 var sce = {
     "init": function() {
         sce.a = {};
+        // bkgd
+        sce.a.r = [1920,1080,0,0];
+        sce.a.c = dom.canvas(sce.a.r);
+        dom.add(sce.a.c);
+        // cell data
+        sce.a.w = 1920;
+        sce.a.h = 1080;
+        sce.a.px = 32;
+        sce.a.py = 32;
+        sce.a.nx = (sce.a.w / sce.a.px) >>> 0;
+        sce.a.ny = (sce.a.h / sce.a.py) >>> 0;
+        sce.a.nt = (sce.a.nx * sce.a.ny) >>> 0;
+        sce.a.d = [];
     }
 }
    // dom
