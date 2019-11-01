@@ -36,7 +36,7 @@ var g = {
         g.subs.forEach(function(el){el.init();});
 
         // start
-        window.setInterval(g.start, 1000);
+        window.setTimeout(g.start, 1000);
 
         console.log("time: " + (window.performance.now() - t0));
     },
@@ -116,6 +116,16 @@ var sce = {
         sce.a.ny = (sce.a.h / sce.a.py) >>> 0;
         sce.a.nt = (sce.a.nx * sce.a.ny) >>> 0;
         sce.a.d = [];
+
+        console.log(sce.a.nx,sce.a.ny,sce.a.nt);
+    }
+}
+// procedural
+var gen = {
+    "rand": function(d0) {
+        // for all methods in this class
+        // assume 32x32 pixel cells
+        // 33 x 60 = 1980
     }
 }
    // dom
