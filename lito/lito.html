@@ -115,9 +115,11 @@ var sce = {
         sce.a.nx = (sce.a.w / sce.a.px) >>> 0;
         sce.a.ny = (sce.a.h / sce.a.py) >>> 0;
         sce.a.nt = (sce.a.nx * sce.a.ny) >>> 0;
-        sce.a.d = [];
+        // sce.a.d = [];
+        sce.a.d = new Array(1980);
 
         console.log(sce.a.nx,sce.a.ny,sce.a.nt);
+        console.log(sce.a.d.length); // 1980 empty slots, not undefined values
     },
     "screen": function() {
         // we can do it in three screens
@@ -134,9 +136,25 @@ var gen = {
         // for all methods in this class
         // assume 32x32 pixel cells
         // 33 x 60 = 1980
+
+        var d1 = [];
+        for (var i = 0; i < d0.length; i++) {
+            d1[i] = gen.flip();
+        }
+        return d1;
     },
     "zero": function(d0) {
-
+        var d1 = [];
+        for (var i = 0; i < d0.length; i++) {
+            d1[i] = 0;
+        }
+        return d1;
+    },
+    "flip": function() {
+        return (Math.random() > 0.5) ? 1 : 0;
+    },
+    "prob": function(p0) {
+        return (Math.random() > p0) ? 1 : 0;
     }
 }
    // dom
