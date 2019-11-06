@@ -57,6 +57,9 @@ var g = {
             return;
         }
         // each tick increases p0 by 0.1, range 0.1-0.9
+        var p0 = (g.tick + 1) * 0.1;
+        console.log(p0);
+        // round off error < one millionth
         // generate new data and render
         g.tick = g.tick + 1;
     }
