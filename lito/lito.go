@@ -125,6 +125,13 @@ func StatHandler(w http.ResponseWriter, r *http.Request) {
 	// req count, player total, pid live
 }
 
+func SaveHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// encode req body in base64 format
+	// input of type byte array
+	// save to disk as json file
+}
+
 func main() {
 	motd()
 	insp()
@@ -133,6 +140,7 @@ func main() {
 	http.HandleFunc("/a", TimeHandler)
 	http.HandleFunc("/b", ListHandler)
 	http.HandleFunc("/c", StatHandler)
+	http.HandleFunc("/d", SaveHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
