@@ -35,6 +35,9 @@ var g = {
         g.subs = [dom,sce,net];
         g.subs.forEach(function(el){el.init();});
 
+        // zero
+        sce.a.d = gen.zero(sce.a.d);
+
         // start
         window.setTimeout(g.start, 1000);
 
@@ -60,6 +63,12 @@ var g = {
         var p0 = (g.tick + 1) * 0.1;
         console.log(p0);
         // round off error < one millionth
+        // update dataset
+        // rand test
+        sce.a.d = gen.rand(sce.a.d);
+        ren.clear();
+        ren.data();
+        // prob tick
         // generate new data and render
         g.tick = g.tick + 1;
     }
@@ -158,6 +167,15 @@ var gen = {
     },
     "prob": function(p0) {
         return (Math.random() > p0) ? 1 : 0;
+    }
+}
+// render
+var ren = {
+    "clear": function() {
+
+    },
+    "data": function() {
+
     }
 }
    // dom
