@@ -172,10 +172,15 @@ var gen = {
 // render
 var ren = {
     "clear": function() {
-
+        sce.a.c.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.a.c.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
     },
     "data": function() {
-
+        sce.a.c.fillStyle = rgba.css([0,0,0,1.0]);
+        for (var i = 0; i < sce.a.nt; i++) {
+            var x0 = i % sce.a.px;
+            var y0 = (sce.a.c / sce.a.px) >>> 0;
+        }
     }
 }
    // dom
