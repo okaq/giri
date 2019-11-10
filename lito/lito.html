@@ -63,13 +63,24 @@ var g = {
         var p0 = (g.tick + 1) * 0.1;
         console.log(p0);
         // round off error < one millionth
+        
         // update dataset
         // rand test
-        sce.a.d = gen.rand(sce.a.d);
+        // sce.a.d = gen.rand(sce.a.d);
+        // ren.clear();
+        // ren.data();
+
+        // prob tick
+        sce.a.d = gen.lab(sce.a.d, p0);
         ren.clear();
         ren.data();
-        // prob tick
         // generate new data and render
+        // rand around 0.4-0.7 probability
+        // sort of creates a labyrinth effect
+        // but a better visual algo
+        // may be to use wave function collapse
+        // with pre-defined cells
+        // and near neighbor constraints
         g.tick = g.tick + 1;
     }
 }
@@ -167,6 +178,13 @@ var gen = {
     },
     "prob": function(p0) {
         return (Math.random() > p0) ? 1 : 0;
+    },
+    "lab": function(d0, p0) {
+        var d1 = [];
+        for (var i = 0; i < d0.length; i++) {
+            d1[i] = gen.prob(p0);
+        }
+        return d1;
     }
 }
 // render
