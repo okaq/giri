@@ -21,6 +21,10 @@ const (
 	POW = "pow/"
 )
 
+var (
+	C map[string]string
+)
+
 func motd() {
 	fmt.Println("okaq web serving on localhost:8080")
 	fmt.Println(time.Now().String())
@@ -29,6 +33,10 @@ func motd() {
 func MikoHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
 	http.ServeFile(w,r,INDEX)
+}
+
+func cache() {
+	C = make(map[string]string)
 }
 
 func main() {
