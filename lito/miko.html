@@ -29,7 +29,7 @@ var g = {
         console.log("start lito...");
 
         // subs
-        g.subs = [bmp,dom,sce];
+        g.subs = [bmp,dom,sce,net];
         g.subs.forEach(function(el){el.init();});
 
         // start
@@ -39,6 +39,8 @@ var g = {
     },
     "start": function() {
         ren.clear();
+
+        net.sync();
     }
 }
 // scene
@@ -55,6 +57,34 @@ var ren = {
     "clear": function() {
         sce.a.c.con.fillStyle = rgba.rand();
         sce.a.c.con.fillRect(0,0,sce.a.c.can.wdith,sce.a.c.can.height);
+    }
+}
+// xhr
+var net = {    
+    "init": function() {
+        // urls
+        net.a = [];
+        net.a[0] = "http://localhost:8080/a";
+        net.a[1] = "http://localhost:8080/b";
+        net.a[2] = "http://localhost:8080/c";
+    },
+    "sync": function() {
+        // running state
+    },
+    "list": function() {
+        net.c = new Request(net.a[1]);
+        net.d = function(res) {
+            if (!res) {
+                throw new Error(res.status);
+            }
+            console.log(res);
+            return res.json();
+        };
+        net.e = function(json) {
+            console.log(json);
+            // pop listsing screen
+        };
+        fetch(net.c).then(net.d).then(net.e);
     }
 }
    // dom
