@@ -23,6 +23,8 @@ const (
 
 var (
 	C map[string]string
+	// Png file meta data map
+	// Json byte output from marshal
 )
 
 func motd() {
@@ -33,6 +35,16 @@ func motd() {
 func MikoHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
 	http.ServeFile(w,r,INDEX)
+}
+
+func PidHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// generate and cache pid
+}
+
+func OmgHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// Png file meta data json
 }
 
 func cache() {
@@ -65,6 +77,8 @@ func main() {
 	// load()
 	// map()
 	http.HandleFunc("/", MikoHandler)
+	http.HandleFunc("/a", PidHandler)
+	http.HandleFunc("/b", OmgHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
