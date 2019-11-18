@@ -48,10 +48,22 @@ func load() {
 	fmt.Println(len(f))
 }
 
+func map() {
+	// png file key value
+	f0 := make(map[string]string)
+	for i, f1 := range f {
+		s0 := strconv.Itoa(i)
+		i0 := strconv.FormatInt(f1.Size(), 10)
+		s1 := fmt.Sprintf("%s|%s|%s",f1.Name(),i1,f0.ModTime().String())
+		f0[s0] = s1
+	}
+}
+
 func main() {
 	motd()
 	// cache()
 	// load()
+	// map()
 	http.HandleFunc("/", MikoHandler)
 	http.ListenAndServe(":8080", nil)
 }
