@@ -39,9 +39,19 @@ func cache() {
 	C = make(map[string]string)
 }
 
+func load() {
+	// png file meta data
+	f, err := ioutil.ReadDir(OMG)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(len(f))
+}
+
 func main() {
 	motd()
 	// cache()
+	// load()
 	http.HandleFunc("/", MikoHandler)
 	http.ListenAndServe(":8080", nil)
 }
