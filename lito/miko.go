@@ -71,11 +71,21 @@ func map() {
 	}
 }
 
+func encode() {
+	// json encode map data
+	b0, err := json.Marshal(f0)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(b0)
+}
+
 func main() {
 	motd()
 	// cache()
 	// load()
 	// map()
+	// encode()
 	http.HandleFunc("/", MikoHandler)
 	http.HandleFunc("/a", PidHandler)
 	http.HandleFunc("/b", OmgHandler)
