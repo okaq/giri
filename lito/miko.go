@@ -8,6 +8,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"time"
@@ -24,7 +25,9 @@ const (
 var (
 	C map[string]string
 	// Png file meta data map
+	P map[string]string
 	// Json byte output from marshal
+	J []byte
 )
 
 func motd() {
@@ -45,6 +48,8 @@ func PidHandler(w http.ResponseWriter, r *http.Request) {
 func OmgHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
 	// Png file meta data json
+	w.Header().Set("Content-type","application/json")
+	w.Write(J)
 }
 
 func cache() {
@@ -62,22 +67,27 @@ func load() {
 
 func map() {
 	// png file key value
-	f0 := make(map[string]string)
+	// f0 := make(map[string]string)
+	P = make(map[string]string)
 	for i, f1 := range f {
 		s0 := strconv.Itoa(i)
 		i0 := strconv.FormatInt(f1.Size(), 10)
 		s1 := fmt.Sprintf("%s|%s|%s",f1.Name(),i1,f0.ModTime().String())
-		f0[s0] = s1
+		// f0[s0] = s1
+		P[s0] = s1
 	}
 }
 
 func encode() {
 	// json encode map data
-	b0, err := json.Marshal(f0)
+	// b0, err := json.Marshal(f0)
+	var err error
+	J, err = json.Marshal(P)
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(b0)
+	// fmt.Println(b0)
+	fmt.Printf("length in bytes of json png file data: %d\n", len(J))
 }
 
 func main() {
