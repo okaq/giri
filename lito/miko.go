@@ -52,6 +52,16 @@ func OmgHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(J)
 }
 
+func StatHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// usage stats output to browser
+}
+
+func DataHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// pretty print entire server state
+}
+
 func cache() {
 	C = make(map[string]string)
 }
@@ -99,6 +109,8 @@ func main() {
 	http.HandleFunc("/", MikoHandler)
 	http.HandleFunc("/a", PidHandler)
 	http.HandleFunc("/b", OmgHandler)
+	http.HandleFunc("/c", StatHandler)
+	http.HandleFunc("/d", DataHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
