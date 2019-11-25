@@ -41,6 +41,14 @@ var g = {
         ren.clear();
 
         net.sync();
+
+        // simulate net
+        window.setTimeout(g.start2, 1000);
+    },
+    "start2": function() {
+        sce.box();
+        sce.txt();
+        sce.txt2();
     }
 }
 // scene
@@ -56,13 +64,15 @@ var sce = {
         // human reaction time test
         sce.b = {};
         sce.b.r = [512,512,512,512];
-        sce.b.c = dom.canvas(sce.b.c);
+        sce.b.c = dom.canvas(sce.b.r);
         dom.add(sce.b.c);
     },
     "txt": function() {
         // all txt data and layout
         // words
         sce.w = [];
+        // chars
+        sce.v = [];
         // canvas list
         sce.c = [];
         // each word is one rect
@@ -72,7 +82,14 @@ var sce = {
     },
     "txt2": function() {
         // word
-        sce.w[0] = "";
+        sce.w[0] = "human reaction time";
+        sce.w[1] = "click when button pops";
+        sce.w[2] = "total time 0ms";
+        // lengths 19, 22, 14
+        // last should be variable length
+        // split
+        sce.w.forEach(function(el){sce.v.push(el.split(""));});
+        console.log(sce.w, sce.v);
         // config
         sce.d[0] = [0,0,0,0];
     },
@@ -218,7 +235,7 @@ var net = {
         },
         "init": function() {
             // font
-            bmp.guji();
+            bmp.gugi();
         }
     }
     // gugi bitmap font

@@ -10,7 +10,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"os"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -28,6 +31,8 @@ var (
 	P map[string]string
 	// Json byte output from marshal
 	J []byte
+	// file list
+	F []os.FileInfo
 )
 
 func motd() {
@@ -68,21 +73,22 @@ func cache() {
 
 func load() {
 	// png file meta data
-	f, err := ioutil.ReadDir(OMG)
+	var err error
+	F, err := ioutil.ReadDir(OMG)
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(len(f))
+	fmt.Println(len(F))
 }
 
-func map() {
+func mapi() {
 	// png file key value
 	// f0 := make(map[string]string)
 	P = make(map[string]string)
-	for i, f1 := range f {
+	for i, f1 := range F {
 		s0 := strconv.Itoa(i)
 		i0 := strconv.FormatInt(f1.Size(), 10)
-		s1 := fmt.Sprintf("%s|%s|%s",f1.Name(),i1,f0.ModTime().String())
+		s1 := fmt.Sprintf("%s|%s|%s",f1.Name(),i0,f1.ModTime().String())
 		// f0[s0] = s1
 		P[s0] = s1
 	}
