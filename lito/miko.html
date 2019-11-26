@@ -49,6 +49,8 @@ var g = {
         sce.box();
         sce.txt();
         sce.txt2();
+        sce.txt3();
+        ren.gob();
     }
 }
 // scene
@@ -91,7 +93,17 @@ var sce = {
         sce.w.forEach(function(el){sce.v.push(el.split(""));});
         console.log(sce.w, sce.v);
         // config
-        sce.d[0] = [0,0,0,0];
+        sce.d[0] = [608,32,128,128];
+        sce.d[1] = [704,32,128,288];
+        sce.d[2] = [448,32,128,448]; // amazing coincidence!
+    },
+    "txt3": function() {
+        // txt canvas
+        sce.e = [];
+        for (var i = 0; i < sce.d.length; i++) {
+            sce.e[i] = dom.canvas(sce.d[i]);
+            dom.add(sce.e[i]);
+        }
     },
     "but": function() {
         // assign click handlers
@@ -108,6 +120,12 @@ var ren = {
         // render black rect background to text canvas
         // but pixels within char bitmaps
         // should be assigned random on interval (0-128)
+    },
+    "gob": function() {
+        for (var i = 0; i < sce.e.length; i++) {
+            sce.e[i].con.fillStyle = rgba.css([0,0,0,1.0]);
+            sce.e[i].con.fillRect(0,0,sce.e[i].can.width,sce.e[i].can.height);
+        }
     }
 }
 // xhr
