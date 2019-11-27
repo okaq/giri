@@ -51,6 +51,7 @@ var g = {
         sce.txt2();
         sce.txt3();
         ren.gob();
+        ren.gob2();
     }
 }
 // scene
@@ -125,6 +126,22 @@ var ren = {
         for (var i = 0; i < sce.e.length; i++) {
             sce.e[i].con.fillStyle = rgba.css([0,0,0,1.0]);
             sce.e[i].con.fillRect(0,0,sce.e[i].can.width,sce.e[i].can.height);
+        }
+    },
+    "gob2": function() {
+        for (var i = 0; i < sce.e.length; i++) {
+            for (var j = 0; j < sce.v[i].length; j++) {
+                // bmp data
+                // position
+                var c0 = sce.v[i][j];
+                var b0 = "";
+                if (c0 in bmp.a) {
+                    b0 = bmp.a[c0]
+                } else {
+                    continue;
+                }
+                
+            }
         }
     }
 }
