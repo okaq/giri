@@ -91,7 +91,7 @@ var sce = {
         // lengths 19, 22, 14
         // last should be variable length
         // split
-        sce.w.forEach(function(el){sce.v.push(el.split(""));});
+        sce.w.forEach(function(el){sce.v.push(el.toUpperCase().split(""));});
         console.log(sce.w, sce.v);
         // config
         sce.d[0] = [608,32,128,128];
@@ -132,7 +132,6 @@ var ren = {
         for (var i = 0; i < sce.e.length; i++) {
             for (var j = 0; j < sce.v[i].length; j++) {
                 // bmp data
-                // position
                 var c0 = sce.v[i][j];
                 var b0 = "";
                 if (c0 in bmp.a) {
@@ -140,7 +139,11 @@ var ren = {
                 } else {
                     continue;
                 }
-                
+                // position
+                var x0 = (j * 32) >>> 0;
+                var y0 = 0;
+                sce.e[i].con.fillStyle = rgba.rand();
+                sce.e[i].con.fillRect(x0,y0,32,32);
             }
         }
     }
