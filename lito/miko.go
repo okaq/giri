@@ -67,6 +67,11 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
 	// pretty print entire server state
 }
 
+func PeerHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// connect the peer network
+}
+
 func cache() {
 	C = make(map[string]string)
 }
@@ -117,6 +122,7 @@ func main() {
 	http.HandleFunc("/b", OmgHandler)
 	http.HandleFunc("/c", StatHandler)
 	http.HandleFunc("/d", DataHandler)
+	http.HandleFunc("/e", PeerHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
