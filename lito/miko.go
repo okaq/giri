@@ -72,6 +72,11 @@ func PeerHandler(w http.ResponseWriter, r *http.Request) {
 	// connect the peer network
 }
 
+func FileHandler(w http.ResponseWriter, r *http.Request {
+	fmt.Println(r)
+	// static file assests list
+}
+
 func cache() {
 	C = make(map[string]string)
 }
@@ -123,6 +128,7 @@ func main() {
 	http.HandleFunc("/c", StatHandler)
 	http.HandleFunc("/d", DataHandler)
 	http.HandleFunc("/e", PeerHandler)
+	http.HandleFunc("/f", FileHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
