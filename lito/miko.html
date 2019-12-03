@@ -142,10 +142,18 @@ var ren = {
                 // position
                 var x0 = (j * 32) >>> 0;
                 var y0 = 0;
-                sce.e[i].con.fillStyle = rgba.rand();
+                // sce.e[i].con.fillStyle = rgba.rand();
+                sce.e[i].con.fillSyle = rgba.css([0,0,0,1.0]);
                 sce.e[i].con.fillRect(x0,y0,32,32);
+                // glyph
+                ren.glyph(sce.e[i], b0, x0, y0);
             }
         }
+    },
+    "glyph": function(c0, b0, x0, y0) {
+        // render 32x32 bitmap data
+        // at point x0,y0 in canvas c0
+        // set fill to random greyscale on interval (128-255)
     }
 }
 // xhr
