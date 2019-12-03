@@ -146,6 +146,8 @@ var ren = {
                 // sce.e[i].con.fillStyle = rgba.rand();
                 sce.e[i].con.fillSyle = rgba.css([0,0,0,1.0]);
                 // sce.e[i].con.fillRect(x0,y0,32,32);
+                // above fill getting called out of sequence
+                // with style set to glyph method setting (bug)
                 // glyph
                 ren.glyph(sce.e[i], b0, x0, y0);
             }
@@ -156,6 +158,9 @@ var ren = {
         // at point x0,y0 in canvas c0
         // set fill to random greyscale on interval (128-255)
         // console.log(c0, b0, x0, y0);
+
+        // set half tone once per char
+        // c0.con.fillStyle = rgba.css(ren.half());
         for (var i = 0; i < b0.length; i++) {
             if (b0[i] == 1) {
                 continue;
@@ -165,9 +170,25 @@ var ren = {
             var x2 = (x0 + x1) >>> 0;
             var y2 = (y0 + y1) >>> 0;
             // console.log(b0[i],x2,y2);
-            c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+            // c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+
+            // set half tone once per pixel
+            c0.con.fillStyle = rgba.css(ren.half());
             c0.con.fillRect(x2,y2,1,1);
+
+            // half greyscale effect
+            // bkgd black, fore in range (128-255)
+            // on 32x32 bitmap text
+            // at 1px draw resolution
+            // it just visually averages to light grey
         }
+    },
+    "half": function() {
+        // high half of the greyscale range
+        var f0 = (Math.random() * 128) >>> 0;
+        var f1 = (f0 + 128) >>> 0;
+        var f2 = [f1, f1, f1, 1.0];
+        return f2;
     }
 }
 // xhr
