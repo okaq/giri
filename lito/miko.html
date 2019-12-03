@@ -46,12 +46,18 @@ var g = {
         window.setTimeout(g.start2, 1000);
     },
     "start2": function() {
-        sce.box();
+        // sce.box();
         sce.txt();
         sce.txt2();
         sce.txt3();
         ren.gob();
         ren.gob2();
+
+        // add button
+        window.setTimeout(g.start3, 1000);
+    },
+    "start3": function() {
+        sce.box();
     }
 }
 // scene
@@ -144,10 +150,11 @@ var ren = {
                 var x0 = (j * 32) >>> 0;
                 var y0 = 0;
                 // sce.e[i].con.fillStyle = rgba.rand();
-                sce.e[i].con.fillSyle = rgba.css([0,0,0,1.0]);
-                // sce.e[i].con.fillRect(x0,y0,32,32);
+                sce.e[i].con.fillStyle = rgba.css([0,0,0,1.0]);
+                sce.e[i].con.fillRect(x0,y0,32,32);
                 // above fill getting called out of sequence
                 // with style set to glyph method setting (bug)
+                // nope! just syntx error ;)
                 // glyph
                 ren.glyph(sce.e[i], b0, x0, y0);
             }
