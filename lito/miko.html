@@ -139,12 +139,13 @@ var ren = {
                 } else {
                     continue;
                 }
+                // console.log(b0, c0);
                 // position
                 var x0 = (j * 32) >>> 0;
                 var y0 = 0;
                 // sce.e[i].con.fillStyle = rgba.rand();
                 sce.e[i].con.fillSyle = rgba.css([0,0,0,1.0]);
-                sce.e[i].con.fillRect(x0,y0,32,32);
+                // sce.e[i].con.fillRect(x0,y0,32,32);
                 // glyph
                 ren.glyph(sce.e[i], b0, x0, y0);
             }
@@ -154,6 +155,19 @@ var ren = {
         // render 32x32 bitmap data
         // at point x0,y0 in canvas c0
         // set fill to random greyscale on interval (128-255)
+        // console.log(c0, b0, x0, y0);
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 1) {
+                continue;
+            }
+            var x1 = i % 32;
+            var y1 = (i / 32) >>> 0;
+            var x2 = (x0 + x1) >>> 0;
+            var y2 = (y0 + y1) >>> 0;
+            // console.log(b0[i],x2,y2);
+            c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+            c0.con.fillRect(x2,y2,1,1);
+        }
     }
 }
 // xhr

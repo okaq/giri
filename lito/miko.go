@@ -72,7 +72,7 @@ func PeerHandler(w http.ResponseWriter, r *http.Request) {
 	// connect the peer network
 }
 
-func FileHandler(w http.ResponseWriter, r *http.Request {
+func FileHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
 	// static file assests list
 }
