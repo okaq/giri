@@ -60,11 +60,18 @@ func OmgHandler(w http.ResponseWriter, r *http.Request) {
 func StatHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
 	// usage stats output to browser
+
+	// avg human response time per player
+	// global human response time for all players
 }
 
 func DataHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
 	// pretty print entire server state
+
+	// endpoint for player response time data
+	// each request represents one iteration
+	// button pop, timer fires, click split time
 }
 
 func PeerHandler(w http.ResponseWriter, r *http.Request) {
