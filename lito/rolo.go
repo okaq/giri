@@ -46,6 +46,7 @@ func pictures() {
 	if err != nil {
 		fmt.Println(err)
 	}
+	/* debug
 	for i0, f1 := range f0 {
 		fmt.Printf("file: %s, item: %d\n", f1.Name(), i0)
 		s0 := fmt.Sprintf("%s%s", PNG, f1.Name())
@@ -54,11 +55,20 @@ func pictures() {
 		s2 := fmt.Sprintf("%s:%s", s1, f1.ModTime().String())
 		fmt.Printf("size:time::%s\n", s2)
 	}
+	*/
+	for _, f1 := range f0 {
+		k0 := fmt.Sprintf("%s%s", PNG, f1.Name())
+		s0 := strconv.FormatInt(f1.Size(), 10)
+		v0 := fmt.Sprintf("%s:%s", s0, f1.ModTime().String())
+		P[k0] = v0
+	}
+	fmt.Println(P)
 }
 
 func main() {
 	motd()
 	// load png file list
+	P = make(map[string]string)
 	pictures()
 	http.HandleFunc("/", RoloHandler)
 	http.HandleFunc("/a", PngHandler)
