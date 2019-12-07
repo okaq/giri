@@ -6,7 +6,9 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -16,6 +18,11 @@ const (
 	PNG = "omg/"
 	// json dir
 	JSON = "pow/"
+)
+
+var (
+	// png file list
+	P map[string]string
 )
 
 func motd() {
@@ -33,8 +40,26 @@ func PngHandler(w http.ResponseWriter, r *http.Request) {
 	// static png server at PNG
 }
 
+func pictures() {
+	// load png files into map
+	f0, err := ioutil.ReadDir(PNG)
+	if err != nil {
+		fmt.Println(err)
+	}
+	for i0, f1 := range f0 {
+		fmt.Printf("file: %s, item: %d\n", f1.Name(), i0)
+		s0 := fmt.Sprintf("%s%s", PNG, f1.Name())
+		fmt.Printf("path: %s\n", s0)
+		s1 := strconv.FormatInt(f1.Size(), 10)
+		s2 := fmt.Sprintf("%s:%s", s1, f1.ModTime().String())
+		fmt.Printf("size:time::%s\n", s2)
+	}
+}
+
 func main() {
 	motd()
+	// load png file list
+	pictures()
 	http.HandleFunc("/", RoloHandler)
 	http.HandleFunc("/a", PngHandler)
 	http.ListenAndServe(":8080", nil)
