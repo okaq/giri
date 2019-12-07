@@ -65,7 +65,23 @@ var sce = {
         dom.add(sce.a.c);
     }
 }
-
+// xhr
+var net = {
+    "init": function() {
+        net.a = {};
+        net.a[0] = "http://localhost:8080";
+    },
+    "sync": function() {
+        // fetch png file list
+    }
+}
+// render
+var ren = {
+    "clear": function() {
+        sce.a.c.con.fillStyle = rgba.rand();
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+    }
+}
    // dom
    var dom = {
         "init": function() {
