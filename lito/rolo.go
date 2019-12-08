@@ -5,6 +5,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -23,6 +24,8 @@ const (
 var (
 	// png file list
 	P map[string]string
+	// json encoded png file list
+	J []byte
 )
 
 func motd() {
@@ -62,7 +65,18 @@ func pictures() {
 		v0 := fmt.Sprintf("%s:%s", s0, f1.ModTime().String())
 		P[k0] = v0
 	}
-	fmt.Println(P)
+	// fmt.Println(P)
+}
+
+func compact() {
+	// encode png file list map
+	// json for http writer
+	var err error
+	J, err = json.Marshal(P)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(len(J))
 }
 
 func main() {
@@ -70,6 +84,7 @@ func main() {
 	// load png file list
 	P = make(map[string]string)
 	pictures()
+	compact()
 	http.HandleFunc("/", RoloHandler)
 	http.HandleFunc("/a", PngHandler)
 	http.ListenAndServe(":8080", nil)
