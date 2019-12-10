@@ -81,7 +81,7 @@ var net = {
     "sync2": function() {
         var r0 = new Request(net.a[0]);
         var f0 = function(res) {
-            console.log(res;
+            console.log(res);
             return res.json();
         };
         var f1 = function(json) {
@@ -99,7 +99,21 @@ var net = {
         .then(f1).catch(f2);
     },
     "parse": function() {
-        // format {path:"size:time"}
+        // format {path:"size|time"}
+        // separate keys, values
+        var j0 = []; // path
+        var j1 = []; // size
+        var j2 = []; // time
+        for (var k0 in net.b) {
+            j0.push(k0);
+            var s0 = net.b[k0];
+            var s1 = s0.split("|");
+            j1.push(s1[0]);
+            j2.push(s1[1]);
+        }
+        console.log(j0, j1, j2);
+        // using "|" as separator
+        // instead of ":", size|time
     }
 }
 // render

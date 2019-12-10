@@ -64,7 +64,7 @@ func pictures() {
 	for _, f1 := range f0 {
 		k0 := fmt.Sprintf("%s%s", PNG, f1.Name())
 		s0 := strconv.FormatInt(f1.Size(), 10)
-		v0 := fmt.Sprintf("%s:%s", s0, f1.ModTime().String())
+		v0 := fmt.Sprintf("%s|%s", s0, f1.ModTime().String())
 		P[k0] = v0
 	}
 	// fmt.Println(P)
