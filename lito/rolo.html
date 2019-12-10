@@ -41,7 +41,8 @@ var g = {
 	console.log("obtaining image list");
         ren.clear();
 
-        net.sync();
+        // net.sync();
+        net.sync2();
 
         // simulate net
         window.setTimeout(g.start2, 1000);
@@ -76,6 +77,29 @@ var net = {
         window.fetch(net.a[0])
         .then(function(response){return response.json()})
         .then(function(json){console.log(json)});
+    },
+    "sync2": function() {
+        var r0 = new Request(net.a[0]);
+        var f0 = function(res) {
+            console.log(res;
+            return res.json();
+        };
+        var f1 = function(json) {
+            console.log(json);
+            net.b = json;
+            // parse
+            net.parse();
+        }
+        var f2 = function(err) {
+            console.log(err);
+        }
+        // fetch w/ catch
+        window.fetch(r0)
+        .then(f0).catch(f2)
+        .then(f1).catch(f2);
+    },
+    "parse": function() {
+        // format {path:"size:time"}
     }
 }
 // render
