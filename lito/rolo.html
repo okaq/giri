@@ -69,13 +69,13 @@ var sce = {
 var net = {
     "init": function() {
         net.a = {};
-        net.a[0] = "http://localhost:8080";
+        net.a[0] = "http://localhost:8080/a";
     },
     "sync": function() {
         // fetch png file list
-        window.fetch()
-        .then()
-        .then();
+        window.fetch(net.a[0])
+        .then(function(response){return response.json()})
+        .then(function(json){console.log(json)});
     }
 }
 // render

@@ -81,7 +81,9 @@ func PeerHandler(w http.ResponseWriter, r *http.Request) {
 
 func FileHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
-	// static file assests list
+	// static file assets list
+	// w.Header().Set("Content-Type","application/json")
+	// w.Write(J)
 }
 
 func cache() {

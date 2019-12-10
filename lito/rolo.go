@@ -41,6 +41,8 @@ func RoloHandler(w http.ResponseWriter, r *http.Request) {
 func PngHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
 	// static png server at PNG
+	w.Header().Set("Content-Type","application/json")
+	w.Write(J)
 }
 
 func pictures() {
@@ -76,7 +78,7 @@ func compact() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(len(J))
+	// fmt.Println(len(J))
 }
 
 func main() {
