@@ -86,6 +86,14 @@ var sce = {
     },
     "pict": function() {
         // png paths list
+        for (var i = 1; i <= net.c.a.length; i++) {
+            var i0 = i - 1;
+            var x0 = (net.c.a[i0].length * 32) >>> 0;
+            var y0 = (i * 128) >>> 0;
+            sce.b.r[i] = [x0,32,128,y0];
+            sce.b.c[i] = dom.canvas(sce.b.r[i]);
+            sce.b.d[i] = net.c.a[i0].toUpperCase().split("");
+        }
     }
 }
 // xhr
