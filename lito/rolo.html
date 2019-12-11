@@ -45,7 +45,7 @@ var g = {
         net.sync2();
 
         // simulate net
-        window.setTimeout(g.start2, 1000);
+        // window.setTimeout(g.start2, 1000);
     },
     "start2": function() {
 	console.log("select image to sample");
@@ -55,6 +55,15 @@ var g = {
     },
     "start3": function() {
 	console.log("click to save to disk");
+    },
+    "pic": function() {
+        // create rects for each png
+        // title
+        g.s = "PNG FILE LIST";
+        g.t = g.s.split("");
+        sce.title();
+        // clickable file list
+        sce.pict();
     }
 }
 // scene
@@ -64,6 +73,19 @@ var sce = {
         sce.a.r = [1920,1080,0,0];
         sce.a.c = dom.canvas(sce.a.r);
         dom.add(sce.a.c);
+    },
+    "title": function() {
+        sce.b = {};
+        sce.b.r = [];
+        var x0 = (g.t.length * 64) >>> 0;
+        sce.b.r[0] = [x0,64,128,128];
+        sce.b.c = [];
+        sce.b.c[0] = dom.canvas(sce.b.r[0]);
+        sce.b.d = [];
+        sce.b.d[0] = g.t;
+    },
+    "pict": function() {
+        // png paths list
     }
 }
 // xhr
@@ -89,6 +111,9 @@ var net = {
             net.b = json;
             // parse
             net.parse();
+
+            // return flow to game
+            window.setTimeout(g.pic, 1000);
         }
         var f2 = function(err) {
             console.log(err);
@@ -111,6 +136,10 @@ var net = {
             j1.push(s1[0]);
             j2.push(s1[1]);
         }
+        net.c = {};
+        net.c.a = j0;
+        net.c.b = j1;
+        net.c.c = j2;
         console.log(j0, j1, j2);
         // using "|" as separator
         // instead of ":", size|time
