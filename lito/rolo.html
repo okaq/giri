@@ -67,6 +67,8 @@ var g = {
         // add all canvas text blocks
         sce.hum();
         // render text
+        ren.clear2();
+        ren.clear3();
         // add click handlers
     }
 }
@@ -100,12 +102,12 @@ var sce = {
         }
     },
     "hum": function() {
-        for (var i = 0; i < sce.b.length; i++) {
+        for (var i = 0; i < sce.b.c.length; i++) {
             dom.add(sce.b.c[i]);
         }
     },
     "bum": function() {
-        for (var i = 0; i < sce.b.length; i++) {
+        for (var i = 0; i < sce.b.c.length; i++) {
             dom.remove(sce.b.c[i]);
         } 
     }
@@ -172,6 +174,17 @@ var ren = {
     "clear": function() {
         sce.a.c.con.fillStyle = rgba.rand();
         sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+    },
+    "clear2": function() {
+        // fore
+        sce.a.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+    },
+    "clear3": function() {
+        for (var i = 0; i < sce.b.c.length; i++) {
+            sce.b.c[i].con.fillStyle = rgba.css([0,0,0,1.0]);
+            sce.b.c[i].con.fillRect(0,0,sce.b.c[i].can.width,sce.b.c[i].can.height);
+        }
     }
 }
    // dom
