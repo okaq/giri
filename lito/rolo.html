@@ -71,6 +71,7 @@ var g = {
         ren.clear3();
         ren.txt();
         // add click handlers
+        sce.hand();
     }
 }
 // scene
@@ -112,7 +113,22 @@ var sce = {
         for (var i = 0; i < sce.b.c.length; i++) {
             dom.remove(sce.b.c[i]);
         } 
-    }
+    },
+    "hand": function() {
+        for (var i = 0; i < sce.b.c.length; i++) {
+            sce.b.c[i].can.addEventListener("click", sce.click, false);
+            sce.b.c[i].can.dataset.x = sce.b.d[i].join("");
+        }
+    },
+    "gand": function() {
+        for (var i = 0; i < sce.b.c.length; i++) {
+            sce.b.c[i].can.removeEventListener("click", sce.click);
+        }
+    },
+    "click": function(e) {
+        console.log(e);
+        console.log(e.target.dataset.x);
+    } 
 }
 // xhr
 var net = {
