@@ -212,6 +212,19 @@ var ren = {
         // in canvas c0, at x-pos x0
         var h0 = c0.can.height;
         console.log(d0, h0, x0);
+        var b0 = bmp.a[d0];
+        var h1 = (h0 / 32) >>> 0; // pixel size
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 1) {
+                continue;
+            }
+            var x1 = i % 32;
+            var y1 = (i / 32) >>> 0;
+            var x2 = (x1 * h1) >>> 0;
+            var y2 = (y1 * h1) >>> 0;
+            var x3 = (x2 + x0) >>> 0;
+            c0.con.fillRect(x3,y2,h1,h1);
+        }
     }
 }
    // dom
