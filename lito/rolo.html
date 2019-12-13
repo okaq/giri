@@ -69,6 +69,7 @@ var g = {
         // render text
         ren.clear2();
         ren.clear3();
+        ren.txt();
         // add click handlers
     }
 }
@@ -96,7 +97,8 @@ var sce = {
             var i0 = i - 1;
             var x0 = (net.c.a[i0].length * 32) >>> 0;
             var y0 = (i * 128) >>> 0;
-            sce.b.r[i] = [x0,32,128,y0];
+            var y1 = (y0 + 200) >>> 0;
+            sce.b.r[i] = [x0,32,128,y1];
             sce.b.c[i] = dom.canvas(sce.b.r[i]);
             sce.b.d[i] = net.c.a[i0].toUpperCase().split("");
         }
@@ -185,6 +187,31 @@ var ren = {
             sce.b.c[i].con.fillStyle = rgba.css([0,0,0,1.0]);
             sce.b.c[i].con.fillRect(0,0,sce.b.c[i].can.width,sce.b.c[i].can.height);
         }
+    },
+    "txt": function() {
+        for (var i = 0; i < sce.b.d.length; i++) {
+            console.log(sce.b.d[i]);
+            var c0 = sce.b.c[i];
+            var d0 = sce.b.d[i];
+            var h0 = sce.b.r[i][1];
+            c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+            for (var j = 0; j < d0.length; j++) {
+                // ren.char
+                var d1 = d0[j];
+                if (d1 in bmp.a) {
+                    var x0 = (h0 * j) >>> 0;
+                    ren.glyph(c0, d1, x0);
+                } else {
+                    continue;
+                }
+            }
+        }
+    },
+    "glyph": function(c0, d0, x0) {
+        // render bitmap font char d0
+        // in canvas c0, at x-pos x0
+        var h0 = c0.can.height;
+        console.log(d0, h0, x0);
     }
 }
    // dom
