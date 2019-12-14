@@ -97,6 +97,16 @@ var g = {
 
         // render in pane
         ren.moon();
+
+        // add click handler
+        sce.pane2();
+
+        // msg to user
+        console.log("png rendered. click to sample")
+    },
+    "mack": function() {
+        // get pixels
+        sce.pop();
     }
 }
 // scene
@@ -169,6 +179,8 @@ var sce = {
         // d = 0 click to sample
         // d = 1 click to save
         // d = 2 return to list
+    },
+    "pane2": function() {
         sce.d.c.can.addEventListener("click", sce.bane, false);
     },
     "bane": function(e) {
@@ -177,6 +189,7 @@ var sce = {
             case 0:
                 console.log("sampling image");
                 sce.d.d = 1;
+                g.mack();
                 break;
             case 1:
                 console.log("saving image");
@@ -195,6 +208,31 @@ var sce = {
         sce.e.addEventListener("load", g.samp2, false);
         console.log(sce.e,sce.e.width);
         // must wait for image to load, before we render and sample
+    },
+    "pop": function() {
+        // obtain pixel data context for current render pane
+        sce.f = sce.d.c.con.getImageData(0,0,sce.d.c.can.width,sce.d.c.can.height);
+        // sampled data
+        sce.g = [];
+        for (var i = 0; i < 1024; i++) {
+            // sample the top / left pixel
+            // of each 32x32 block
+            // block x,y
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            // pixel x,y
+            var x1 = (x0 * 32) >>> 0;
+            var y1 = (y0 * 32) >>> 0;
+            // index
+            var i0 = (y1 + x1) >>> 0;
+            var i1 = (i0 * 4) >>> 0;
+            if (sce.f.data[i1] == 255) {
+                sce.g[i] = 1;
+            } else {
+                sce.g[i] = 0;
+            }
+        }
+        // threshold data
     }
 }
 // xhr
