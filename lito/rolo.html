@@ -90,7 +90,13 @@ var g = {
     },
     "samp": function() {
         // create image
+        console.log(sce.c,net.d);
+        sce.moon();
+    },
+    "samp2": function() {
+
         // render in pane
+        ren.moon();
     }
 }
 // scene
@@ -181,6 +187,14 @@ var sce = {
                 sce.d.d = 0;
                 break;
         }
+    },
+    "moon": function() {
+        b0 = net.d[sce.c];
+        sce.e = new Image();
+        sce.e.src = b0;
+        sce.e.addEventListener("load", g.samp2, false);
+        console.log(sce.e,sce.e.width);
+        // must wait for image to load, before we render and sample
     }
 }
 // xhr
@@ -261,7 +275,7 @@ var net = {
             net.d[sce.c] = b0;
 
             // return flow to game
-            window.setTimout(g.samp, 100);
+            window.setTimeout(g.samp, 100);
         }
         var f2 = function(err) {
             console.log(err);
@@ -329,6 +343,9 @@ var ren = {
     "pane": function() {
         sce.d.c.con.fillStyle = rgba.css([0,0,0,1.0]);
         sce.d.c.con.fillRect(0,0,sce.d.c.can.width,sce.d.c.can.height);
+    },
+    "moon": function() {
+        sce.d.c.con.drawImage(sce.e,0,0);
     }
 }
    // dom
