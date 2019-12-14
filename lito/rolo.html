@@ -107,6 +107,9 @@ var g = {
     "mack": function() {
         // get pixels
         sce.pop();
+        console.log(sce.g);
+        // render sample
+        ren.golf();
     }
 }
 // scene
@@ -226,10 +229,17 @@ var sce = {
             // index
             var i0 = (y1 + x1) >>> 0;
             var i1 = (i0 * 4) >>> 0;
-            if (sce.f.data[i1] == 255) {
+            var i2 = (y1 * 1024 * 4) >>> 0;
+            var i3 = (x1 * 4) >>> 0;
+            var i4 = (i2 + i3) >>> 0;
+            if (sce.f.data[i4] == 255) {
                 sce.g[i] = 1;
             } else {
                 sce.g[i] = 0;
+            }
+            // debug
+            if (i == 33) {
+                console.log(x0,y0,x1,y1,i0,i1,i2,i3,i4,sce.g[i]);
             }
         }
         // threshold data
@@ -384,6 +394,22 @@ var ren = {
     },
     "moon": function() {
         sce.d.c.con.drawImage(sce.e,0,0);
+    },
+    "golf": function() {
+        sce.d.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.d.c.con.fillRect(0,0,sce.d.c.can.width,sce.d.c.can.height);
+
+        sce.d.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        for (var i = 0; i < sce.g.length; i++) {
+            if (sce.g[i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * 32) >>> 0;
+            var y1 = (y0 * 32) >>> 0;
+            sce.d.c.con.fillRect(x1,y1,32,32);
+        }
     }
 }
    // dom
