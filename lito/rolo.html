@@ -78,6 +78,13 @@ var g = {
         console.log("img path: " + net.c.a[sce.c]);
         console.log("img size: " + net.c.b[sce.c]);
         console.log("img time: " + net.c.c[sce.c]);
+
+        // remove buttons, add image pane
+        sce.gand();
+        sce.bum();
+
+        // fetch image async
+        net.sync3();
     }
 }
 // scene
@@ -197,6 +204,36 @@ var net = {
         console.log(j0, j1, j2);
         // using "|" as separator
         // instead of ":", size|time
+    },
+    "sync3": function() {
+        // images collection
+        net.d = {};
+        // path
+        var p0 = "http://localhost:8080/";
+        var p1 = net.c.a[sce.c];
+        var p2 = p0 + p1;
+        console.log("fetching img: " + p2);
+        // request
+        var r0 = new Request(p2);
+        // fetch response as png image
+        var f0 = function(res) {
+            console.log(res);
+            return res.blob();
+        }
+        var f1 = function(blob) {
+            console.log(blob);
+            var b0 = URL.createObjectURL(blob);
+            console.log(b0);
+            net.d[sce.c] = b0;
+
+            // return flow to game
+        }
+        var f2 = function(err) {
+            console.log(err);
+        }
+        window.fetch(r0)
+        .then(f0).catch(f2)
+        .then(f1).catch(f2);
     }
 }
 // render
