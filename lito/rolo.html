@@ -82,9 +82,15 @@ var g = {
         // remove buttons, add image pane
         sce.gand();
         sce.bum();
+        sce.pane();
+        ren.pane();
 
         // fetch image async
         net.sync3();
+    },
+    "samp": function() {
+        // create image
+        // render in pane
     }
 }
 // scene
@@ -147,7 +153,35 @@ var sce = {
             sce.c = i - 1;
             g.dome();
         }
-    } 
+    },
+    "pane": function() {
+        sce.d = {};
+        sce.d.r = [1024,1024,448,24];
+        sce.d.c = dom.canvas(sce.d.r);
+        dom.add(sce.d.c);
+        sce.d.d = 0; // state
+        // d = 0 click to sample
+        // d = 1 click to save
+        // d = 2 return to list
+        sce.d.c.can.addEventListener("click", sce.bane, false);
+    },
+    "bane": function(e) {
+        console.log(e);
+        switch (sce.d.d) {
+            case 0:
+                console.log("sampling image");
+                sce.d.d = 1;
+                break;
+            case 1:
+                console.log("saving image");
+                sce.d.d = 2;
+                break;
+            case 2:
+                console.log("return to list");
+                sce.d.d = 0;
+                break;
+        }
+    }
 }
 // xhr
 var net = {
@@ -227,6 +261,7 @@ var net = {
             net.d[sce.c] = b0;
 
             // return flow to game
+            window.setTimout(g.samp, 100);
         }
         var f2 = function(err) {
             console.log(err);
@@ -290,6 +325,10 @@ var ren = {
             var x3 = (x2 + x0) >>> 0;
             c0.con.fillRect(x3,y2,h1,h1);
         }
+    },
+    "pane": function() {
+        sce.d.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        sce.d.c.con.fillRect(0,0,sce.d.c.can.width,sce.d.c.can.height);
     }
 }
    // dom

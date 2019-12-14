@@ -89,6 +89,7 @@ func main() {
 	compact()
 	http.HandleFunc("/", RoloHandler)
 	http.HandleFunc("/a", PngHandler)
+	http.Handle("/omg/", http.StripPrefix("/omg/", http.FileServer(http.Dir("omg/"))))
 	http.ListenAndServe(":8080", nil)
 }
 
