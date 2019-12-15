@@ -110,6 +110,10 @@ var g = {
         console.log(sce.g);
         // render sample
         ren.golf();
+    },
+    "mack2": function() {
+        // pack data into byte array
+        sce.pack();
     }
 }
 // scene
@@ -197,6 +201,7 @@ var sce = {
             case 1:
                 console.log("saving image");
                 sce.d.d = 2;
+                g.mack2();
                 break;
             case 2:
                 console.log("return to list");
@@ -243,6 +248,18 @@ var sce = {
             }
         }
         // threshold data
+    },
+    "pack": function() {
+        sce.h = [];
+        // 1024 bits / 8 = 128 bytes
+        for (var i = 0; i < 128; i) {
+            var i0 = (i * 8) >>> 0;
+            var i1 = (i0 + 8) >>> 0;
+            var b0 = sce.g.slice(i0,i1);
+            var b1 = b0.join('');
+            var b2 = parseInt(b1, 2);
+            sce.h[j] = b2;
+        }
     }
 }
 // xhr
