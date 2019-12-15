@@ -102,6 +102,10 @@ var ren = {
         sce.b.c.con.fillStyle = rgba.css([0,0,0,1.0]);
         console.log(bmp.b[0].length);
         // bug! len 4088
+        // bug fix: save Uint8Array buffer
+        // 1024-bit array size on disk 174 bytes
+        // render performance = 3.0ms
+        // decode time: 1.6ms
         for (var i = 0; i < bmp.b[0].length; i++) {
             if (bmp.b[0][i] == 1) {
                 continue;
@@ -270,6 +274,9 @@ var ren = {
     }
     // bauhaus face
     var face = {
+        "0": "/////////////3////9/////eP///3r///94////f////3////9/////f////3////9/////f////3////9/////f////5////+f////l////4f///+f////n////5////+f////4////+P////j////4////+P///////////8="
+    }
+    var faceErr = {
         "0": "MjU1LDI1NSwyNTUsMjU1LDI1NSwyNTUsMjU1LDI1NSwyNTUsMjU1LDEyNywyNTUsMjU1LDI1NSwxMjcsMjU1LDI1NSwyNTUsMTIwLDI1NSwyNTUsMjU1LDEyMiwyNTUsMjU1LDI1NSwxMjAsMjU1LDI1NSwyNTUsMTI3LDI1NSwyNTUsMjU1LDEyNywyNTUsMjU1LDI1NSwxMjcsMjU1LDI1NSwyNTUsMTI3LDI1NSwyNTUsMjU1LDEyNywyNTUsMjU1LDI1NSwxMjcsMjU1LDI1NSwyNTUsMTI3LDI1NSwyNTUsMjU1LDEyNywyNTUsMjU1LDI1NSwxMjcsMjU1LDI1NSwyNTUsMTI3LDI1NSwyNTUsMjU1LDE1OSwyNTUsMjU1LDI1NSwxNTksMjU1LDI1NSwyNTUsMTUxLDI1NSwyNTUsMjU1LDEzNSwyNTUsMjU1LDI1NSwxNTksMjU1LDI1NSwyNTUsMTU5LDI1NSwyNTUsMjU1LDE1OSwyNTUsMjU1LDI1NSwxNTksMjU1LDI1NSwyNTUsMjI3LDI1NSwyNTUsMjU1LDIyNywyNTUsMjU1LDI1NSwyMjcsMjU1LDI1NSwyNTUsMjI3LDI1NSwyNTUsMjU1LDIyNywyNTUsMjU1LDI1NSwyNTUsMjU1LDI1NSwyNTUsMjU1LDI1NQ=="
     }
     // string view

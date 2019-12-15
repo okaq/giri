@@ -260,6 +260,9 @@ var sce = {
             var b0 = sce.g.slice(i0,i1);
             var b1 = b0.join('');
             var b2 = parseInt(b1, 2);
+            if (i == 64) {
+                console.log(b0,b1,b2);
+            }
             sce.h[i] = b2;
         }
         sce.j = Uint8Array.from(sce.h);
@@ -360,7 +363,9 @@ var net = {
         x0.requestType = "arraybuffer";
         x0.responseType = "text";
         x0.addEventListener("load", function(e){console.log(e);});
-        x0.send(sce.h);
+        // x0.send(sce.h);
+        // bug! send the Uint8Array buffer instead
+        x0.send(sce.j);
     }
 }
 // render
