@@ -47,12 +47,21 @@ var g = {
         bmp.face();
 
         console.log("face split: " + (window.performance.now() - t0));
+        // single 32x32 json bitmap data 636 bytes
+        // decoded in 5ms to 1024-bit array
 
         window.setTimeout(g.start2, 1000);
     },
     "start2": function() {
         console.log("rendering face");
         ren.clear();
+
+        // face render split
+        var t0 = window.performance.now();
+
+        ren.face();
+
+        console.log("face render split: " + (window.performance.now() - t0)); 
     }
 }
 // scene
@@ -82,8 +91,27 @@ var net = {
 var ren = {
     "clear": function() {
         // bkgd
-        
+        sce.a.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+
         // pane
+        sce.b.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.b.c.con.fillRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
+    },
+    "face": function() {
+        sce.b.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        console.log(bmp.b[0].length);
+        // bug! len 4088
+        for (var i = 0; i < bmp.b[0].length; i++) {
+            if (bmp.b[0][i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * 32) >>> 0;
+            var y1 = (y0 * 32) >>> 0;
+            sce.b.c.con.fillRect(x1,y1,32,32);
+        }
     }
 }
    // dom
