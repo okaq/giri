@@ -114,6 +114,8 @@ var g = {
     "mack2": function() {
         // pack data into byte array
         sce.pack();
+        // send to server
+        net.send();
     }
 }
 // scene
@@ -252,14 +254,16 @@ var sce = {
     "pack": function() {
         sce.h = [];
         // 1024 bits / 8 = 128 bytes
-        for (var i = 0; i < 128; i) {
+        for (var i = 0; i < 128; i++) {
             var i0 = (i * 8) >>> 0;
             var i1 = (i0 + 8) >>> 0;
             var b0 = sce.g.slice(i0,i1);
             var b1 = b0.join('');
             var b2 = parseInt(b1, 2);
-            sce.h[j] = b2;
+            sce.h[i] = b2;
         }
+        sce.j = Uint8Array.from(sce.h);
+        console.log("pack length: " + sce.j.length);
     }
 }
 // xhr
@@ -267,6 +271,7 @@ var net = {
     "init": function() {
         net.a = {};
         net.a[0] = "http://localhost:8080/a";
+        net.a[1] = "http://localhost:8080/b";
     },
     "sync": function() {
         // fetch png file list
@@ -348,6 +353,14 @@ var net = {
         window.fetch(r0)
         .then(f0).catch(f2)
         .then(f1).catch(f2);
+    },
+    "send": function() {
+        var x0 = new XMLHttpRequest();
+        x0.open("POST", net.a[1]);
+        x0.requestType = "arraybuffer";
+        x0.responseType = "text";
+        x0.addEventListener("load", function(e){console.log(e);});
+        x0.send(sce.h);
     }
 }
 // render

@@ -5,6 +5,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -81,6 +82,20 @@ func compact() {
 	// fmt.Println(len(J))
 }
 
+func SaveHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// req body bytes buffer
+	b0 := new(bytes.Buffer)
+	b0.ReadFrom(r.Body)
+	b1, err := json.Marshal(b0.Bytes())
+	if err != nil {
+		fmt.Println(err)
+	}
+	s0 := fmt.Sprintf("%s%d.json", JSON, time.Now().UnixNano())
+	ioutil.WriteFile(s0,b1,0666)
+	w.Write([]byte("ok save"))
+}
+
 func main() {
 	motd()
 	// load png file list
@@ -90,6 +105,7 @@ func main() {
 	http.HandleFunc("/", RoloHandler)
 	http.HandleFunc("/a", PngHandler)
 	http.Handle("/omg/", http.StripPrefix("/omg/", http.FileServer(http.Dir("omg/"))))
+	http.HandleFunc("/b", SaveHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
