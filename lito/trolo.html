@@ -78,6 +78,8 @@ var g = {
                 net.bob(blob);
             });
         }, false);
+        // only saves pane canvas
+        // need to write text on joint canvas for saving
     }
 }
 // scene
@@ -135,7 +137,7 @@ var sce = {
 var net = {
     "init": function() {
         net.a = [];
-        net.a[0] = "http://localhost:8080";
+        net.a[0] = "http://localhost:8080/a";
     },
     "bob": function(blob) {
         console.log(blob.size);
