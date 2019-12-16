@@ -70,6 +70,7 @@ var g = {
         // configure text blocks
         sce.txt();
         // render text blocks
+        ren.txt();
         // add event handlers
     }
 }
@@ -159,6 +160,44 @@ var ren = {
             var x1 = (x0 * 32) >>> 0;
             var y1 = (y0 * 32) >>> 0;
             sce.b.c.con.fillRect(x1,y1,32,32);
+        }
+    },
+    "txt": function() {
+        // clear
+        for (var i = 0; i < sce.c.d.length; i++) {
+            sce.c.d[i].con.fillStyle = rgba.css([0,0,0,1.0]);
+            sce.c.d[i].con.fillRect(0,0,sce.c.d[i].can.width,sce.c.d[i].can.height);
+        }
+        // letters
+        for (var i = 0; i < sce.c.d.length; i++) {
+            var c0 = sce.c.d[i];
+            c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+            for (var j = 0; j < sce.c.b[i].length; j++) {
+                var d0 = sce.c.b[i][j];
+                if (d0 in bmp.a) {
+                    var x0 = (j * 64) >>> 0;
+                    ren.glyph(c0, d0, x0);
+                }
+            }
+        }
+    },
+    "glyph": function(c0, d0, x0) {
+        // render bitmap font char d0
+        // in canvas c0, at x-pos x0
+        var h0 = c0.can.height;
+        console.log(d0, h0, x0);
+        var b0 = bmp.a[d0];
+        var h1 = (h0 / 32) >>> 0; // pixel size
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 1) {
+                continue;
+            }
+            var x1 = i % 32;
+            var y1 = (i / 32) >>> 0;
+            var x2 = (x1 * h1) >>> 0;
+            var y2 = (y1 * h1) >>> 0;
+            var x3 = (x2 + x0) >>> 0;
+            c0.con.fillRect(x3,y2,h1,h1);
         }
     }
 }
