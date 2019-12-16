@@ -61,7 +61,16 @@ var g = {
 
         ren.face();
 
-        console.log("face render split: " + (window.performance.now() - t0)); 
+        console.log("face render split: " + (window.performance.now() - t0));
+
+        // do txt
+        window.setTimeout(g.start3, 1000); 
+    },
+    "start3": function() {
+        // configure text blocks
+        sce.txt();
+        // render text blocks
+        // add event handlers
     }
 }
 // scene
@@ -78,6 +87,41 @@ var sce = {
         sce.b.r = [1024,1024,448,24];
         sce.b.c = dom.canvas(sce.b.r);
         dom.add(sce.b.c);
+    },
+    "txt": function() {
+        sce.c = {};
+        // words
+        sce.c.a = [];
+        sce.c.a[0] = "DESIGN";
+        sce.c.a[1] = "IS FUN";
+        sce.c.a[2] = "ALRIGHT";
+        // chars 
+        sce.c.b = [];
+        for (var i = 0; i < sce.c.a.length; i++) {
+            sce.c.b[i] = sce.c.a[i].split("");
+        }
+        // rects
+        sce.c.c = [];
+        for (var i = 0; i < sce.c.b.length; i++) {
+            var x0 = (sce.b.r[2] + 32) >>> 0;
+            var y0 = (96 * i + 320) >>> 0;
+            var w0 = (sce.c.b[i].length * 64) >>> 0;
+            var h0 = 64;
+            var r0 = [w0,h0,x0,y0];
+            sce.c.c[i] = r0;
+        }
+        // canvas
+        sce.c.d = [];
+        for (var i = 0; i < sce.c.c.length; i++) {
+            sce.c.d[i] = dom.canvas(sce.c.c[i]);
+            dom.add(sce.c.d[i]);
+            sce.c.d[i].can.dataset.x = "txt_" + i;
+            sce.c.d[i].can.addEventListener("click", sce.click, false);
+        }
+        // refactor to do in one loop pass
+    },
+    "click": function(e) {
+        console.log(e);
     }
 }
 // xhr
