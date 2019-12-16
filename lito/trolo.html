@@ -72,6 +72,12 @@ var g = {
         // render text blocks
         ren.txt();
         // add event handlers
+        sce.b.c.can.addEventListener("click", function(e) {
+            console.log(e);
+            sce.b.c.can.toBlob(function(blob){
+                net.bob(blob);
+            });
+        }, false);
     }
 }
 // scene
@@ -130,6 +136,20 @@ var net = {
     "init": function() {
         net.a = [];
         net.a[0] = "http://localhost:8080";
+    },
+    "bob": function(blob) {
+        console.log(blob.size);
+        console.log(blob.type);
+
+        // send
+        var x0 = new XMLHttpRequest();
+        x0.open("POST", net.a[0]);
+        x0.requestType = "blob";
+        x0.responseType = "text";
+        x0.addEventListener("load", function(e){console.log(e);});
+        // x0.send(sce.h);
+        // bug! send the Uint8Array buffer instead
+        x0.send(blob);
     }
 }
 // render

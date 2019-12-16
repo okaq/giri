@@ -14,6 +14,7 @@ import (
 
 const (
 	INDEX = "trolo.html"
+	PNG = "noe/"
 )
 
 var (
