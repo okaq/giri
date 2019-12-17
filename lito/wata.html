@@ -48,6 +48,17 @@ var sce = {
         sce.a.r = [1920,1080,0,0];
         sce.a.c = dom.canvas(sce.a.r);
         dom.add(sce.a.c);
+    },
+    "graph": function() {
+        // bitmap scene graph
+        // each logical "pixel" is a screen
+        // tree rooted at pixel unfolds the scene elements
+
+        // start with bauhaus face
+        // display a few debug properties:
+        // (screen size, net ping)
+        // enter "instructions" screen
+        // click to enter game screen
     }
 }
 // xhr
@@ -55,6 +66,10 @@ var net = {
     "init": function() {
         net.a = [];
         net.a[0] = "http://localhost:8080/a";
+
+        // game state sync with server
+        // ping time round trip
+        // PID generate and cache
     }
 }
 // render
