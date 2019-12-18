@@ -32,13 +32,19 @@ var g = {
         g.subs = [bmp,dom,sce,net];
         g.subs.forEach(function(el){el.init();});
 
+        // clear
+        ren.clear();
+
         // start
         window.setTimeout(g.start, 1000);
 
         console.log("start time: " + (window.performance.now() - t0));
     },
     "start": function() {
-	    console.log("human reaction time game");
+        console.log("human reaction time game");
+        
+        ren.clear2();
+        sce.graph2();
     }
 }
 // scene
@@ -59,6 +65,9 @@ var sce = {
         // (screen size, net ping)
         // enter "instructions" screen
         // click to enter game screen
+    },
+    "graph2": function() {
+        sce.b = [];
     }
 }
 // xhr
@@ -76,6 +85,10 @@ var net = {
 var ren = {
     "clear": function() {
         sce.a.c.con.fillStyle = rgba.rand();
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+    },
+    "clear2": function() {
+        sce.a.c.con.fillStyle = rgba.css([255,255,255,1.0]);
         sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
     }
 }
