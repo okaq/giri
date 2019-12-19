@@ -67,7 +67,18 @@ var sce = {
         // click to enter game screen
     },
     "graph2": function() {
+        // scene graph as linear array
         sce.b = [];
+        // scene graph object format
+        sce.b[0] = {};
+        // name (id string)
+        sce.b[0].a = "post";
+        // tree
+        sce.b[0].b = [];
+
+        // dont worry about "dirty" elements yet
+        // just include every dom and canvas element
+        // that appears in a scene, in the node definition
     }
 }
 // xhr
