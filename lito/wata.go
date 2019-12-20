@@ -34,12 +34,18 @@ func PingHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(s0))
 }
 
+func StatHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// pretty print whole game state to response
+}
+
 
 func main() {
 	motd()
 	C = make(map[string]string)
 	http.HandleFunc("/", WataHandler)
 	http.HandleFunc("/a", PingHandler)
+	http.HandleFunc("/b", StatHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
