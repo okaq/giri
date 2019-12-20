@@ -45,6 +45,16 @@ var g = {
         
         ren.clear2();
         sce.graph2();
+
+        // populate
+        window.setTimeout(g.start2, 1000);
+    },
+    "start2": function() {
+        console.log("populating scenery");
+
+        // split time
+
+        sce.graph3();
     }
 }
 // scene
@@ -74,7 +84,17 @@ var sce = {
         // name (id string)
         sce.b[0].a = "post";
         // tree
-        sce.b[0].b = [];
+        sce.b[0].b = ["size","ping","fps"];
+
+        // face
+        sce.b[1] = {};
+        sce.b[1].a = "face";
+        sce.b[1].b = ["nano"];
+
+        // reax
+        sce.b[2] = {};
+        sce.b[2].a = "reax";
+        sce.b[2].b = ["start","stop","win"];
 
         // dont worry about "dirty" elements yet
         // just include every dom and canvas element
@@ -92,6 +112,9 @@ var sce = {
         // "reax": actual human reaction time test
         // 3 screens, advanced when clicked
         // "start" "run" "stop"
+    },
+    "graph3": function() {
+        // layout config
     }
 }
 // xhr
