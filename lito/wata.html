@@ -57,7 +57,13 @@ var g = {
         sce.graph3();
 
         // outlaw test
+        var t0 = window.performance.now();
         ren.cow();
+        console.log("outlaw grand render time: " + (window.performance.now() - t0));
+
+        // performance is within 1 fps
+        // 1980 bitmap putlaw "sprites"
+        // rendered in 215ms
     }
 }
 // scene
@@ -157,6 +163,29 @@ var ren = {
         // render 32x32 blocks across page
         // nx = 60, ny == 33, nt = 1980
         // time render perf, send to server
+        for (var i = 0; i < 1980; i++) {
+            var x0 = i % 60;
+            var x1 = (x0 * 32) >>> 0;
+            var y0 = (i / 60) >>> 0;
+            var y1 = (y0 * 32) >>> 0;
+            sce.a.c.con.fillStyle = rgba.rand();
+            sce.a.c.con.fillRect(x1,y1,32,32);
+            ren.cow2(x1,y1);
+        }
+    },
+    "cow2": function(x0,y0) {
+        // one off for small square outlaw
+        sce.a.c.con.fillStyle = rgba.rand();
+        for (var i = 0; i < 1024; i++) {
+            if (bmp.c[0][i] == 1) {
+                continue;
+            }
+            var x1 = i % 32;
+            var y1 = (i / 32) >>> 0;
+            var x2 = (x0 + x1) >>> 0;
+            var y2 = (y0 + y1) >>> 0;
+            sce.a.c.con.fillRect(x2,y2,1,1);
+        }
     }
 }
    // dom
