@@ -55,6 +55,9 @@ var g = {
         // split time
 
         sce.graph3();
+
+        // outlaw test
+        ren.cow();
     }
 }
 // scene
@@ -149,6 +152,11 @@ var ren = {
     "clear2": function() {
         sce.a.c.con.fillStyle = rgba.css([255,255,255,1.0]);
         sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+    },
+    "cow": function() {
+        // render 32x32 blocks across page
+        // nx = 60, ny == 33, nt = 1980
+        // time render perf, send to server
     }
 }
    // dom
@@ -259,11 +267,20 @@ var ren = {
             var b0 = base64DecToArr(s0);
             bmp.b[0] = bmp.exp(b0);
         },
+        "outlaw": function() {
+            // decode outlaw
+            bmp.c = {};
+            var s0 = outlaw[0];
+            var b0 = base64DecToArr(s0);
+            bmp.c[0] = bmp.exp(b0);
+        },
         "init": function() {
             // font
             bmp.gugi();
             // face
-            // bmp.face();
+            bmp.face();
+            // cowboy
+            bmp.outlaw();
         }
     }
     // gugi bitmap font
@@ -311,6 +328,10 @@ var ren = {
     }
     var faceErr = {
         "0": "MjU1LDI1NSwyNTUsMjU1LDI1NSwyNTUsMjU1LDI1NSwyNTUsMjU1LDEyNywyNTUsMjU1LDI1NSwxMjcsMjU1LDI1NSwyNTUsMTIwLDI1NSwyNTUsMjU1LDEyMiwyNTUsMjU1LDI1NSwxMjAsMjU1LDI1NSwyNTUsMTI3LDI1NSwyNTUsMjU1LDEyNywyNTUsMjU1LDI1NSwxMjcsMjU1LDI1NSwyNTUsMTI3LDI1NSwyNTUsMjU1LDEyNywyNTUsMjU1LDI1NSwxMjcsMjU1LDI1NSwyNTUsMTI3LDI1NSwyNTUsMjU1LDEyNywyNTUsMjU1LDI1NSwxMjcsMjU1LDI1NSwyNTUsMTI3LDI1NSwyNTUsMjU1LDE1OSwyNTUsMjU1LDI1NSwxNTksMjU1LDI1NSwyNTUsMTUxLDI1NSwyNTUsMjU1LDEzNSwyNTUsMjU1LDI1NSwxNTksMjU1LDI1NSwyNTUsMTU5LDI1NSwyNTUsMjU1LDE1OSwyNTUsMjU1LDI1NSwxNTksMjU1LDI1NSwyNTUsMjI3LDI1NSwyNTUsMjU1LDIyNywyNTUsMjU1LDI1NSwyMjcsMjU1LDI1NSwyNTUsMjI3LDI1NSwyNTUsMjU1LDIyNywyNTUsMjU1LDI1NSwyNTUsMjU1LDI1NSwyNTUsMjU1LDI1NQ=="
+    }
+    // quickdraw
+    var outlaw = {
+        "0": "///////+f///+B////Zv///8P////D////gf///4H///+B////AP///wD///8A///2gX//+YG////Dv///57///8O////Dv///w7///4F///+B////JP///37///7/f//+/3///f+///3/v//7/9//+//f//P/z//z/8//////8="
     }
     // string view
     /*\
