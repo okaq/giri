@@ -62,8 +62,24 @@ var g = {
         console.log("outlaw grand render time: " + (window.performance.now() - t0));
 
         // performance is within 1 fps
-        // 1980 bitmap putlaw "sprites"
+        // 1980 bitmap outlaw "sprites"
         // rendered in 215ms
+
+        window.setTimeout(g.start3, 1000);
+    },
+    "start3": function() {
+        console.log("2k canvas test");
+
+        ren.clear();
+
+        // scene test
+        var t0 = window.performance.now();
+        sce.field();
+        ren.ranch();
+        console.log("outlaw canvas render time: " + (window.performance.now() - t0));
+
+        // 2K canvas test also within 1 fps
+        // rendered in 320ms
     }
 }
 // scene
@@ -136,6 +152,41 @@ var sce = {
         sce.b[0].f = [];
 
         // each list element can be a list of rects / canvas objects
+    },
+    "field": function() {
+        // code art: all art from code
+        // eventually procedurally generated layouts
+        // will be the name of the game
+
+        // the field
+        // 32x32 canvas squares, tessellating the window
+        var w0 = 1920;
+        var h0 = 1080;
+        var px = 32;
+        var py = 32;
+        var nx = (w0 / px) >>> 0;
+        var ny = (h0 / py) >>> 0;
+        var nt = (nx * ny) >>> 0;
+
+        sce.c = [];
+        for (var i = 0; i < nt; i++) {
+            sce.c[i] = {};
+            var x0 = i % nx;
+            var y0 = (i / nx) >>> 0;
+            var x1 = (x0 * px) >>> 0;
+            var y1 = (y0 * px) >>> 0;
+            sce.c[i].r = [px,py,x1,y1];
+            sce.c[i].c = dom.canvas(sce.c[i].r);
+            dom.add(sce.c[i].c);
+            sce.c[i].c.can.addEventListener("click", sce.click, false);
+            sce.c[i].c.can.dataset.x = "outlaw_" + x0 + "_" + y0;
+            sce.c[i].d = [];
+            sce.c[i].d[0] = rgba.rand();
+            sce.c[i].d[1] = rgba.rand();
+        }
+    },
+    "click" : function(e) {
+        console.log(e);
     }
 }
 // xhr
@@ -185,6 +236,21 @@ var ren = {
             var x2 = (x0 + x1) >>> 0;
             var y2 = (y0 + y1) >>> 0;
             sce.a.c.con.fillRect(x2,y2,1,1);
+        }
+    },
+    "ranch": function() {
+        for (var i = 0; i < sce.c.length; i++) {
+            sce.c[i].c.con.fillStyle = sce.c[i].d[0];
+            sce.c[i].c.con.fillRect(0,0,sce.c[i].c.can.width,sce.c[i].c.can.height);
+            sce.c[i].c.con.fillStyle = sce.c[i].d[1];
+            for (var j = 0; j < bmp.c[0].length; j++) {
+                if (bmp.c[0][j] == 1) {
+                    continue;
+                }
+                var x0 = j % 32;
+                var y0 = (j / 32) >>> 0;
+                sce.c[i].c.con.fillRect(x0,y0,1,1);
+            }
         }
     }
 }
