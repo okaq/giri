@@ -80,6 +80,22 @@ var g = {
 
         // 2K canvas test also within 1 fps
         // rendered in 320ms
+
+        window.setTimeout(g.start4, 1000);
+    },
+    "start4": function() {
+        console.log("game arriviste");
+
+        sce.fern();
+
+        sce.road();
+
+        ren.law();
+
+        g.state = 0;
+
+        g.tick = window.performance.now();
+        // stop the timer in click event handler
     }
 }
 // scene
@@ -187,6 +203,25 @@ var sce = {
     },
     "click" : function(e) {
         console.log(e);
+    },
+    "fern": function() {
+        // clear the field
+        for (var i = 0; i < sce.c.length; i++) {
+            dom.remove(sce.c[i].c);
+        }
+    },
+    "road": function() {
+        // center pane
+        // 512x512 square, pixel size 16x16
+        sce.d = {};
+        sce.d.r = [512,512,704,284];
+        sce.d.c = dom.canvas(sce.d.r);
+        dom.add(sce.d.c);
+        sce.d.c.can.dataset.x = "outlaw_0";
+        sce.d.c.can.addEventListener("click", sce.click2, false);
+    },
+    "click2": function(e) {
+        // check g.state: quick, draw, win
     }
 }
 // xhr
@@ -252,6 +287,27 @@ var ren = {
                 sce.c[i].c.con.fillRect(x0,y0,1,1);
             }
         }
+    },
+    "law": function() {
+        // clear bkgd
+        sce.d.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.d.c.con.fillRect(0,0,sce.d.c.can.width,sce.d.c.can.height);
+
+        // draw gunslinger
+        sce.d.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        for (var i = 0; i < 1024; i++) {
+            if (bmp.c[0][i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * 16) >>> 0;
+            var y1 = (y0 * 16) >>> 0;
+            sce.d.c.con.fillRect(x1,y1,16,16);
+        }
+
+        // we should have a border, padding and margin
+        // not ideal, but the whitespace will be distracting
     }
 }
    // dom
