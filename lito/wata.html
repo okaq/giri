@@ -94,7 +94,7 @@ var g = {
 
         g.state = 0;
 
-        g.tick = window.performance.now();
+        g.tick = [window.performance.now()];
         // stop the timer in click event handler
     }
 }
@@ -221,7 +221,15 @@ var sce = {
         sce.d.c.can.addEventListener("click", sce.click2, false);
     },
     "click2": function(e) {
+        // tick timer
+        var t0 = window.performance.now();
+        g.tick.push(t0);
         // check g.state: quick, draw, win
+        if (g.state >= 2) {
+            g.state = 0;
+            return;
+        }
+        g.state = g.state + 1;
     }
 }
 // xhr
