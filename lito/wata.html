@@ -109,9 +109,13 @@ var g = {
     },
     "start5": function() {
         // render
+        ren.wow();
         // start timer
+        g.tick.push(window.performance.now());
         // stop timer in click handler
         // cycle
+
+        // reaction time: 400ms
     }
 }
 // scene
@@ -240,6 +244,10 @@ var sce = {
         // tick timer
         var t0 = window.performance.now();
         g.tick.push(t0);
+        // print result
+        var t1 = g.tick[g.tick.length-2];
+        var t2 = t0 - t1;
+        console.log("reaction time: " + t2);
         // check g.state: quick, draw, win
         if (g.state >= 2) {
             g.state = 0;
@@ -332,6 +340,24 @@ var ren = {
 
         // we should have a border, padding and margin
         // not ideal, but the whitespace will be distracting
+    },
+    "wow": function() {
+        // clear bkgd (draw)
+        sce.d.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        sce.d.c.con.fillRect(0,0,sce.d.c.can.width,sce.d.c.can.height);
+
+        // draw gunslinger
+        sce.d.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        for (var i = 0; i < 1024; i++) {
+            if (bmp.c[0][i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * 16) >>> 0;
+            var y1 = (y0 * 16) >>> 0;
+            sce.d.c.con.fillRect(x1,y1,16,16);
+        }
     }
 }
    // dom
