@@ -96,6 +96,22 @@ var g = {
 
         g.tick = [window.performance.now()];
         // stop the timer in click event handler
+
+        // send message to user to start round
+        console.log("click the cowboy when it changes color");
+
+        g.state = 1;
+
+        g.ring = ((Math.random() * 5000) + 5000);
+        console.log("pause: " + g.ring);
+
+        window.setTimeout(g.start5, g.ring);
+    },
+    "start5": function() {
+        // render
+        // start timer
+        // stop timer in click handler
+        // cycle
     }
 }
 // scene
