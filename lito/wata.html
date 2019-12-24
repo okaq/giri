@@ -90,11 +90,15 @@ var g = {
 
         sce.road();
 
+        // calibration step
+        var t0 = window.performance.now();
         ren.law();
+        var t1 = window.performance.now() - t0;
+        // its sub millisecond as expected ;)
 
         g.state = 0;
 
-        g.tick = [window.performance.now()];
+        g.tick = [t1,window.performance.now()];
         // stop the timer in click event handler
 
         // send message to user to start round
@@ -116,6 +120,11 @@ var g = {
         // cycle
 
         // reaction time: 400ms
+
+        // we could calibrate a draw event
+        // calculate the panel draw time
+        // and subtract from the total loop
+        // also report to the server as perf stat
     }
 }
 // scene
@@ -248,6 +257,9 @@ var sce = {
         var t1 = g.tick[g.tick.length-2];
         var t2 = t0 - t1;
         console.log("reaction time: " + t2);
+        // calibrated to account for sync canvas draw
+        var t3 = t2 - g.tick[0];
+        console.log("calibrated reaction time: " + t3);
         // check g.state: quick, draw, win
         if (g.state >= 2) {
             g.state = 0;
