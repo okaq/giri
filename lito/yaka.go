@@ -41,7 +41,7 @@ func main() {
 	rng()
 	cache()
 	http.HandleFunc("/", YakaHandler)
-	http.ListenAndServe(":8080", YakaHandler)
+	http.ListenAndServe(":8080", nil)
 }
 
 
