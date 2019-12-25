@@ -325,6 +325,13 @@ var ren = {
             var b0 = base64DecToArr(s0);
             bmp.c[0] = bmp.exp(b0);
         },
+        "stage": function() {
+            // decode stagecoach
+            bmp.d = {};
+            var s0 = stage[0];
+            var b0 = base64DecToArr(s0);
+            bmp.d[0] = bmp.exp(b0);
+        },
         "init": function() {
             // font
             bmp.gugi();
@@ -332,6 +339,8 @@ var ren = {
             bmp.face();
             // cowboy
             bmp.outlaw();
+            // coach
+            bmp.stage();
         }
     }
     // gugi bitmap font
@@ -383,6 +392,10 @@ var ren = {
     // quickdraw
     var outlaw = {
         "0": "///////+f///+B////Zv///8P////D////gf///4H///+B////AP///wD///8A///2gX//+YG////Dv///57///8O////Dv///w7///4F///+B////JP///37///7/f//+/3///f+///3/v//7/9//+//f//P/z//z/8//////8="
+    }
+    // stagecoach
+    var stage = {
+        "0": "//////////////////////////////////////////////////AP///P8///v/3//7/9//+4jf//uq3//7qt//+4jf//v3x//7/9//8+Pf/5v/2f9r/9b+9AAvfvf/7z9v//b/n//5////////////////////////////////8="
     }
     // string view
     /*\
