@@ -42,7 +42,7 @@ var g = {
         console.log("starting reax");
 
         // bitops test
-        bit.test();
+        // bit.test();
 
         // scene one
         sce.swan();
@@ -191,7 +191,10 @@ var ren = {
         sce.a.c.con.fillStyle = rgba.css([0,0,0,1.0]);
         ren.bmp(bmp.c[0], sce.a.c, [1024,1024,-128,24]);
         var b0 = bit.vert(bmp.c[0]);
-        ren.bmp(b0, sce.a.c, [1024,1024,1024,24]); 
+        ren.bmp(b0, sce.a.c, [1024,1024,1024,24]);
+        
+        // center stagecoach
+        ren.bmp2(bmp.d[0], sce.a.c, [512,512,704,284]);
     },
     "bmp": function(b0, c0, r0) {
         // render bitmap in rect
@@ -207,6 +210,23 @@ var ren = {
             var x2 = (x1 + r0[2]) >>> 0;
             var y2 = (y1 + r0[3]) >>> 0;
             c0.con.fillRect(x2,y2,32,32);
+        }
+    },
+    "bmp2": function(b0, c0, r0) {
+        // render bitmap in rect
+        // get width from input rect
+        var w0 = (r0[0] / 32) >>> 0;
+        for (var i = 0; i < 1024; i++) {
+            if (b0[i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * w0) >>> 0;
+            var y1 = (y0 * w0) >>> 0;
+            var x2 = (x1 + r0[2]) >>> 0;
+            var y2 = (y1 + r0[3]) >>> 0;
+            c0.con.fillRect(x2,y2,w0,w0);
         }
     }
 }
