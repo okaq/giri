@@ -79,10 +79,25 @@ var net = {
 var bit = {
     "vert": function(b0) {
         // flip vertical
-        return b0;
+        var r0 = bit.cols(b0);
+        var r1 = bit.rev(r0);
+        var r2 = bit.flatc(r1);
+        return r2;
     },
     "horz": function(b0) {
         // flip horizontal
+        var r0 = bit.rows(b0);
+        var r1 = bit.rev(r0);
+        var r2 = bit.flatr(r1);
+        return r2;
+    },
+    "rev": function(b0) {
+        // reverse lists
+        var r0 = [];
+        for (var i = 31; i >= 0; i--) {
+            r0.push(b0[i]);
+        }
+        return r0;
     },
     "flatr": function(b0) {
         // flatten rows
@@ -151,6 +166,12 @@ var bit = {
         // flatten cols
         var t4 = bit.flatc(t2);
         console.log(t4);
+        // flip vert
+        var t5 = bit.vert(t0);
+        console.log(t5);
+        // flip horizontal
+        var t6 = bit.horz(t0);
+        console.log(t6);
     }
 }
 // render
