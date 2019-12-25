@@ -86,9 +86,23 @@ var bit = {
     },
     "flatr": function(b0) {
         // flatten rows
+        var r0 = [];
+        for (var i = 0; i < 32; i++) {
+            for (var j = 0; j < 32; j++) {
+                r0.push(b0[i][j]);
+            }
+        }
+        return r0;
     },
     "flatc": function(b0) {
         // flatten cols
+        var r0 = [];
+        for (var i = 0; i < 32; i++) {
+            for (var j = 0; j < 32; j++) {
+                r0.push(b0[j][i]);
+            }
+        }
+        return r0;
     },
     "rows": function(b0) {
         // return row lists
@@ -131,6 +145,12 @@ var bit = {
         // cols test
         var t2 = bit.cols(t0);
         console.log(t2);
+        // flatten rows
+        var t3 = bit.flatr(t1);
+        console.log(t3);
+        // flatten cols
+        var t4 = bit.flatc(t2);
+        console.log(t4);
     }
 }
 // render
