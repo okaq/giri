@@ -48,6 +48,9 @@ var g = {
 }
 // scene
 var sce = {
+    "init": function() {
+        // all config data?
+    },
     "swan": function() {
         sce.a = {};
         sce.a.r = [1920,1080,0,0];
@@ -57,6 +60,9 @@ var sce = {
         // outlaw bitmap at r0
         // vert flip outlaw bitmap at r1
         // intro text at r2 
+
+        // background : white
+        // border 32 pixels black
     }
 }
 // xhr
@@ -70,6 +76,20 @@ var net = {
 var bit = {
     "vert": function() {
         // flip vertical
+    }
+}
+// render
+var ren = {
+    "swan": function() {
+        // bkgd
+        sce.a.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+
+        // border, in two rects
+        sce.a.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+        sce.a.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.a.c.con.fillRect(32,32,sce.a.c.can.width-64,sce.a.c.can.height-64);
     }
 }
    // dom
