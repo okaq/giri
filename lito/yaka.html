@@ -332,6 +332,13 @@ var ren = {
             var b0 = base64DecToArr(s0);
             bmp.d[0] = bmp.exp(b0);
         },
+        "cactus": function() {
+            // decode cactus
+            bmp.e = {};
+            var s0 = cactus[0];
+            var b0 = base64DecToArr(s0);
+            bmp.e[0] = bmp.exp(b0);
+        },
         "init": function() {
             // font
             bmp.gugi();
@@ -341,6 +348,8 @@ var ren = {
             bmp.outlaw();
             // coach
             bmp.stage();
+            // cactus
+            bmp.cactus();
         }
     }
     // gugi bitmap font
@@ -396,6 +405,10 @@ var ren = {
     // stagecoach
     var stage = {
         "0": "//////////////////////////////////////////////////AP///P8///v/3//7/9//+4jf//uq3//7qt//+4jf//v3x//7/9//8+Pf/5v/2f9r/9b+9AAvfvf/7z9v//b/n//5////////////////////////////////8="
+    }
+    // cactus
+    var cactus = {
+        "0": "/////////////////////////////n///85////Of///zn///85////Of///wHP//8Bz///+c////nP///4D///+A////n////5////+f////n////5////+f////n////5////+f////n////5///////////////////////8="
     }
     // string view
     /*\
