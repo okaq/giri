@@ -41,6 +41,9 @@ var g = {
     "start": function() {
         console.log("starting reax");
 
+        // bitops test
+        bit.test();
+
         // scene one
         sce.swan();
         ren.swan();
@@ -77,6 +80,57 @@ var bit = {
     "vert": function(b0) {
         // flip vertical
         return b0;
+    },
+    "horz": function(b0) {
+        // flip horizontal
+    },
+    "flatr": function(b0) {
+        // flatten rows
+    },
+    "flatc": function(b0) {
+        // flatten cols
+    },
+    "rows": function(b0) {
+        // return row lists
+        var r0 = [];
+        for (var i = 0; i < 32; i++) {
+            var r1 = [];
+            for (var j = 0; j < 32; j++) {
+                var i0 = (i * 32) >>> 0;
+                var i1 = (i0 + j) >>> 0;
+                r1.push(b0[i1]);
+            }
+            r0.push(r1);
+        }
+        return r0;
+    },
+    "cols": function(b0) {
+        // return column lists
+        var r0 = [];
+        for (var i = 0; i < 32; i++) {
+            var r1 = [];
+            for (var j = 0; j < 32; j++) {
+                var i0 = (j * 32) >>> 0;
+                var i1 = (i0 + i) >>> 0;
+                r1.push(b0[i1]); 
+            }
+            r0.push(r1);
+        }
+        return r0;
+    },
+    "test": function() {
+        // random test set
+        var t0 = [];
+        for (var i = 0; i < 1024; i++) {
+            t0.push(i);
+        }
+        console.log(t0);
+        // rows test
+        var t1 = bit.rows(t0);
+        console.log(t1);
+        // cols test
+        var t2 = bit.cols(t0);
+        console.log(t2);
     }
 }
 // render
