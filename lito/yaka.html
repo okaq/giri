@@ -40,6 +40,36 @@ var g = {
     },
     "start": function() {
         console.log("starting reax");
+
+        // scene one
+        sce.swan();
+        ren.swan();
+    }
+}
+// scene
+var sce = {
+    "swan": function() {
+        sce.a = {};
+        sce.a.r = [1920,1080,0,0];
+        sce.a.c = dom.canvas(sce.a.r);
+        dom.add(sce.a.c);
+        // layout description
+        // outlaw bitmap at r0
+        // vert flip outlaw bitmap at r1
+        // intro text at r2 
+    }
+}
+// xhr
+var net = {
+    "init": function() {
+        net.a = [];
+        net.a[0] = "http://localhost:8080";
+    }
+}
+// bitops
+var bit = {
+    "vert": function() {
+        // flip vertical
     }
 }
    // dom
