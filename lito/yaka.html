@@ -44,9 +44,14 @@ var g = {
         // bitops test
         // bit.test();
 
+        var t0 = window.performance.now();
+
         // scene one
         sce.swan();
         ren.swan();
+
+        console.log("scene one render time: " + (window.performance.now() - t0));
+        // scene genration and render = 20ms
     }
 }
 // scene
@@ -194,7 +199,20 @@ var ren = {
         ren.bmp(b0, sce.a.c, [1024,1024,1024,24]);
         
         // center stagecoach
-        ren.bmp2(bmp.d[0], sce.a.c, [512,512,704,284]);
+        // ren.bmp2(bmp.d[0], sce.a.c, [512,512,704,284]);
+
+        // center cactus
+        ren.bmp2(bmp.e[0], sce.a.c, [512,512,704,284]);
+
+        // text
+        var t0 = "human reaction time";
+        var t1 = "enter here now";
+        // char size = 64x64
+        // ren.txt(t0, sce.a.c, [1216,64,352,128]);
+        // ren.txt(t1, sce.a.c, [896,64,512,824]);
+        // char size = 32x32
+        ren.txt(t0, sce.a.c, [608,32,656,192]);
+        ren.txt(t1, sce.a.c, [448,32,736,824]);
     },
     "bmp": function(b0, c0, r0) {
         // render bitmap in rect
@@ -227,6 +245,19 @@ var ren = {
             var x2 = (x1 + r0[2]) >>> 0;
             var y2 = (y1 + r0[3]) >>> 0;
             c0.con.fillRect(x2,y2,w0,w0);
+        }
+    },
+    "txt": function(t0, c0, r0) {
+        // split text
+        var t1 = t0.toUpperCase();
+        var t2 = t1.split("");
+        for (var i = 0; i < t2.length; i++) {
+            if (t2[i] in bmp.a) {
+                var b0 = bmp.a[t2[i]];
+                var x0 = (i * r0[1]) >>> 0;
+                var x1 = (x0 + r0[2]) >>> 0;
+                ren.bmp2(b0, c0, [r0[1], r0[1], x1, r0[3]]);
+            }
         }
     }
 }
