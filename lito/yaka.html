@@ -50,8 +50,17 @@ var g = {
         sce.swan();
         ren.swan();
 
+        // attach handler
+        sce.qwik();
+
         console.log("scene one render time: " + (window.performance.now() - t0));
         // scene genration and render = 20ms
+    },
+    "start2": function() {
+        console.log("starting instructions");
+
+        // scene two
+        sce.inst();
     }
 }
 // scene
@@ -71,6 +80,24 @@ var sce = {
 
         // background : white
         // border 32 pixels black
+    },
+    "qwik": function() {
+        sce.a.c.can.addEventListener("click", sce.click, false);
+    },
+    "click": function(e) {
+        console.log(e);
+        // advance
+        g.start2();
+    },
+    "inst": function() {
+        // remove swan
+        dom.remove(sce.a.c);
+
+        // instructions
+        sce.b = {};
+        sce.b.r = [1920,1080,0,0];
+        sce.a.c = dom.canvas(sce.a.r);
+        dom.add(sce.a.c);
     }
 }
 // xhr
