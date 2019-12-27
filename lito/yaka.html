@@ -61,6 +61,7 @@ var g = {
 
         // scene two
         sce.inst();
+        ren.inst();
     }
 }
 // scene
@@ -96,8 +97,15 @@ var sce = {
         // instructions
         sce.b = {};
         sce.b.r = [1920,1080,0,0];
-        sce.a.c = dom.canvas(sce.a.r);
-        dom.add(sce.a.c);
+        sce.b.c = dom.canvas(sce.b.r);
+        dom.add(sce.b.c);
+
+        sce.b.c.can.addEventListener("click", sce.click2, false);
+    },
+    "click2": function(e) {
+        console.log(e);
+        dom.remove(sce.b.c);
+        g.start();
     }
 }
 // xhr
@@ -240,6 +248,17 @@ var ren = {
         // char size = 32x32
         ren.txt(t0, sce.a.c, [608,32,656,192]);
         ren.txt(t1, sce.a.c, [448,32,736,824]);
+    },
+    "inst": function() {
+        // bkgd
+        sce.b.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.b.c.con.fillRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
+
+        // no border, right to edge
+
+        // left half wagon
+        sce.b.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        ren.bmp(bmp.d[0], sce.b.c, [1024,1024,-64,28]);
     },
     "bmp": function(b0, c0, r0) {
         // render bitmap in rect
