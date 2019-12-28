@@ -260,6 +260,19 @@ var ren = {
         sce.b.c.con.fillStyle = rgba.css([0,0,0,1.0]);
         ren.bmp(bmp.d[0], sce.b.c, [1024,1024,-64,28]);
 
+        // text, right panel, centered
+        var t0 = [];
+        t0[0] = "greetings players";
+        t0[1] = "my name is aq";
+        t0[2] = "creator of okaq dot com";
+
+        for (var i = 0; i < t0.length; i++) {
+            var w0 = (t0[i].length * 32) >>> 0;
+            x0 = (1920 / 2) >>> 0;
+            var y0 = (i * 64) >>> 0;
+            var r0 = [w0,32,x0,y0];
+            ren.txt(t0[i], sce.b.c, r0);
+        }
         
     },
     "bmp": function(b0, c0, r0) {
