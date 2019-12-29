@@ -258,7 +258,8 @@ var ren = {
 
         // left half wagon
         sce.b.c.con.fillStyle = rgba.css([0,0,0,1.0]);
-        ren.bmp(bmp.d[0], sce.b.c, [1024,1024,-64,28]);
+        // ren.bmp(bmp.d[0], sce.b.c, [1024,1024,-64,28]);
+        ren.bmp(bmp.d[1],sce.b.c,[1024,1024,-64,28]);
 
         // text, right panel, centered
         var t0 = [];
@@ -454,6 +455,9 @@ var ren = {
             var s0 = stage[0];
             var b0 = base64DecToArr(s0);
             bmp.d[0] = bmp.exp(b0);
+            var s1 = stage[1];
+            var b1 = base64DecToArr(s1);
+            bmp.d[1] = bmp.exp(b1);
         },
         "cactus": function() {
             // decode cactus
@@ -527,7 +531,8 @@ var ren = {
     }
     // stagecoach
     var stage = {
-        "0": "//////////////////////////////////////////////////AP///P8///v/3//7/9//+4jf//uq3//7qt//+4jf//v3x//7/9//8+Pf/5v/2f9r/9b+9AAvfvf/7z9v//b/n//5////////////////////////////////8="
+        "0": "//////////////////////////////////////////////////AP///P8///v/3//7/9//+4jf//uq3//7qt//+4jf//v3x//7/9//8+Pf/5v/2f9r/9b+9AAvfvf/7z9v//b/n//5////////////////////////////////8=",
+        "1": "//////////////////////////////////w////4H///+B////mf///xj///88////PP///zz///0Av//9AL///QC///gAH//9AL///f+///3/v///////////////////////////////////////////////////////////8="
     }
     // cactus
     var cactus = {
