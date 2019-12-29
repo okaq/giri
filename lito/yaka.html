@@ -59,6 +59,8 @@ var g = {
     "start2": function() {
         console.log("starting instructions");
 
+        var t0 = 
+
         // scene two
         sce.inst();
         ren.inst();
@@ -269,10 +271,18 @@ var ren = {
         t0[3] = "and i need your help";
         t0[4] = "to design a new game";
         t0[5] = "";
-        t0[6] = "i would like to start";
+        t0[6] = "i would like to begin";
         t0[7] = "by collecting some data";
         t0[8] = "";
-        t0[9] = "";
+        t0[9] = "the data set i seek is";
+        t0[10] = "how humans play";
+        t0[11] = "";
+        t0[12] = "";
+        t0[13] = "";
+        t0[14] = "please click to start";
+
+        // delay could be added to ease ui screen jump
+        // but it is better to keep things fast
 
         for (var i = 0; i < t0.length; i++) {
             var w0 = (t0[i].length * 32) >>> 0;
