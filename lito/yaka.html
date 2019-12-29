@@ -265,12 +265,23 @@ var ren = {
         t0[0] = "greetings players";
         t0[1] = "my name is aq";
         t0[2] = "creator of okaq dot com";
+        t0[3] = "and i need your help";
+        t0[4] = "to design a new game";
+        t0[5] = "";
+        t0[6] = "i would like to start";
+        t0[7] = "by collecting some data";
+        t0[8] = "";
+        t0[9] = "";
 
         for (var i = 0; i < t0.length; i++) {
             var w0 = (t0[i].length * 32) >>> 0;
             x0 = (1920 / 2) >>> 0;
             var y0 = (i * 64) >>> 0;
             var r0 = [w0,32,x0,y0];
+            // black bkgd, white font
+            sce.b.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+            sce.b.c.con.fillRect(x0,y0,w0,32);
+            sce.b.c.con.fillStyle = rgba.css([255,255,255,1.0]);
             ren.txt(t0[i], sce.b.c, r0);
         }
         
