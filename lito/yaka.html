@@ -136,6 +136,26 @@ var sce = {
         // 1920 - 1190 = 730
         // 1/g * 1080 = 667
         // 1080 - 670 = 410
+
+        // four panels
+        // every 3 seconds on flips
+        // then flips back after 5 seconds
+        // player clicks to advance
+        // instructions on right
+
+        // 4 outlaw panels in 2x2 grid
+        // left rect at [1200,700,0,0]
+        // contains 256x256 canvas
+        sce.d = [];
+        for (var i = 0; i < 4; i++) {
+            var x0 = i % 2;
+            var y0 = (i / 2) >>> 0;
+            var x1 = (x0 * 600) >>> 0;
+            var y0 = (y0 * 600) >>> 0;
+        }
+
+        // text blocks list
+        // right rect at [700,300,1200,700]
     }
 }
 // xhr
