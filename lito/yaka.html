@@ -71,11 +71,37 @@ var g = {
     "start3": function() {
         console.log("inst 1");
 
+        var t0 = window.performance.now();
+
         // scene three
         sce.inst2();
         ren.inst2();
         ren.demo();
         ren.simple();
+
+        console.log("scene three demo time: " + (window.performance.now() - t0));
+        // render scene = 10ms
+
+        // start demo timer after one second
+        window.setTimeout(g.demo, 1000);
+    },
+    "demo": function() {
+        g.tick = 0;
+        g.id = window.setTimeout(g.demo2, 2500);
+    },
+    "demo2": function() {
+        // flip color
+        g.pane = (Math.random() * 4) >>> 0;
+        ren.flip();
+        // start time
+        g.time = [window.performance.now()];
+    },
+    "demo3": function() {
+        g.time[2] = g.time[1] - g.time[0];
+        console.log("your react time " + g.time[2]);
+        ren.demo2();
+
+        // wait 4 seconds and begin game
     }
 }
 // scene
@@ -198,6 +224,11 @@ var sce = {
     },
     "click3": function(e) {
         console.log(e.target.dataset.x);
+        if (e.target.dataset.x == g.pane) {
+            var t0 = window.performance.now();
+            g.time.push(t0);
+            g.demo3();
+        } 
     }
 }
 // xhr
@@ -453,6 +484,24 @@ var ren = {
             c0.con.fillStyle = rgba.css([255,255,255,1.0]);
             ren.txt(t0,c0,r0);
         }
+    },
+    "flip": function() {
+        var c0 = sce.d.c[g.pane];
+        c0.con.fillStyle = rgba.css([0,0,0,1.0]);
+        c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+        ren.bmp2(bmp.c[0],c0,[c0.can.width,c0.can.height,0,0]);
+    },
+    "demo2": function() {
+        var t0 = g.time[2].toString().split(".")[0];
+        var t1 = "reaction time";
+        var w0 = (t1.length * 64) >>> 0;
+        var r0 = [w0,64,16,800];
+        var w1 = (t0.length * 64) >>> 0;
+        var r1 = [w1,64,16,900];
+        sce.c.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        ren.txt(t1,sce.c.c,r0);
+        ren.txt(t0,sce.c.c,r1);
     }
 }
    // dom
