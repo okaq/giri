@@ -101,7 +101,18 @@ var g = {
         console.log("your react time " + g.time[2]);
         ren.demo2();
 
-        // wait 4 seconds and begin game
+        // wait 2 seconds and begin game
+        window.setTimeout(g.demo4, 2000);
+    },
+    "demo4": function() {
+        sce.grad();
+        ren.simple();
+        sce.pote();
+    },
+    "start4": function() {
+        console.log("round one...draw pardner!");
+        // clear the old
+        // add the new
     }
 }
 // scene
@@ -229,6 +240,41 @@ var sce = {
             g.time.push(t0);
             g.demo3();
         } 
+    },
+    "grad": function() {
+        // out with the old
+        for (var i = 0; i < sce.e.c.length; i++) {
+            dom.remove(sce.e.c[i]);
+        }
+        // new text blocks
+        // we can abstract out a text blocks method
+        sce.e = [];
+        sce.e.r = [];
+        sce.e.c = [];
+        sce.e.t = [];
+        sce.e.t[0] = "you are ready";
+        sce.e.t[1] = "click the screen";
+        sce.e.t[2] = "to begin the test";
+        for (var i = 0; i < sce.e.t.length; i++) {
+            var y0 = i % sce.e.t.length;
+            var y1 = (y0 * 100) >>> 0;
+            var y2 = (y1 + 700) >>> 0;
+            var x0 = 1200;
+            var w0 = (sce.e.t[i].length * 32)  >>> 0;
+            var h0 = 32;
+            sce.e.r[i] = [w0,h0,x0,y2];
+            sce.e.c[i] = dom.canvas(sce.e.r[i]);
+            dom.add(sce.e.c[i]);
+        }
+    },
+    "pote": function() {
+        // attach screen click handler
+        // to advance to game
+        sce.c.c.can.addEventListener("click", sce.click4, false);
+    },
+    "click4": function(e) {
+        console.log(e);
+        g.start4();
     }
 }
 // xhr
