@@ -75,6 +75,7 @@ var g = {
         sce.inst2();
         ren.inst2();
         ren.demo();
+        ren.simple();
     }
 }
 // scene
@@ -176,9 +177,24 @@ var sce = {
 
         // text blocks list
         // right rect at [700,300,1200,700]
-
-        // simply click when the outlaw flips color
-        // its just that simple
+        sce.e = [];
+        sce.e.r = [];
+        sce.e.c = [];
+        sce.e.t = [];
+        sce.e.t[0] = "simply click";
+        sce.e.t[1] = "when the outlaw";
+        sce.e.t[2] = "flips its color";
+        for (var i = 0; i < sce.e.t.length; i++) {
+            var y0 = i % sce.e.t.length;
+            var y1 = (y0 * 100) >>> 0;
+            var y2 = (y1 + 700) >>> 0;
+            var x0 = 1200;
+            var w0 = (sce.e.t[i].length * 32)  >>> 0;
+            var h0 = 32;
+            sce.e.r[i] = [w0,h0,x0,y2];
+            sce.e.c[i] = dom.canvas(sce.e.r[i]);
+            dom.add(sce.e.c[i]);
+        }
     },
     "click3": function(e) {
         console.log(e.target.dataset.x);
@@ -427,6 +443,15 @@ var ren = {
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
             c0.con.fillStyle = rgba.css([0,0,0,1.0]);
             ren.bmp2(bmp.c[0],c0,[c0.can.width,c0.can.height,0,0]);
+        }
+    },
+    "simple": function() {
+        for (var i = 0; i < sce.e.c.length; i++) {
+            var c0 = sce.e.c[i];
+            var t0 = sce.e.t[i];
+            var r0 = [c0.can.width,c0.can.height,0,0];
+            c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+            ren.txt(t0,c0,r0);
         }
     }
 }
