@@ -112,7 +112,21 @@ var g = {
     "start4": function() {
         console.log("round one...draw pardner!");
         // clear the old
+        sce.fron();
         // add the new
+        sce.frog();
+        ren.frog();
+
+        // logical concept of the screen
+        // render all the elements
+        // start the random flip timer
+        // flip and render
+        // start the performance split
+        // handle click, detach handler, time split
+        // render performance
+        // advance new round
+
+        // this draft: all five stages unrolled
     }
 }
 // scene
@@ -254,7 +268,7 @@ var sce = {
         sce.e.t = [];
         sce.e.t[0] = "you are ready";
         sce.e.t[1] = "click the screen";
-        sce.e.t[2] = "to begin the test";
+        sce.e.t[2] = "to start the game";
         for (var i = 0; i < sce.e.t.length; i++) {
             var y0 = i % sce.e.t.length;
             var y1 = (y0 * 100) >>> 0;
@@ -275,6 +289,32 @@ var sce = {
     "click4": function(e) {
         console.log(e);
         g.start4();
+    },
+    "fron": function() {
+        // remove outlaws
+        for (var i = 0; i < sce.d.c.length; i++) {
+            dom.remove(sce.d.c[i]);
+        }
+        // remove text lists
+        for (var i = 0; i < sce.e.c.length; i++) {
+            dom.remove(sce.e.c[i]);
+        }
+        // remove bkgd
+        dom.remove(sce.c.c);
+    },
+    "frog": function() {
+        // bkgd
+        sce.f = {};
+        sce.f.r = [1920,1080,0,0];
+        sce.f.c = dom.canvas(sce.f.r);
+        dom.add(sce.f.c);
+
+        // one pane, with 32px border, perfect center
+        sce.g = {};
+        sce.g.r = [512,512,672,252];
+        sce.g.c = dom.canvas(sce.g.r);
+        dom.add(sce.g.c);
+        sce.g.c.can.addEventListener("click", sce.click5, false);
     }
 }
 // xhr
@@ -548,6 +588,19 @@ var ren = {
         sce.c.c.con.fillStyle = rgba.css([255,255,255,1.0]);
         ren.txt(t1,sce.c.c,r0);
         ren.txt(t0,sce.c.c,r1);
+    },
+    "frog": function() {
+        // bkgd
+        sce.f.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.f.c.con.fillRect(0,0,sce.f.c.can.width,sce.f.c.can.height);
+        // border fill
+        sce.g.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        sce.g.c.con.fillRect(0,0,sce.g.c.can.width,sce.g.c.can.height);
+        // outlaw
+        sce.g.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.g.c.con.fillRect(32,32,sce.g.c.can.width-64,sce.g.c.can.height-64);
+        sce.g.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        ren.bmp2(bmp.c[0],sce.g.c,[sce.g.c.can.width-64,sce.g.c.can.height-64,32,32]);
     }
 }
    // dom
