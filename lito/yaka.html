@@ -74,6 +74,7 @@ var g = {
         // scene three
         sce.inst2();
         ren.inst2();
+        ren.demo();
     }
 }
 // scene
@@ -146,16 +147,41 @@ var sce = {
         // 4 outlaw panels in 2x2 grid
         // left rect at [1200,700,0,0]
         // contains 256x256 canvas
+        // margin is top-left 172 pixels
         sce.d = [];
+        sce.d.r = [];
+        sce.d.c = [];
+        // click state
+        sce.d.d = [];
         for (var i = 0; i < 4; i++) {
             var x0 = i % 2;
             var y0 = (i / 2) >>> 0;
             var x1 = (x0 * 600) >>> 0;
-            var y0 = (y0 * 600) >>> 0;
+            var y1 = (y0 * 300) >>> 0;
+            var x2 = (x1 + 172) >>> 0;
+            var y2 = (y1 + 22) >>> 0;
+            var r0 = [256,256,x2,y2];
+            sce.d.r[i] = r0;
+            sce.d.c[i] = dom.canvas(sce.d.r[i]);
+            dom.add(sce.d.c[i]);
+            sce.d.c[i].can.addEventListener("click", sce.click3, false);
+            sce.d.c[i].can.dataset.x = i;
+            sce.d.d[i] = 0;
         }
+
+        // click state
+        // 0 unflipped
+        // 1 flipped
+        // 2 clicked
 
         // text blocks list
         // right rect at [700,300,1200,700]
+
+        // simply click when the outlaw flips color
+        // its just that simple
+    },
+    "click3": function(e) {
+        console.log(e.target.dataset.x);
     }
 }
 // xhr
@@ -392,6 +418,15 @@ var ren = {
                 var x1 = (x0 + r0[2]) >>> 0;
                 ren.bmp2(b0, c0, [r0[1], r0[1], x1, r0[3]]);
             }
+        }
+    },
+    "demo": function() {
+        for (var i = 0; i < sce.d.c.length; i++) {
+            var c0 = sce.d.c[i];
+            c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+            c0.con.fillStyle = rgba.css([0,0,0,1.0]);
+            ren.bmp2(bmp.c[0],c0,[c0.can.width,c0.can.height,0,0]);
         }
     }
 }
