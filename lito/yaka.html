@@ -335,8 +335,36 @@ var sce = {
         // N % sqrt(N) >= sqrt(N) / 2 
         // create new row, else constrain
 
-        // screen objects
+        // rects calculated from python repl
         sce.h = [];
+        sce.h[0] = [[576,576,672,252]];
+        sce.h[1] = [[576,576,384,252],[576,576,1344,252]];
+        sce.h[2] = [];
+        sce.h[2][0] = [448,448,144,316];
+        sce.h[2][1] = [448,448,736,316];
+        sce.h[2][2] = [448,448,1328,316];
+        sce.h[3] = [];
+        sce.h[3][0] = [448,448,341,61];
+        sce.h[3][1] = [448,448,1130,61];
+        sce.h[3][2] = [448,448,341,570];
+        sce.h[3][3] = [448,448,1130,570];
+        sce.h[4] = [];
+        sce.h[4][0] = [448,448,341,61];
+        sce.h[4][1] = [448,448,1130,61];
+        sce.h[4][2] = [448,448,144,570];
+        sce.h[4][3] = [448,448,736,570];
+        sce.h[4][4] = [448,448,1328,570];
+
+        // enormous complexity to solve analytically
+        // logic for overflow, layout and size
+        // this is an optimization
+        // space-filling and tessellation problem ;)
+
+        // screen objects, five easy scenes
+        sce.j = [];
+        for (var i = 0; i < sce.h.length; i++) {
+            sce.j[i] = {};
+        }
     }
 }
 // xhr
