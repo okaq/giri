@@ -117,6 +117,8 @@ var g = {
         sce.frog();
         ren.frog();
 
+        // call the flip sequence
+
         // logical concept of the screen
         // render all the elements
         // start the random flip timer
@@ -127,6 +129,12 @@ var g = {
         // advance new round
 
         // this draft: all five stages unrolled
+        // pause that refreshes
+        window.setTimeout(g.start5, 5000);
+    },
+    "start5": function() {
+        // clearing oldings
+        sce.frog2();
     }
 }
 // scene
@@ -315,6 +323,20 @@ var sce = {
         sce.g.c = dom.canvas(sce.g.r);
         dom.add(sce.g.c);
         sce.g.c.can.addEventListener("click", sce.click5, false);
+    },
+    "frog2": function() {
+        dom.remove(sce.f);
+        dom.remove(sce.g);
+    },
+    "valve": function() {
+        // lets get mathematical
+        // layout config
+        // subdivide into grids
+        // N % sqrt(N) >= sqrt(N) / 2 
+        // create new row, else constrain
+
+        // screen objects
+        sce.h = [];
     }
 }
 // xhr
