@@ -135,6 +135,26 @@ var g = {
     "start5": function() {
         // clearing oldings
         sce.frog2();
+        // gen all
+        sce.valve();
+        // cycle
+        g.tick = 0;
+        // add zeroth scene elemnts
+        g.id = window.setInterval(g.frame, 2000);
+    },
+    "frame": function() {
+        if (g.tick >= sce.h.length) {
+            console.log("cycle done");
+            window.clearInterval(g.id);
+        }
+        console.log("frame: " + g.tick);
+        if (g.tick > 0) {
+            // remove current
+        }
+        // render
+        // add click handler
+        // time flip and split
+        g.tick = g.tick + 1;
     }
 }
 // scene
@@ -361,10 +381,21 @@ var sce = {
         // space-filling and tessellation problem ;)
 
         // screen objects, five easy scenes
-        sce.j = [];
+        sce.i = [];
         for (var i = 0; i < sce.h.length; i++) {
-            sce.j[i] = {};
+            sce.i[i] = {};
+            sce.i[i].c = [];
+            for (var j = 0; j < sce.h[i].length; j++) {
+                sce.i[i].c[j] = dom.canvas(sce.h[i][j]);
+                // dom.add(sce.i[i].c[j]);
+                sce.i[i].c[j].can.addEventListener("click", sce.click5, false); 
+                sce.i[i].c[j].can.dataset.x = j;
+            }
         }
+    },
+    "click5": function(e) {
+        console.log(e);
+        // if id == selection
     }
 }
 // xhr
