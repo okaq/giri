@@ -139,7 +139,8 @@ var g = {
         sce.valve();
         // cycle
         g.tick = 0;
-        // add zeroth scene elemnts
+        // add zeroth scene elements
+        // sce.valve2();
         g.id = window.setInterval(g.frame, 2000);
     },
     "frame": function() {
@@ -148,12 +149,41 @@ var g = {
             window.clearInterval(g.id);
         }
         console.log("frame: " + g.tick);
+        /*
         if (g.tick > 0) {
             // remove current
         }
+        */
+        // add scene to dom
+        sce.vive();
         // render
+        ren.vive();
         // add click handler
+        // sce.magma();
         // time flip and split
+        g.time = [];
+        g.time[0] = (Math.random() * 2500) + 2500; // random fire interval
+        window.setTimeout(g.frame2, g.time[0]);
+    },
+    "frame2": function() {
+        // pick
+        g.pick = 0;
+        if (g.tick > 0) {
+            g.pick = (Math.random() * sce.i[g.tick].c.length) >>> 0;
+        }
+        // flip render
+        ren.vive2();
+        // only add handler on the pick canvas
+        // hit / miss criterion is implicit
+        sce.magma3();
+        // split
+        g.time.push(window.performance.now());
+        // handle hit / miss
+        // current click history, render vert flip
+    },
+    "frame3": function() {
+        // timing precision
+        // pick, render flip, add handler, split 
         g.tick = g.tick + 1;
     }
 }
@@ -388,14 +418,52 @@ var sce = {
             for (var j = 0; j < sce.h[i].length; j++) {
                 sce.i[i].c[j] = dom.canvas(sce.h[i][j]);
                 // dom.add(sce.i[i].c[j]);
-                sce.i[i].c[j].can.addEventListener("click", sce.click5, false); 
+                // sce.i[i].c[j].can.addEventListener("click", sce.click5, false); 
                 sce.i[i].c[j].can.dataset.x = j;
             }
         }
+
+        // bkgd
+        sce.j = {};
+        sce.j.r = [1920,1080,0,0];
+        sce.j.c = dom.canvas(sce.j.r);
+        dom.add(sce.j.c);
     },
     "click5": function(e) {
         console.log(e);
         // if id == selection
+    },
+    "vive": function() {
+        // add current tick scene elements
+        for (var i = 0; i < sce.i[g.tick].c.length; i++) {
+            dom.add(sce.i[g.tick].c[i]);
+        }
+    },
+    "vile": function() {
+        // remove current tick scene elements
+        for (var i = 0; i < sce.i[g.tick].c.length; i++) {
+            dom.remove(sce.i[g.tick].c[i]);
+        }
+    },
+    "magma": function() {
+        // add click handlers to current scene elements
+        for (var i = 0; i < sce.i[g.tick].c.length; i++) {
+            sce.i[g.tick].c[i].can.addEventListener("click", sce.click5, false);
+        }
+    },
+    "magma2": function() {
+        // remove click handlers remove current scene elements
+        for (var i = 0; i < sce.i[g.tick].c.length; i++) {
+            sce.i[g.tick].c[i].can.removeEventListener("click", sce.click5, false);
+        }
+    },
+    "magma3": function() {
+        var c0 = sce.i[g.tick].c[g.pick];
+        c0.can.addEventListener("click", sce.click5, false);
+    },
+    "magma4": function() {
+        var c0 = sce.i[g.tick].c[g.pick];
+        c0.can.removeEventListener("click", sce.click5, false);
     }
 }
 // xhr
@@ -682,6 +750,33 @@ var ren = {
         sce.g.c.con.fillRect(32,32,sce.g.c.can.width-64,sce.g.c.can.height-64);
         sce.g.c.con.fillStyle = rgba.css([0,0,0,1.0]);
         ren.bmp2(bmp.c[0],sce.g.c,[sce.g.c.can.width-64,sce.g.c.can.height-64,32,32]);
+    },
+    "vive": function() {
+        // bkgd
+        sce.j.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.j.c.con.fillRect(0,0,sce.j.c.can.width,sce.j.c.can.height);
+        // elements
+        for (var i = 0; i < sce.i[g.tick].c.length; i++) {
+            var c0 = sce.i[g.tick].c[i];
+            // border
+            c0.con.fillStyle = rgba.css([0,0,0,1.0]);
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+            // outlaw
+            c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+            c0.con.fillRect(32,32,c0.can.width-64,c0.can.height-64);
+            c0.con.fillStyle = rgba.css([0,0,0,1.0]);
+            ren.bmp2(bmp.c[0],c0,[c0.can.width-64,c0.can.height-64,32,32]);
+        }
+    },
+    "vive2": function() {
+        console.log(g.tick, g.pick);
+        var c0 = sce.i[g.tick].c[g.pick];
+        // flip outlaw
+        c0.con.fillStyle = rgba.css([0,0,0,1.0]);
+        c0.con.fillRect(32,32,c0.can.width-64,c0.can.height-64);
+        c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+        ren.bmp2(bmp.c[0],c0,[c0.can.width-64,c0.can.height-64,32,32]);
+
     }
 }
    // dom
