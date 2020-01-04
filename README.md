@@ -21,4 +21,7 @@ lito/ - main src dir
 lito/omg - img png dir
 lito/pow - base64 json binary
 
+lito/asobi - noto_emoji_2.json
+"asobi" = "play, game" (jp.)
+
 
