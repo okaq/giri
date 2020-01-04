@@ -181,10 +181,21 @@ var g = {
         // handle hit / miss
         // current click history, render vert flip
     },
-    "frame3": function() {
+    "frame3": function(t0) {
         // timing precision
         // pick, render flip, add handler, split 
+        // g.tick = g.tick + 1;
+        // split
+        console.log("reaction time: " + (t0 - g.time[1]));
+        // remove handler
+        sce.magma4();
+        window.setTimeout(g.frame4, 2000);
+    },
+    "frame4": function() {
+        // remove scene and advance
+        sce.vile();
         g.tick = g.tick + 1;
+        window.setTimeout(g.frame, 10);
     }
 }
 // scene
@@ -432,6 +443,7 @@ var sce = {
     "click5": function(e) {
         console.log(e);
         // if id == selection
+        g.frame3(window.performance.now());
     },
     "vive": function() {
         // add current tick scene elements
