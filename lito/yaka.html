@@ -141,12 +141,13 @@ var g = {
         g.tick = 0;
         // add zeroth scene elements
         // sce.valve2();
-        g.id = window.setInterval(g.frame, 2000);
+        g.id = window.setTimeout(g.frame, 2000);
     },
     "frame": function() {
         if (g.tick >= sce.h.length) {
             console.log("cycle done");
-            window.clearInterval(g.id);
+            // window.clearInterval(g.id);
+            return;
         }
         console.log("frame: " + g.tick);
         /*
@@ -163,6 +164,7 @@ var g = {
         // time flip and split
         g.time = [];
         g.time[0] = (Math.random() * 2500) + 2500; // random fire interval
+        console.log("random: " + g.time[0]);
         window.setTimeout(g.frame2, g.time[0]);
     },
     "frame2": function() {
@@ -196,6 +198,8 @@ var g = {
         sce.vile();
         g.tick = g.tick + 1;
         window.setTimeout(g.frame, 10);
+
+        // chaos!
     }
 }
 // scene
@@ -383,11 +387,11 @@ var sce = {
         sce.g.r = [512,512,672,252];
         sce.g.c = dom.canvas(sce.g.r);
         dom.add(sce.g.c);
-        sce.g.c.can.addEventListener("click", sce.click5, false);
+        // sce.g.c.can.addEventListener("click", sce.click5, false);
     },
     "frog2": function() {
-        dom.remove(sce.f);
-        dom.remove(sce.g);
+        dom.remove(sce.f.c);
+        dom.remove(sce.g.c);
     },
     "valve": function() {
         // lets get mathematical
