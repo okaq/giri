@@ -40,6 +40,9 @@ var g = {
     },
     "start": function() {
         console.log("starting mem");
+    },
+    "noji": function() {
+        // emoji bitmap render loop
     }
 }
 // scene
@@ -52,7 +55,14 @@ var sce = {
 var net = {
     "init": function() {
         net.a = [];
-        net.a[0] = "http://localhost:8080";
+        net.a[0] = "http://localhost:8080"; // home
+        net.a[1] = "http://localhost:8080/a"; // pid
+        net.a[2] = "http://localhost:8080/b"; // emoji
+    },
+    "zuki": function() {
+        window.fetch(net.a[2])
+        .then(resp => resp.json())
+        .then(json => {net.noji = json; g.noji();});
     }
 }
    // dom
