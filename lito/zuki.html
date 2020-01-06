@@ -82,7 +82,10 @@ var net = {
         // fetch
         window.fetch(net.a[1], req)
         .then(resp => resp.json())
-        .then(json => {console.log(json);})
+        .then(json => {
+            console.log(json);
+            net.b[1]=json;
+        })
         .catch(err => {console.log(err);});
     },
     "zuki": function() {

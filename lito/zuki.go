@@ -5,6 +5,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"math/rand"
 	"net/http"
@@ -48,7 +49,24 @@ func cache() {
 
 func PidHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
-	w.Write([]byte("ok go"))
+	// w.Write([]byte("ok go"))
+	// parse browser pid
+	// gen server pid
+	// write key to response
+	var s0 string
+	json.NewDecoder(r.Body).Decode(&s0)
+	fmt.Println(s0)
+	f0 := R.Float64() * (1<<64-1)
+	t0 := time.Now().UnixNano()
+	s1 := fmt.Sprintf("%s::%.0f:%d", s0, f0, t0)
+	fmt.Println(s1)
+	C[s1] = "ok"
+	b0, err := json.Marshal(s1)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(len(b0))
+	w.Write(b0)
 }
 
 func main() {
