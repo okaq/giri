@@ -45,8 +45,17 @@ var g = {
         // fetch noto emoji json
         // decode bitmaps
     },
+    "start2": function() {
+        net.zuki();
+    },
     "noji": function() {
         // emoji bitmap render loop
+        var t0 = window.performance.now();
+
+        bmp.noji();
+        // decode in 250ms
+
+        console.log("decode emoji time: " + (window.performance.now() - t0));
     }
 }
 // scene
@@ -85,6 +94,7 @@ var net = {
         .then(json => {
             console.log(json);
             net.b[1]=json;
+            window.setTimeout(g.start2, 100);
         })
         .catch(err => {console.log(err);});
     },
@@ -207,6 +217,13 @@ var net = {
             bmp.gugi();
             // face
             bmp.face();
+        },
+        "noji": function() {
+            bmp.c = {};
+            for (var k0 in net.noji) {
+                var b0 = base64DecToArr(net.noji[k0]);
+                bmp.c[k0] = bmp.exp(b0);
+            }
         }
     }
     // gugi bitmap font
