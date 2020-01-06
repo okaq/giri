@@ -6,6 +6,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"net/http"
 	"time"
 )
@@ -16,6 +17,7 @@ const (
 )
 
 var (
+	R *rand.Rand
 	C map[string]string
 )
 
@@ -34,12 +36,27 @@ func NojiHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w,r,NOJI)
 }
 
+func rng() {
+	R = rand.New(rand.NewSource(time.Now().UnixNano()))
+	fmt.Printf("rand: %f\n", R.Float64())
+}
+
+func cache() {
+	C = make(map[string]string)
+	C["0:0::0:0"] = "0"
+}
+
+func PidHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+}
+
 func main() {
 	motd()
-	// rng()
-	// cache()
+	rng()
+	cache()
 	http.HandleFunc("/", ZukiHandler)
 	http.HandleFunc("/a", NojiHandler)
+	http.HandleFunc("/b", PidHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
