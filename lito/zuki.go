@@ -48,6 +48,7 @@ func cache() {
 
 func PidHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
+	w.Write([]byte("ok go"))
 }
 
 func main() {

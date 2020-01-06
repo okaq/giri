@@ -41,6 +41,7 @@ var g = {
     "start": function() {
         console.log("starting mem");
         // get pid
+        net.pid();
         // fetch noto emoji json
         // decode bitmaps
     },
@@ -59,8 +60,30 @@ var net = {
     "init": function() {
         net.a = [];
         net.a[0] = "http://localhost:8080"; // home
-        net.a[1] = "http://localhost:8080/a"; // pid
-        net.a[2] = "http://localhost:8080/b"; // emoji
+        net.a[1] = "http://localhost:8080/b"; // pid
+        net.a[2] = "http://localhost:8080/a"; // emoji
+    },
+    "pid": function() {
+        // gen pid
+        net.b = [];
+        var s0 = (Math.random() * Number.MAX_SAFE_INTEGER) >>> 0;
+        // var s1 = window.performance.now();
+        var s1 = Date.now();
+        var s2 = s0 + ":" + s1;
+        net.b[0] = s2;
+        console.log(net.b);
+        console.log(JSON.stringify(net.b));
+        console.log(JSON.stringify(s2));
+        // request
+        var req = {};
+        req["method"] = "POST";
+        req["headers"] = {"Content-type":"application/json"};
+        req["body"] = JSON.stringify(s2);
+        // fetch
+        window.fetch(net.a[1], req)
+        .then(resp => resp.json())
+        .then(json => {console.log(json);})
+        .catch(err => {console.log(err);});
     },
     "zuki": function() {
         window.fetch(net.a[2])
