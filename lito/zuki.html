@@ -56,12 +56,44 @@ var g = {
         // decode in 250ms
 
         console.log("decode emoji time: " + (window.performance.now() - t0));
+
+        // emoji loop
+        sce.one();
     }
 }
 // scene
 var sce = {
     "init": function() {
         // generate buffers
+        sce.a = []; // scene list
+        sce.b = []; // layout rects list
+
+        // emoji loop
+        // sce.a[0] = {};
+        sce.b[0] = [];
+        // bkgd
+        sce.b[0][0] = [1920,1080,0,0];
+        // pane
+        sce.b[0][1] = [1024,1024,448,28];
+
+        // eventually we get a layout config from server
+        // where it could even be procedurally generated
+    },
+    "one": function() {
+        // only parameter needed is index
+        sce.a[0] = {};
+        sce.a[0].c = sce.canvas(0);
+    },
+    "canvas": function(i0) {
+        // generate canvas list from rects
+        // honed on index into layout config
+        var c0 = [];
+        var r0 = sce.b[i0];
+        for (var i = 0; i < r0.length; i++) {
+            var c1 = dom.canvas(r0[i]);
+            c0.push(c1);
+        }
+        return c0;
     }
 }
 // xhr
