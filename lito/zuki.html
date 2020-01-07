@@ -57,8 +57,16 @@ var g = {
 
         console.log("decode emoji time: " + (window.performance.now() - t0));
 
+        window.setTimeout(g.pop, 1000);
+    },
+    "pop": function() {
         // emoji loop
-        sce.one();
+        // generate
+        sce.one(0);
+        // populate
+        sce.pop(0);
+        // ren test
+        ren.test(0);
     }
 }
 // scene
@@ -79,10 +87,10 @@ var sce = {
         // eventually we get a layout config from server
         // where it could even be procedurally generated
     },
-    "one": function() {
+    "one": function(i0) {
         // only parameter needed is index
-        sce.a[0] = {};
-        sce.a[0].c = sce.canvas(0);
+        sce.a[i0] = {};
+        sce.a[i0].c = sce.canvas(i0);
     },
     "canvas": function(i0) {
         // generate canvas list from rects
@@ -94,6 +102,20 @@ var sce = {
             c0.push(c1);
         }
         return c0;
+    },
+    "pop": function(i0) {
+        // add index canvas list to dom
+        for (var i = 0; i < sce.a[i0].c.length; i++) {
+            dom.add(sce.a[i0].c[i]);
+        }
+    },
+    "out": function() {
+        // remove from dom
+        for (var i = 0; i < sce.a[i0].c.length; i++) {
+            dom.remove(sce.a[i0].c[i]);
+        }
+        // alternatively we can set the current scene
+        // with a global g.index = 0
     }
 }
 // xhr
@@ -134,6 +156,17 @@ var net = {
         window.fetch(net.a[2])
         .then(resp => resp.json())
         .then(json => {net.noji = json; g.noji();});
+    }
+}
+// render
+var ren = {
+    "test": function(i0) {
+        // test fill current scene
+        var c0 = sce.a[i0].c;
+        for (var i = 0; i < c0.length; i++) {
+            c0[i].con.fillStyle = rgba.rmon();
+            c0[i].con.fillRect(0,0,c0[i].can.width,c0[i].can.height);
+        }
     }
 }
    // dom
