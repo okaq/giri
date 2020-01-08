@@ -68,6 +68,12 @@ var g = {
         // ren test
         ren.test(0);
 
+        console.log("emoji loop: " + bmp.d.length);
+        // total 888 bitmap emojis
+        g.tick = 0;
+        g.id = window.setInterval(g.frame, 100);
+        // render 30ms per frame ok
+
         // generate a text list
         // feed an object to the scene generator
 
@@ -76,6 +82,19 @@ var g = {
         // combine static and dynamic ui elements
         // to compose a single logical "screen"
         // and graph possible jumps
+    },
+    "frame": function() {
+        ren.clear();
+        ren.noji();
+        if (g.tick % 100 == 0) {
+            console.log("tick count: " + g.tick + " percent done: " + (g.tick / bmp.d.length));
+        }
+        if (g.tick >= bmp.d.length) {
+            console.log("anim done");
+            window.clearInterval(g.id);
+            return;
+        }
+        g.tick = g.tick + 1;
     }
 }
 // texts
@@ -96,6 +115,10 @@ var txt = {
         // power on self test
         // debug screen memory render network
         txt.d = [];
+        txt.d[0] = "screen size 0000 x 0000";
+        txt.d[1] = "render split 00000";
+        txt.d[2] = "net latency 000000";
+        txt.d[3] = "bitmap decode 0000";
 
         // screen size from window.screen
         // 60 * 32 = 1920 bitmap blocks width
@@ -201,6 +224,35 @@ var ren = {
         for (var i = 0; i < c0.length; i++) {
             c0[i].con.fillStyle = rgba.rmon();
             c0[i].con.fillRect(0,0,c0[i].can.width,c0[i].can.height);
+        }
+    },
+    "clear": function() {
+        // specific to emoji loop
+        var c0 = sce.a[0].c;
+        for (var i = 0; i < c0.length; i++) {
+            if (i == 0) {
+                c0[i].con.fillStyle = rgba.css([0,0,0,1.0]);
+            } else {
+                c0[i].con.fillStyle = rgba.css([255,255,255,1.0]);
+            }
+            c0[i].con.fillRect(0,0,c0[i].can.width,c0[i].can.height);
+        }
+    },
+    "noji": function() {
+        // get bmp from tick
+        var k0 = bmp.d[g.tick];
+        var b0 = bmp.c[k0]
+        var c0 = sce.a[0].c[1];
+        c0.con.fillStyle = rgba.css([0,0,0,1.0]);
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * 32) >>> 0;
+            var y1 = (y0 * 32) >>> 0;
+            c0.con.fillRect(x1,y1,32,32);
         }
     }
 }
@@ -320,9 +372,11 @@ var ren = {
         },
         "noji": function() {
             bmp.c = {};
+            bmp.d = []; // keys
             for (var k0 in net.noji) {
                 var b0 = base64DecToArr(net.noji[k0]);
                 bmp.c[k0] = bmp.exp(b0);
+                bmp.d.push(k0);
             }
         }
     }
