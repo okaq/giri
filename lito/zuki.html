@@ -40,24 +40,45 @@ var g = {
     },
     "start": function() {
         console.log("starting mem");
+        // data list
+        g.d = {};
+        // get screen size
+        g.d.a = [];
+        g.d.a.w = window.screen.width;
+        g.d.a.h = window.screen.height;
+        // start time for pid
+        g.d.b = [];
+        g.d.b.push(window.performance.now());
         // get pid
         net.pid();
         // fetch noto emoji json
         // decode bitmaps
     },
     "start2": function() {
+        // split time for pid net latency
+        g.d.b.push(window.performance.now());
+        // start time for decode and render
+        g.d.c = [];
+        g.d.c.push(window.performance.now());
         net.zuki();
     },
     "noji": function() {
+        // emoji fetch net latency fetch
+        g.d.c.push(window.performance.now());
+        
         // emoji bitmap render loop
-        var t0 = window.performance.now();
+        // var t0 = window.performance.now();
+        
+        // emoji decode split
+        g.d.c.push(window.performance.now());
 
         bmp.noji();
+        g.d.c.push(window.performance.now());
         // decode in 250ms
 
-        console.log("decode emoji time: " + (window.performance.now() - t0));
+        // console.log("decode emoji time: " + (window.performance.now() - t0));
 
-        window.setTimeout(g.pop, 1000);
+        // window.setTimeout(g.pop, 1000);
     },
     "pop": function() {
         // emoji loop
@@ -92,6 +113,7 @@ var g = {
         if (g.tick >= bmp.d.length) {
             console.log("anim done");
             window.clearInterval(g.id);
+
             return;
         }
         g.tick = g.tick + 1;
@@ -206,7 +228,7 @@ var net = {
         .then(json => {
             console.log(json);
             net.b[1]=json;
-            window.setTimeout(g.start2, 100);
+            window.setTimeout(g.start2, 10);
         })
         .catch(err => {console.log(err);});
     },
