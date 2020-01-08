@@ -63,7 +63,7 @@ var g = {
         net.zuki();
     },
     "noji": function() {
-        // emoji fetch net latency fetch
+        // emoji fetch net latency
         g.d.c.push(window.performance.now());
         
         // emoji bitmap render loop
@@ -75,6 +75,19 @@ var g = {
         bmp.noji();
         g.d.c.push(window.performance.now());
         // decode in 250ms
+
+        // make grid
+        // assign new index = 1
+        // generate a grid of rects
+
+        // rect grid to be handled in init
+
+        // create canvas objects and add to DOM
+        sce.grid();
+        sce.pop(1);
+        // render
+
+        console.log(g.d);
 
         // console.log("decode emoji time: " + (window.performance.now() - t0));
 
@@ -196,6 +209,33 @@ var sce = {
         }
         // alternatively we can set the current scene
         // with a global g.index = 0
+    },
+    "grid": function() {
+        // full screen rect grid
+        sce.b[1] = [];
+        // bkgd
+        sce.b[1][0] = [1920,1080,0,0];
+        // dimensions
+        var px = 32;
+        var py = 32;
+        var nx = 60;
+        var ny = 30;
+        var nt = 1800;
+        var my = 60;
+        for (var i = 0; i < nt; i++) {
+            var i0 = i + 1;
+            var x0 = i % px;
+            var y0 = (i / px) >>> 0;
+            var x1 = (x0 * px) >>> 0;
+            var y1 = (y0 * py) >>> 0;
+            var y2 = (y1 + my) >>> 0;
+            var r0 = [px,py,x1,y2];
+            sce.b[1][i0] = r0;
+        }
+
+        // first class abstraction
+        // input grid rect and cell size
+        // return a list of rects fill the space
     }
 }
 // xhr
