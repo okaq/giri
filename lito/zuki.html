@@ -84,8 +84,15 @@ var g = {
 
         // create canvas objects and add to DOM
         sce.grid();
+        // sce.a[1].c = sce.canvas(1);
+        sce.one(1);
         sce.pop(1);
-        // render
+        // render test
+        // ren.test(1);
+        // render bitmap split
+        g.d.c.push(window.performance.now());
+        ren.cell();
+        g.d.c.push(window.performance.now());
 
         console.log(g.d);
 
@@ -224,8 +231,8 @@ var sce = {
         var my = 60;
         for (var i = 0; i < nt; i++) {
             var i0 = i + 1;
-            var x0 = i % px;
-            var y0 = (i / px) >>> 0;
+            var x0 = i % nx;
+            var y0 = (i / nx) >>> 0;
             var x1 = (x0 * px) >>> 0;
             var y1 = (y0 * py) >>> 0;
             var y2 = (y1 + my) >>> 0;
@@ -315,6 +322,35 @@ var ren = {
             var x1 = (x0 * 32) >>> 0;
             var y1 = (y0 * 32) >>> 0;
             c0.con.fillRect(x1,y1,32,32);
+        }
+    },
+    "cell": function() {
+        // bkgd
+        var c1 = sce.a[1].c[0];
+        c1.con.fillStyle = rgba.rand();
+        c1.con.fillRect(0,0,c1.can.width,c1.can.height);
+        // grid
+        for (var i = 0; i < 1800; i++) {
+            var i0 = i + 1;
+            var c0 = sce.a[1].c[i0];
+            var i1 = i % 888; // emoji overflow
+            var k0 = bmp.d[i1];
+            var b0 = bmp.c[k0];
+            // cell fill
+            c0.con.fillStyle = rgba.rand();
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+            c0.con.fillStyle = rgba.rand();
+            ren.bmp(c0,b0);
+        }
+    },
+    "bmp": function(c0, b0) {
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            c0.con.fillRect(x0,y0,1,1);
         }
     }
 }
