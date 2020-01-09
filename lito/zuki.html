@@ -96,6 +96,8 @@ var g = {
 
         console.log(g.d);
 
+        window.setTimeout(g.post, 1000);
+
         // console.log("decode emoji time: " + (window.performance.now() - t0));
 
         // window.setTimeout(g.pop, 1000);
@@ -137,6 +139,13 @@ var g = {
             return;
         }
         g.tick = g.tick + 1;
+    },
+    "post": function() {
+        // remove cuurent emoji test canvases
+        sce.out(1);
+
+        // new text post with compiled data
+        txt.post2();
     }
 }
 // texts
@@ -167,6 +176,38 @@ var txt = {
         // 30 * 32 = 960 pixels height
         // 30 * 60 = 1800 bitmap render performance
         // network fetch json bitmap emoji
+    },
+    "post2": function() {
+        // init txt
+        txt.post();
+        // new format with data
+        txt.e = [];
+        // screen size
+        var s0 = g.d.a.w + " x " + g.d.a.h;
+        var s1 = txt.d[0].slice(0,12);
+        txt.e[0] = s1 + s0;
+        // render full screen bitmap emoji
+        var s2 = g.d.c[5] - g.d.c[4];
+        s2 = s2.toString().split(".")[0];
+        var s3 = txt.d[1].slice(0,13);
+        txt.e[1] = s3 + s2;
+        // net latency
+        var s4 = g.d.c[1] - g.d.c[0];
+        s4 = s4.toString().split(".")[0];
+        var s5 = txt.d[2].slice(0,12);
+        txt.e[2] = s5 + s4;
+        // bitmap decode
+        var s6 = g.d.c[3] - g.d.c[2];
+        s6 = s6.toString().split(".")[0];
+        var s7 = txt.d[3].slice(0,14);
+        txt.e[3] = s7 + s6;
+        console.log(txt.e);
+        // data for server
+        txt.f = [g.d.a.w,g.d.a.h,s2,s4,s6];
+        txt.g = txt.f.join(":");
+        txt.j = JSON.stringify(txt.g);
+        console.log(txt.f,txt.g,txt.j);
+        // "width:height:render:net:decode"
     }
 }
 // scene
@@ -209,7 +250,7 @@ var sce = {
             dom.add(sce.a[i0].c[i]);
         }
     },
-    "out": function() {
+    "out": function(i0) {
         // remove from dom
         for (var i = 0; i < sce.a[i0].c.length; i++) {
             dom.remove(sce.a[i0].c[i]);
