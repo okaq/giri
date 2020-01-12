@@ -96,11 +96,15 @@ var g = {
 
         console.log(g.d);
 
-        window.setTimeout(g.post, 1000);
+        // window.setTimeout(g.post, 1000);
 
         // console.log("decode emoji time: " + (window.performance.now() - t0));
 
         // window.setTimeout(g.pop, 1000);
+
+        // new tack, after 01/11 wed
+        
+        window.setTimeout(g.post2, 2000);
     },
     "pop": function() {
         // emoji loop
@@ -146,6 +150,16 @@ var g = {
 
         // new text post with compiled data
         txt.post2();
+
+        // rect list from text list
+        sce.river();
+    },
+    "post2": function() {
+        // remove current scene
+        sce.out(1);
+
+        // simplified text
+        txt.most();
     }
 }
 // texts
@@ -208,6 +222,25 @@ var txt = {
         txt.j = JSON.stringify(txt.g);
         console.log(txt.f,txt.g,txt.j);
         // "width:height:render:net:decode"
+    },
+    "most": function() {
+        txt.k = {};
+        // keys
+        txt.k.a = [];
+        txt.k.a[0] = "width";
+        txt.k.a[1] = "height";
+        txt.k.a[2] = "net";
+        txt.k.a[3] = "bitmap";
+        txt.k.a[4] = "render";
+        // stats
+        txt.k.b = {};
+        txt.k.b["width"] = g.d.a.w;
+        txt.k.b["height"] = g.d.a.h;
+        txt.k.b["net"] = g.d.c[1] - g.d.c[0];
+        txt.k.b["bitmap"] = g.d.c[3] - g.d.c[2];
+        txt.k.b["render"] = g.d.c[5] - g.d.c[4];
+        // blank scene
+        // fill scene
     }
 }
 // scene
@@ -284,6 +317,11 @@ var sce = {
         // first class abstraction
         // input grid rect and cell size
         // return a list of rects fill the space
+    },
+    "river": function() {
+        // a set text list of rects
+        // at a set location "pane"
+        // input is a text list
     }
 }
 // xhr
