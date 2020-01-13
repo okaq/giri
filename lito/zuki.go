@@ -69,6 +69,13 @@ func PidHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(b0)
 }
 
+func StatsHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	// parse req body json
+	// write to cache at pid
+	// if already exists, return
+}
+
 func main() {
 	motd()
 	rng()
@@ -76,6 +83,7 @@ func main() {
 	http.HandleFunc("/", ZukiHandler)
 	http.HandleFunc("/a", NojiHandler)
 	http.HandleFunc("/b", PidHandler)
+	http.HandleFunc("/c", StatsHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
