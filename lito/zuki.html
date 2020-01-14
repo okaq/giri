@@ -160,6 +160,9 @@ var g = {
 
         // simplified text
         txt.most();
+
+        // scene construct
+        sce.pong();
     }
 }
 // texts
@@ -318,10 +321,32 @@ var sce = {
         // input grid rect and cell size
         // return a list of rects fill the space
     },
-    "river": function() {
+    "river": function(t0) {
         // a set text list of rects
         // at a set location "pane"
         // input is a text list
+        var r0 = [];
+        for (var i = 0; i < t0.length; i++) {
+            // assume 32 px height
+            // 16 px top bottom margin
+            // start at origin (0,0)
+            var t1 = t0[i];
+            console.log(t1);
+        }
+    },
+    "stat": function() {
+        // text key value pairs
+    },
+    "pong": function() {
+        // construct the scene from text lists
+
+        // the storyboard is:
+        // show the blank debug list
+        // do a net visualization
+        // generate the frames render
+        // populate text list stats from key value pairs
+        // swan screen okaq golf man logo
+        // game screen
     }
 }
 // xhr
