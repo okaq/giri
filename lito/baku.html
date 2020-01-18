@@ -29,7 +29,7 @@ var g = {
         console.log("start lito...");
 
         // subs
-        g.subs = [dom];
+        g.subs = [dom,sce,bmp];
         g.subs.forEach(function(el){el.init();});
 
         // start
@@ -38,6 +38,7 @@ var g = {
     "start": function() {
         console.log("start anim logic");
 
+        ren.golf();
     }
 }
 // animation
@@ -51,6 +52,51 @@ var anim = {
         // each screen has a begin end duration
         // each element also has a begin end duration
         // local to the screen begin clock
+
+        // scene graph is structured as a bitmap
+        // with an extra dimension dictating ux / deco jumps
+        // nodes are generated on jump
+        // and edges encapsulate possible jump events
+    }
+}
+// scene
+var sce = {
+    "init": function() {
+        sce.a = {};
+        sce.a.r = [1920,1080,0,0];
+        sce.a.c = dom.canvas(sce.a.r);
+        dom.add(sce.a.c);
+
+        sce.b = {};
+        sce.b.r = [512,512,704,284];
+        sce.b.c = dom.canvas(sce.b.r);
+        dom.add(sce.b.c);
+    }
+}
+// render
+var ren = {
+    "golf": function() {
+        sce.a.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+        sce.b.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.b.c.con.fillRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
+        sce.b.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        ren.bmp(bmp.a["golf"],sce.b.c);
+    },
+    "bmp": function(b0,c0) {
+        // input bitmap 32x32
+        var px = (c0.can.width / 32) >>> 0;
+        var py = (c0.can.height / 32) >>> 0;
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * px) >>> 0;
+            var y1 = (y0 * py) >>> 0;
+            c0.con.fillRect(x1,y1,px,py);
+        }
     }
 }
    // dom
@@ -128,7 +174,84 @@ var anim = {
             return rgba.mono(c0);
         }
     }
-
+    // bitmap
+    var bmp = {
+        "exp": function(b0) {
+            // expansion of uint8array
+            // to string of bits
+            var r0 = [];
+            for (var i = 0; i < b0.length; i++) {
+                var b1 = b0[i];
+                var s0 = binStr(b1);
+                for (var j = 0; j < 8; j++) {
+                    var s1 = s0.charAt(j);
+                    var n0 = parseInt(s1, 10);
+                    r0.push(n0);
+                }
+            }
+            return r0;
+        },
+        "init": function() {
+            bmp.a = {};
+            var b0 = base64DecToArr(dragon[0]);
+            bmp.a["dragon"] = bmp.exp(b0);
+            var b1 = base64DecToArr(golf[0]);
+            bmp.a["golf"] = bmp.exp(b1);
+        }
+    }
+    var dragon = {
+        "0": "/////////////////////////////x////9P////Bf///wb///8/H///H4///h+H//4fx/v8H+f5/B///Pwf//44P///AD///8Af///+H////g////////////////////////////////////////////////////////////8="
+    }
+    var golf = {
+        "0": "///////////////////////4B///+Af///gH///4B///+Af///g////4P///+D////g////4P///+D////g////4z///wM///8DP///Px///z8f///////////////////////////////////////////////////////////8="
+    }
+    // string view
+    /*\
+    |*|
+    |*|  Base64 / binary data / UTF-8 strings utilities
+    |*|
+    |*|  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Base64_encoding_and_decoding
+    |*|
+    \*/
+    /* Array of bytes to base64 string decoding */
+    function b64ToUint6 (nChr) {
+     return nChr > 64 && nChr < 91 ?
+         nChr - 65
+         : nChr > 96 && nChr < 123 ?
+         nChr - 71
+         : nChr > 47 && nChr < 58 ?
+         nChr + 4
+         : nChr === 43 ?
+         62
+         : nChr === 47 ?
+         63
+         :
+         0;
+    }
+    function base64DecToArr (sBase64, nBlocksSize) {
+     var sB64Enc = sBase64.replace(/[^A-Za-z0-9\+\/]/g, ""), nInLen = sB64Enc.length,
+         nOutLen = nBlocksSize ? Math.ceil((nInLen * 3 + 1 >> 2) / nBlocksSize) * nBlocksSize : nInLen * 3 + 1 >> 2,
+         taBytes = new Uint8Array(nOutLen);
+     for (var nMod3, nMod4, nUint24 = 0, nOutIdx = 0, nInIdx = 0; nInIdx < nInLen; nInIdx++) {
+         nMod4 = nInIdx & 3;
+         nUint24 |= b64ToUint6(sB64Enc.charCodeAt(nInIdx)) << 18 - 6 * nMod4;
+         if (nMod4 === 3 || nInLen - nInIdx === 1) {
+                 for (nMod3 = 0; nMod3 < 3 && nOutIdx < nOutLen; nMod3++, nOutIdx++) {
+                         taBytes[nOutIdx] = nUint24 >>> (16 >>> nMod3 & 24) & 255;
+                 }
+                 nUint24 = 0;
+         }
+     }
+     return taBytes;
+    }
+    // bitwise ops
+    // https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators
+    var binStr = function(nMask) {
+         // nMask must be between 0 and 255
+         for (var nFlag = 0, nShifted = nMask, sMask = ""; nFlag < 32;
+             nFlag++, sMask += String(nShifted >>> 31), nShifted <<= 1);
+         return sMask.slice(24);
+    } 
 </script>
         </head>
         <body id="alpha">
