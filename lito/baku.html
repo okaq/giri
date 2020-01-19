@@ -60,6 +60,10 @@ var g = {
         console.log("font decode split: " + (window.performance.now() - t0));
 
         // gugi font decoded in 38 ms
+
+        // memory test text
+        sce.mem();
+        ren.mem();
     }
 }
 // animation
@@ -92,6 +96,21 @@ var sce = {
         sce.b.r = [512,512,704,284];
         sce.b.c = dom.canvas(sce.b.r);
         dom.add(sce.b.c);
+    },
+    "mem": function() {
+        // remove golf pane
+        dom.remove(sce.b.c);
+
+        // mem txt
+        sce.c = "human   memory   test";
+        // split
+        sce.d = sce.c.toUpperCase().split("");
+        console.log(sce.d,sce.d.length);
+        // canvas object
+        sce.e = {};
+        sce.e.r = [1344,64,288,508];
+        sce.e.c = dom.canvas(sce.e.r);
+        dom.add(sce.e.c);
     }
 }
 // render
@@ -118,6 +137,19 @@ var ren = {
             var y1 = (y0 * py) >>> 0;
             c0.con.fillRect(x1,y1,px,py);
         }
+    },
+    "mem": function() {
+        // foreach element in scene clear
+        // scene manager holds the current state
+        sce.a.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+        sce.e.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.e.c.con.fillRect(0,0,sce.e.c.can.width,sce.e.c.can.height);
+        sce.e.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        ren.txt(sce.d,sce.e.c);
+    },
+    "txt": function(t0,c0) {
+        
     }
 }
    // dom
