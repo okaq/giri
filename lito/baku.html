@@ -64,6 +64,7 @@ var g = {
         // memory test text
         sce.mem();
         ren.mem();
+        // ren.txt();
     }
 }
 // animation
@@ -149,7 +150,13 @@ var ren = {
         ren.txt(sce.d,sce.e.c);
     },
     "txt": function(t0,c0) {
-        
+        var h0 = c0.can.height;
+        for (var i = 0; i < t0.length; i++) {
+            if (!(t0[i] in bmp.a["gugi"])) {
+                continue;
+            }
+            console.log(t0[i]);
+        }
     }
 }
    // dom
