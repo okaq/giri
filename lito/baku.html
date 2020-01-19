@@ -65,6 +65,14 @@ var g = {
         sce.mem();
         ren.mem();
         // ren.txt();
+
+        // time wait 
+        window.setTimeout(g.start3, 5000);
+    },
+    "start3": function() {
+        // a scene call and a render call
+        sce.quad();
+        ren.quad();
     }
 }
 // animation
@@ -106,12 +114,38 @@ var sce = {
         sce.c = "human   memory   test";
         // split
         sce.d = sce.c.toUpperCase().split("");
-        console.log(sce.d,sce.d.length);
+        // console.log(sce.d,sce.d.length);
         // canvas object
         sce.e = {};
         sce.e.r = [1344,64,288,508];
         sce.e.c = dom.canvas(sce.e.r);
         dom.add(sce.e.c);
+    },
+    "quad": function() {
+        // remove mem text
+        dom.remove(sce.e.c);
+
+        // four quads
+        sce.f = {};
+        sce.f.r = [];
+        sce.f.c = [];
+        for (var i = 0; i < 4; i++) {
+            var w0 = 256;
+            var h0 = 256;
+            var y0 = 312;
+            var x0 = (178 * (i+1)) >>> 0;
+            var x1 = (256 * i) >>> 0;
+            var x2 = (x0 + x1) >>> 0;
+            var r0 = [w0,h0,x2,y0];
+            sce.f.r[i] = r0;
+            sce.f.c[i] = dom.canvas(sce.f.r[i]);
+            dom.add(sce.f.c[i]);
+            sce.f.c[i].can.addEventListener("click", sce.click, false);
+            sce.f.c[i].can.dataset.x = i;
+        }
+    },
+    "click": function(e) {
+        console.log(e.target.dataset.x);
     }
 }
 // render
@@ -155,7 +189,7 @@ var ren = {
             if (!(t0[i] in bmp.a["gugi"])) {
                 continue;
             }
-            console.log(t0[i]);
+            // console.log(t0[i]);
             var x0 = (i * h0) >>> 0;
             var b0 = bmp.a["gugi"][t0[i]];
             var r0 = [h0,h0,x0,0];
@@ -178,6 +212,15 @@ var ren = {
             var x2 = (x1 + r0[2]) >>> 0;
             var y2 = (y1 + r0[3]) >>> 0;
             c0.con.fillRect(x2,y2,px,py);
+        }
+    },
+    "quad": function() {
+        sce.a.c.con.fillStyle = rgba.css([255,255,255,1.0]);
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+        for (var i = 0; i < sce.f.c.length; i++) {
+            var c0 = sce.f.c[i];
+            c0.con.fillStyle = rgba.css([0,0,0,1.0]);
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
     }
 }
