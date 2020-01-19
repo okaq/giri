@@ -156,6 +156,28 @@ var ren = {
                 continue;
             }
             console.log(t0[i]);
+            var x0 = (i * h0) >>> 0;
+            var b0 = bmp.a["gugi"][t0[i]];
+            var r0 = [h0,h0,x0,0];
+            ren.char(b0,r0,c0);
+        }
+    },
+    "char": function(b0, r0, c0) {
+        // blit the bitmap
+        var px = (r0[0] / 32) >>> 0;
+        var py = (r0[1] / 32) >>> 0;
+        // console.log(px,py);
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * px) >>> 0;
+            var y1 = (y0 * py) >>> 0;
+            var x2 = (x1 + r0[2]) >>> 0;
+            var y2 = (y1 + r0[3]) >>> 0;
+            c0.con.fillRect(x2,y2,px,py);
         }
     }
 }
