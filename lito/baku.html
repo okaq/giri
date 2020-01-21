@@ -76,6 +76,10 @@ var g = {
 
         g.seq = g.pat(4,999);
         console.log(g.seq);
+
+        // playback
+        g.tick = 0;
+        g.id = window.setInterval(g.frame, 2500);
     },
     "pat": function(m0, n0) {
         // random sequence generation
@@ -87,6 +91,24 @@ var g = {
             r0.push(f0);
         }
         return r0;
+    },
+    "frame": function() {
+        // half second white
+        // assume render split ~1ms
+        // detach click event handlers
+        console.log("tick: " + g.tick);
+        if (g.tick >= g.seq.length) {
+            console.log("seq done");
+            window.clearInterval(g.id);
+            return;
+        }
+        console.log("sequence: " + g.seq[g.tick]);
+        ren.half();
+        // after 500ms clear again
+        // 500ms is very fast
+        // 2500/1250 might be better
+        window.setTimeout(function(){ren.quad();},1250);
+        g.tick = g.tick + 1;
     }
 }
 // animation
@@ -146,7 +168,7 @@ var sce = {
         for (var i = 0; i < 4; i++) {
             var w0 = 256;
             var h0 = 256;
-            var y0 = 312;
+            var y0 = 412;
             var x0 = (178 * (i+1)) >>> 0;
             var x1 = (256 * i) >>> 0;
             var x2 = (x0 + x1) >>> 0;
@@ -236,6 +258,14 @@ var ren = {
             c0.con.fillStyle = rgba.css([0,0,0,1.0]);
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
+    },
+    "half": function() {
+        // obtain index from game state
+        var i0 = g.seq[g.tick];
+        // beep the select quad in sequence
+        var c0 = sce.f.c[i0];
+        c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+        c0.con.fillRect(0,0,c0.can.width,c0.can.height);
     }
 }
    // dom
