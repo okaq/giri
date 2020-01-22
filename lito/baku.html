@@ -182,6 +182,19 @@ var sce = {
     },
     "click": function(e) {
         console.log(e.target.dataset.x);
+    },
+    "attach": function(c0) {
+        // attach event handlers
+        // input is canvas object list
+        // also parameterize the handler
+        for (var i = 0; i < c0.length; i++) {
+            c0[i].can.addEventListener("click", sce.click, false);
+        }
+    },
+    "detach": function(c0) {
+        for (var i = 0; i < c0.length; i++) {
+            c0[i].can.removeEventListener("click", sce.click, false);
+        }
     }
 }
 // render
