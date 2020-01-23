@@ -79,7 +79,8 @@ var g = {
 
         // playback
         g.tick = 0;
-        g.id = window.setInterval(g.frame, 2500);
+        // g.id = window.setInterval(g.frame, 2500);
+        g.id = window.setTimeout(g.frame2, 1000);
     },
     "pat": function(m0, n0) {
         // random sequence generation
@@ -109,6 +110,12 @@ var g = {
         // 2500/1250 might be better
         window.setTimeout(function(){ren.quad();},1250);
         g.tick = g.tick + 1;
+    },
+    "frame2": function() {
+        // one possibility is precise time lines
+        // based upon the tick count
+        // we can build keyframes arithmetically
+        // length of sequence * interval
     }
 }
 // animation
