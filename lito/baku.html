@@ -116,6 +116,25 @@ var g = {
         // based upon the tick count
         // we can build keyframes arithmetically
         // length of sequence * interval
+
+        // local sub tick
+        g.tock = 0;
+        g.id2 = window.setInterval(g.frame3, 1000); 
+    },
+    "frame3": function() {
+        console.log("tick: " + g.tick);
+        console.log("tock: " + g.tock);
+        if (g.tock >= g.tick) {
+            console.log("sub loop done");
+            // increment the global
+            g.tick = g.tick + 1;
+            // sanity check if final sequence is reached
+            // cancel loop
+            window.clearInterval(g.id2);
+            window.setTimeout(g.frame2, 1000);
+            return;
+        }
+        g.tock = g.tock + 1;
     }
 }
 // animation
