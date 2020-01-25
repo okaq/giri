@@ -80,7 +80,10 @@ var g = {
         // playback
         g.tick = 0;
         // g.id = window.setInterval(g.frame, 2500);
-        g.id = window.setTimeout(g.frame2, 1000);
+        // g.id = window.setTimeout(g.frame2, 1000);
+        
+        // start the game instantly
+        window.setTimeout(g.frame4, 100);
     },
     "pat": function(m0, n0) {
         // random sequence generation
@@ -135,6 +138,9 @@ var g = {
             return;
         }
         g.tock = g.tock + 1;
+    },
+    "frame4": function() {
+        
     }
 }
 // animation
