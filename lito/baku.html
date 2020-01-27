@@ -144,6 +144,29 @@ var g = {
         // init tock to zero
         g.tock = 0;
         // set playback, user sequence loop
+        // detach user handlers
+        sce.detach();
+        // begin playback
+        g.id3 = windoe.setInterval(frame5, 1000);
+    },
+    "frame5": function() {
+        g.glog();
+        g.check();
+        g.blink();
+        g.tock = g.tock + 1;
+    },
+    "glog": function() {
+        console.log("tick: " + g.tick);
+        console.log("tock: " + g.tock);
+    },
+    "check": function() {
+        if (g.tock >= g.tick) {
+            console.log("seq done. begin player input");
+            window.clearInterval(g.id3);
+        }
+    },
+    "blink": function() {
+        // flash index in tock sequence for half second
     }
 }
 // animation
