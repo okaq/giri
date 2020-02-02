@@ -40,12 +40,31 @@ var g = {
 
         // text layout generator
         // lists of strings, evenly spaced
+
+        // start the data base
+        db.kool();
+        // pid
+        net.start();
+    }
+}
+// data
+var db = {
+    "kool": function() {
+        // layout, config, text, game
+        // all data generated here
+        // procedurally, or decalrative, that is the key
     }
 }
 // scene
 var sce = {
     "init": function() {
         sce.a = {};
+
+        // once a generator is created all we need
+        // text config, with list of strings (as char arrays)
+        // logical screen to hold the text on left panel, game on right half
+        // add / remove methods to populate the screen
+        // handlers, animation timers, to ascribe the screen elements states
     }
 }
 // text
@@ -70,6 +89,19 @@ var txt = {
             c0.push(c1);
         }
         return c0;
+    }
+}
+// xhr
+var net = {
+    "start": function() {
+        net.a = {};
+        // generate pid browser side
+        var f0 = (Math.random() * Number.MAX_SAFE_INTEGER) >>> 0;
+        var t0 = window.performance.now();
+        var s0 = f0 + ":" + t0;
+        net.a.a = s0;
+
+        // send to server
     }
 }
    // dom
