@@ -30,6 +30,7 @@ func CinoHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	// cache
+	motd()
 	C = make(map[string]string)
 	http.HandleFunc("/", CinoHandler)
 	http.ListenAndServe(":8080", nil)

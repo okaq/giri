@@ -50,8 +50,26 @@ var sce = {
 }
 // text
 var txt = {
-    "list": function(t0) {
+    "list": function(t0, h0) {
         // generate canvas object list from text list
+        // text list origin at (0,0)
+        // rect margin h0 / 2 top, bottom
+        var c0 = [];
+        for (var i = 0; i < t0.length; i++) {
+            var w0 = (t0[i].length * h0) >>> 0;
+            var m0 = (h0 / 2) >>> 0;
+            var h1 = (h0 * 2) >>> 0;
+            var x0 = 0;
+            var y0 = (h1 * i) >>> 0;
+            var y1 = (y0 + m0) >>> 0;
+            var r0 = [w0,h0,x0,y1];
+            var c1 = {};
+            c1.r = r0;
+            c1.c = dom.canvas(r0);
+            c1.d = t0[i];
+            c0.push(c1);
+        }
+        return c0;
     }
 }
    // dom
