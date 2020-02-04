@@ -97,6 +97,7 @@ var txt = {
 // xhr
 var net = {
     "start": function() {
+        // data
         net.a = {};
         // generate pid browser side
         var f0 = (Math.random() * Number.MAX_SAFE_INTEGER) >>> 0;
@@ -106,6 +107,11 @@ var net = {
         console.log(s0);
         net.a.a = s0;
 
+        // urls
+        net.b = [];
+        net.b[0] = "http://localhost:8080/a";
+        net.b[1] = "http://localhost:8080/b";
+
         // send to server
         // generate and return server side pid
         // format "browser_rng:browser_time::server_rng:server_time"
@@ -113,6 +119,9 @@ var net = {
         // server cache is golang type map[string]string
         // format "key|type" = "value"
         // fast, cheap and easy -warhol
+
+        // apres, fetch asobi/noto_emoji_2.json 888 glyph data
+        // and test render at 1fpms (one frame per millisecond)
     }
 }
    // dom

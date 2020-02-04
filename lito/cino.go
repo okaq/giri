@@ -28,11 +28,19 @@ func CinoHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w,r,INDEX)
 }
 
+func PidHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+	var s0 string
+	json.NewDecoder(r.Body).Decode(&s)
+	fmt.Println(s0)
+}
+
 func main() {
 	// cache
 	motd()
 	C = make(map[string]string)
 	http.HandleFunc("/", CinoHandler)
+	http.HandleFunc("/a", PidHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
