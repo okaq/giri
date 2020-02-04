@@ -112,6 +112,28 @@ var net = {
         net.b[0] = "http://localhost:8080/a";
         net.b[1] = "http://localhost:8080/b";
 
+        // fetch
+        net.c = {};
+        net.c.a = {};
+        net.c.a["method"] = "POST";
+        net.c.a["headers"] = {"Content-type": "application/json"};
+        net.c.a["body"] = JSON.stringify(net.a.a);
+        net.c.b = function(err) {
+            console.log(err);
+        };
+        net.c.c = function(res) {
+            console.log(res);
+            res.json();
+        };
+        net.c.d = function(json) {
+            console.log(json);
+        }
+
+        window.fetch(net.b[0], net.c.a)
+        .then(net.c.c)
+        .then(net.c.d)
+        .catch(net.c.b);
+
         // send to server
         // generate and return server side pid
         // format "browser_rng:browser_time::server_rng:server_time"
